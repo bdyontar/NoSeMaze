@@ -3,6 +3,9 @@
 Created on Tue Oct 15 00:09:39 2019
 
 @author: Michael
+
+use with ffmpeg.exe. Download link below.
+https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-20191016-29dac29-win64-static.zip
 """
 
 from PyQt5 import QtWidgets, QtCore, QtGui
