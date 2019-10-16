@@ -1,0 +1,11 @@
+﻿Hi {name},
+
+My software has crashed!
+This could help:
+{error}
+
+Best regards,
+
+the Beast
+
+*This is a machine-generated message. Please do not reply to this address.

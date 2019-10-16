@@ -1,0 +1,12 @@
+﻿Hi {name},
+
+My software has crashed.
+
+Traceback:
+{error}
+
+Best regards,
+
+RFID Tracking Server
+
+*This is a machine-generated message. Please do not reply to this address.

@@ -1,0 +1,12 @@
+Hi {name},
+
+There was not much activity detected for the following mouses:
+{mouses}
+
+Could you please check the logs I send you? Thanks!
+
+Best regards,
+
+the Beast
+
+*This is a machine-generated message. Please do not reply to this address.

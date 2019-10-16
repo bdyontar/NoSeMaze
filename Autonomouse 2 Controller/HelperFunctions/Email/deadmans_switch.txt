@@ -1,0 +1,16 @@
+﻿Hi {name}!
+
+How are you? I am fine!
+The logs for the last hours is attached.
+
+Here is the short overview:
+
+{overview}
+
+Catch you again later!
+
+Best regards,
+
+the Beast
+
+*This is a machine-generated message. Please do not reply to this address.
