@@ -215,7 +215,7 @@ def deadmans_switch(experiment):
         table.append(row)
         
         if os.path.isfile(experiment.logs_path+'/licks_log_'+animal+'.txt'):
-            with open(experiment.logs_path+'/licks_log_'+animal+'.txt','r') as f: 
+            with open(experiment.logs_path+'/licks_log_'+animal+'.txt', encoding="utf-8-sig") as f: 
                 log = f.readlines()
             if len(log)>100: 
                 header = [log[0]]
@@ -237,7 +237,7 @@ def crash_error(exctype, value, tb):
     subject = "Software has crashed"
     error = "".join(traceback.format_exception(exctype,value,tb))
     filename = os.getcwd()+'\\HelperFunctions\\Email\\crash_error.txt'
-    with open(filename, encoding='utf-8') as f: content = f.read()    
+    with open(filename, encoding='utf-8-sig') as f: content = f.read()    
     content = content.format(name='{name}',error=error)
     attachment = None
     send(subject, content, attachment)
@@ -246,7 +246,7 @@ def warning_licks(logs_path, namelist):
     subject = "Warning: too little licks detected"
     mouses = "\n".join(namelist)
     filename = os.getcwd()+'\\HelperFunctions\\Email\\warning_licks.txt'
-    with open(filename, encoding='utf-8') as f: content = f.read()
+    with open(filename, encoding='utf-8-sig') as f: content = f.read()
     content = content.format(name='{name}', mouses=mouses)
     attachment = list()
     for name in namelist:
