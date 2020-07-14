@@ -26,7 +26,7 @@ class Autonomouse2ScheduleWidget(QtWidgets.QWidget, autonomouse2ScheduleDesign.U
         self.rewardMapTable.setColumnCount(int(self.nValveSpin.value()))
         label = []
         for i in range(self.nValveSpin.value()-1):
-            label.append(str(i)+1)
+            label.append(str(i+1))
         self.rewardMapTable.setHorizontalHeaderLabels(label)
 
     def generate_schedule(self, valence_map):#DONE Reward Map hier neustrukturieren.
@@ -177,6 +177,8 @@ class Autonomouse2ScheduleWidget(QtWidgets.QWidget, autonomouse2ScheduleDesign.U
         onset = float(self.trialOnsetEdit.text())
         offset = float(self.trialOffsetEdit.text())
         length = float(self.trialLengthEdit.text())
+        lick_window = float(self.lickWindowEdit.text())
+        delay_window = float(self.delayEdit.text())
         valve = trial[5]
         valence_map = trial[6]
         
@@ -196,7 +198,10 @@ class Autonomouse2ScheduleWidget(QtWidgets.QWidget, autonomouse2ScheduleDesign.U
                      'isClean': True,
                      'onset': onset,
                      'offset': offset,
-                     'lick_fraction' : trial[7]}
+                     'lick_fraction' : trial[7],
+                     'lick_window' : lick_window,
+                     'delay_after_odour':delay_window
+                     }
             
             if p + 1 in valve:
                 param['repeats'] = 1
