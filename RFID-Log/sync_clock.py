@@ -11,7 +11,7 @@ from Control import LogController as lc
 import serial
 
 def main():
-    with serial.Serial("COM15",baudrate=19200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=2) as ser:
+    with serial.Serial("COM2",baudrate=19200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=2) as ser:
         worker = lc.LogWorker()
         worker.synchronise_clock(ser)
         
