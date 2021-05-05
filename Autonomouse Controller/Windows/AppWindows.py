@@ -85,6 +85,7 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
         self.setupUi(self)
         self.parent = parent
         self.experiment= experiment
+        self.setting_path = self.parent.config_path + "/cam.setting"
         self.camOne = None
         self.camTwo = None
         self.cameras_pos = dict()
@@ -108,8 +109,8 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
             key = str(i)+' : '+desc
             self.cameras_pos[key] = cam
         
-        if os.path.exists('cam.setting'):
-            with open('cam.setting','rb') as f:
+        if os.path.exists(self.setting_path):
+            with open(self.setting_path,'rb') as f:
                 settings = pickle.load(f)
                 self.configure_settings(settings)
         
@@ -318,7 +319,7 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
         if self.camTwo is not None:
             self.camTwo.stop()
             self.camTwo.unload()
-        with open('cam.setting','wb') as f:
+        with open(self.setting_path,'wb') as f:
             pickle.dump(self.settings,f)
             f.flush()
         event.accept()
@@ -666,12 +667,14 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                      'lick_delay':float(self.lickMonitorDelayEdit.text()),
                      'low_lickrate':float(self.lickrateEdit.text())}
         except ValueError:
-            QtWidgets.QMessageBox.about(self.parent,"Error","A value error has occured")
+            QtWidgets.QMessageBox.about(self.parent,"Error",
+                                        "A value error has occured")
         else:
             self.parent.hardware_prefs = prefs
             self.new_pref.emit(prefs)
             
-            with open('hardware.config', 'wb') as fn:
+            hardware_config_path = self.parent.config_path+'/hardware.config'
+            with open(hardware_config_path, 'wb') as fn:
                 pickle.dump(prefs, fn)
                 fn.flush()
             self.saved.emit()

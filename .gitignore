@@ -1,5 +1,14 @@
 # ignoring __pycache__ folders
 **/__pycache__
+
+# ignoring cam config
 ffmpeg.exe
 **/cam.setting
+
+# ignoring vscode config
 **/.vscode
+
+# ignoring installer build
+**/build
+**/icon
+**/*.spec

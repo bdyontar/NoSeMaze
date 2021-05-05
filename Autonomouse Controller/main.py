@@ -22,6 +22,12 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.saved_status = True
+        self.config_path = ".autonomouseconfig"
+        
+        # create config folder if not exists
+        if not os.path.isdir(self.config_path):
+            os.makedirs(self.config_path)
+        
         self.hardware_prefs = self.load_config_data()
         self.hardware_window = AppWindows.HardwareWindow(self)
         self.animal_window = None
@@ -29,6 +35,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.mail_window = None
         self.control_window = None
         self.setup_experiment_bindings(Experiment.Experiment())
+        
         # function bindings
         self.actionAnimal_List.triggered.connect(self.open_animal_window)
         self.actionHardware_Preferences.triggered.connect(self.open_hardware_window)
@@ -73,10 +80,10 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
         self.trialView.selectionModel().selectionChanged.connect(self.on_trial_selected)
 
-    @staticmethod
-    def load_config_data():
-        if os.path.exists('hardware.config'):
-            with open('hardware.config', 'rb') as fn:
+    def load_config_data(self):
+        hardware_config_path = self.config_path+"/hardware.config"
+        if os.path.exists(hardware_config_path):
+            with open(hardware_config_path, 'rb') as fn:
                 return pickle.load(fn)
         else:
             return None
