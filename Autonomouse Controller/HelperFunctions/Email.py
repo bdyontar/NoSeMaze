@@ -42,7 +42,7 @@ def parse_list(string):
     
     return result
 
-def deadmans_switch(experiment):
+def deadmans_switch(experiment, dropbox_path=None):
     """
     Notification every day to indicate if experiment is running.
     
@@ -278,9 +278,9 @@ def deadmans_switch(experiment):
     table = '\n'.join(table)
     content = content.format(name='{name}', overview=table)
     
-    send(subject, content, attachment)
+    send(subject, content, attachment, dropbox_path)
 
-def crash_error(exctype, value, tb):
+def crash_error(exctype, value, tb, dropbox_path=None):
     """
     Get traceback if software is crashed and send e-mail. Currently, a message 
     will be written in Dropbox.
@@ -303,9 +303,9 @@ def crash_error(exctype, value, tb):
     with open(filename, encoding='utf-8') as f: content = f.read()    
     content = content.format(name='{name}',error=error)
     attachment = None
-    send(subject, content, attachment)
+    send(subject, content, attachment, dropbox_path)
     
-def warning_licks(logs_path, namelist):
+def warning_licks(logs_path, namelist, dropbox_path=None):
     """
     Send warning e-mail if any mouse has not licked in a period of time.
     Currently, a message will be written in Dropbox.
@@ -332,9 +332,9 @@ def warning_licks(logs_path, namelist):
         else:
             attachment.append(dict(log="The mouse hasn't licked...",name = 'licks_log_'+name+'.txt'))
     
-    send(subject, content, attachment)
+    send(subject, content, attachment, dropbox_path)
 
-def send(subject, content, attachment):
+def send(subject, content, attachment, dropbox_path=None):
     """
     Write a message with subject, content and attachment in Dropbox.
     
@@ -350,25 +350,27 @@ def send(subject, content, attachment):
         List of attachment.
     """
     
-    today = datetime.datetime.today().isoformat().split(".")[0].replace(":","")
-    dire = "C:/Users/Anwender/Dropbox/Autonomouse_1/Nachrichten/" + today + "/"
-#    dire = "C:/Users/Anwender/Dropbox/Autonomouse_2/Nachrichten/" + today + "/"
-    if not os.path.isdir(dire):
-        os.mkdir(dire)
-    
-    filename = dire + subject + ".txt" # File in Dropbox folder
-    
-    text = content.format(name="User")
-    print(repr(text))
-    print(filename)
-    with open(filename, 'w', encoding='utf-8-sig') as f:
-        f.write(text)
+    if dropbox_path is not None:
+        today = datetime.datetime.today().isoformat().split(".")[0].replace(":","")
+        dire = dropbox_path + '/' + today + '/'
+        # dire = "C:/Users/Anwender/Dropbox/Autonomouse_1/Nachrichten/" + today + "/"
+    #    dire = "C:/Users/Anwender/Dropbox/Autonomouse_2/Nachrichten/" + today + "/"
+        if not os.path.isdir(dire):
+            os.mkdir(dire)
+        
+        filename = dire + subject + ".txt" # File in Dropbox folder
+        
+        text = content.format(name="User")
+        print(repr(text))
+        print(filename)
+        with open(filename, 'w', encoding='utf-8-sig') as f:
+            f.write(text)
 
-    if attachment is not None:
-        for attach in attachment:
-            fn = dire + attach['name']
-            with open(fn,'w',newline='') as f:
-                f.write(attach['log'])
+        if attachment is not None:
+            for attach in attachment:
+                fn = dire + attach['name']
+                with open(fn,'w',newline='') as f:
+                    f.write(attach['log'])
 
 #def send(subject, content, attachment):
 #    """

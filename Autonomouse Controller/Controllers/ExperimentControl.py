@@ -386,19 +386,20 @@ class ExperimentWorker(QtCore.QObject):
         evening = datetime.datetime.combine(self.today, datetime.time(hour=17))
         night = datetime.datetime.combine(self.today, datetime.time(hour=22))
         now = datetime.datetime.now()
+        dropbox_path = self.parent.parent.dropbox_path
         if now > morning and now <= evening and not self.morning_mail_sent:
             print('sending morning mail')
-            email.deadmans_switch(self.experiment)
+            email.deadmans_switch(self.experiment, dropbox_path)
             self.morning_mail_sent = True
         elif now > evening and now <= night and not self.evening_mail_sent:
             print('sending evening mail')
-            email.deadmans_switch(self.experiment)
+            email.deadmans_switch(self.experiment, dropbox_path)
             self.evening_mail_sent = True
         elif now > night and not self.night_mail_sent:
-            email.deadmans_switch(self.experiment)
+            email.deadmans_switch(self.experiment, dropbox_path)
             self.night_mail_sent = True
         elif now < morning and not self.mail_sent:
-            email.deadmans_switch(self.experiment)
+            email.deadmans_switch(self.experiment, dropbox_path)
             self.mail_sent = True
         
             
@@ -410,6 +411,7 @@ class ExperimentWorker(QtCore.QObject):
         """
         
         self.lock_llog.lockForRead()
+        dropbox_path = self.parent.parent.dropbox_path
         interval = datetime.timedelta(hours=6) # Period set to 6 hours
         
         if (datetime.datetime.now() - self.start_timestamp[0]) > interval:
@@ -455,7 +457,7 @@ class ExperimentWorker(QtCore.QObject):
                         problem_list.append(animal)    
             if len(problem_list) > 0:
                 problem_list.append('default')
-                email.warning_licks(self.experiment.logs_path, problem_list)
+                email.warning_licks(self.experiment.logs_path, problem_list, dropbox_path)
         self.lock_llog.unlock()
 
     def animal_present(self):

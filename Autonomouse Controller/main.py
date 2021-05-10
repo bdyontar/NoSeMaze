@@ -29,6 +29,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             os.makedirs(self.config_path)
         
         self.hardware_prefs = self.load_config_data()
+        self.dropbox_path = self.load_dropbox_path()
         self.hardware_window = AppWindows.HardwareWindow(self)
         self.animal_window = None
         self.analysis_window = None
@@ -41,6 +42,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionHardware_Preferences.triggered.connect(self.open_hardware_window)
         self.actionAnalyse_Experiment.triggered.connect(self.open_analysis_window)
         self.actionMailing_List.triggered.connect(self.open_mail_window)
+        self.actionDropbox.triggered.connect(self.set_dropbox_path)
         self.actionVideo_Control.triggered.connect(self.open_control_window)
         self.actionSave_Experiment.triggered.connect(self.save_experiment)
         self.actionLoad_Experiment.triggered.connect(self.load_experiment)
@@ -85,6 +87,14 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         if os.path.exists(hardware_config_path):
             with open(hardware_config_path, 'rb') as fn:
                 return pickle.load(fn)
+        else:
+            return None
+
+    def load_dropbox_path(self):
+        dropbox_path_file = self.config_path+"/dropbox.txt"
+        if os.path.exists(dropbox_path_file):
+            with open(dropbox_path_file, 'r') as fn:
+                return fn.readline()
         else:
             return None
 
@@ -185,7 +195,23 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         except:
             print('were not saved...')
             
+    def set_dropbox_path(self):
+        dropbox_path = self.load_dropbox_path()
+
+        try:    
+            dirname = QtWidgets.QFileDialog.getExistingDirectory(self, 
+                                                                "Set Dropbox path", 
+                                                                dropbox_path, 
+                                                                QtWidgets.QFileDialog.Option.ShowDirsOnly)
+            self.dropbox_path = dirname
+
+            dropbox_path_file = self.config_path+"/dropbox.txt"
             
+            if dirname != '':
+                with open(dropbox_path_file, 'w') as fn:
+                    fn.write(dirname+"\n")
+        except:
+            print("were not saved...")        
     
     def experiment_saved(self):
         self.saved_status = True
@@ -251,8 +277,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 sys._excepthook = sys.excepthook
 
 
-def my_exception_hook(exctype, value, traceback):
-    email.crash_error(exctype,value,traceback)
+def my_exception_hook(exctype, value, traceback, dropbox_path=None):
+    email.crash_error(exctype,value,traceback, dropbox_path)
     # Print the error and traceback
 #    test = "".join(traceback.format_exception(exctype,value,traceback))
 #    print(test)
