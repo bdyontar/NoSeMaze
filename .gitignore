@@ -12,3 +12,6 @@ ffmpeg.exe
 **/build
 **/icon
 **/*.spec
+
+# ignoring dropbox config
+**/dropbox.txt
