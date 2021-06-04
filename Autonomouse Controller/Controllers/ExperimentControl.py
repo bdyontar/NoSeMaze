@@ -131,7 +131,7 @@ class ExperimentWorker(QtCore.QObject):
                         
                         t = np.linspace(0, 
                                 total_length, 
-                                total_length*self.hardware_prefs['samp_rate'])
+                                int(total_length*self.hardware_prefs['samp_rate']))
                         
                         odor_pulses = [odor_pulses, onset, duration, offset]
                         fv_pulse = np.array([self.hardware_prefs['fv_delay']])

@@ -94,7 +94,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         dropbox_path_file = self.config_path+"/dropbox.txt"
         if os.path.exists(dropbox_path_file):
             with open(dropbox_path_file, 'r') as fn:
-                return fn.readline()
+                return fn.readline().strip("\n")
         else:
             return None
 
