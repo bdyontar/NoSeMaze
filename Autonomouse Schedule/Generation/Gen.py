@@ -3,7 +3,6 @@ This module contains methods to generate randomise sequence of trials.
 """
 
 import numpy as np
-from sklearn import linear_model
 
 def odor_sequence(odour_choice, n_trials):
     """
@@ -59,27 +58,3 @@ def reward_sequence(n_trials):
                 sequence[t] = np.random.randint(0, 2)
 
     return sequence
-
-def generate_correlation_structure(n, rho):
-    # Currently not used.
-    # remap with corr. structure
-    x = np.random.uniform(0.0, 1.0, n).reshape(-1, 1)
-    y = np.random.uniform(0.0, 1.0, n).reshape(-1, 1)
-
-    mdl = linear_model.LinearRegression()
-    mdl.fit(y, x)
-
-    res = mdl.predict(y) - x
-
-    x = (rho * np.std(res) * y) + (np.sqrt(1 - rho**2) * np.std(y) * res)
-
-    x = (x - np.min(x)) / (np.max(x) - np.min(x))
-    y = (y - np.min(y)) / (np.max(y) - np.min(y))
-
-    # get residuals for new correlation structure
-    mdl = linear_model.LinearRegression()
-    mdl.fit(x, y)
-
-    res = y - mdl.predict(x)
-
-    return x, y, np.hstack(res)
