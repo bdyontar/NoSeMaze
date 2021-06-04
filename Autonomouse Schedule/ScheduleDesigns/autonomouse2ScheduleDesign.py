@@ -170,7 +170,7 @@ class Ui_Form(object): #DONE Namenänderung und Einbinden von Wahrscheinlichkeit
         self.label_7.setText(_translate("Form", "Reward Map:"))
         self.label_9.setText(_translate("Form", "Pretraining"))
         self.label_3.setText(_translate("Form", "Number of Trials"))
-        self.label_4.setText(_translate("Form", "Odor (s)"))
+        self.label_4.setText(_translate("Form", "Odor Duration (s)"))
         self.trialOffsetEdit.setText(_translate("Form", "0.1"))
         self.label_6.setText(_translate("Form", "Trial Offset (s)"))
         #self.lickWindowEdit.setText(_translate("Form", "2.0"))
