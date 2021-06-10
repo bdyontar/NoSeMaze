@@ -30,6 +30,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         
         self.hardware_prefs = self.load_config_data()
         self.dropbox_path = self.load_dropbox_path()
+        email.dropbox_path = self.dropbox_path
         self.hardware_window = AppWindows.HardwareWindow(self)
         self.animal_window = None
         self.analysis_window = None
@@ -277,8 +278,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 sys._excepthook = sys.excepthook
 
 
-def my_exception_hook(exctype, value, traceback, dropbox_path=None):
-    email.crash_error(exctype,value,traceback, dropbox_path)
+def my_exception_hook(exctype, value, traceback):
+    email.crash_error(exctype,value,traceback)
     # Print the error and traceback
 #    test = "".join(traceback.format_exception(exctype,value,traceback))
 #    print(test)

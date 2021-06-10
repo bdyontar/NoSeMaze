@@ -23,6 +23,7 @@ import os
 import numpy as np
 import scipy.stats as stats
 Z = stats.norm.ppf
+dropbox_path = None
 
 def parse_list(string):
     """
@@ -42,7 +43,7 @@ def parse_list(string):
     
     return result
 
-def deadmans_switch(experiment, dropbox_path=None):
+def deadmans_switch(experiment):
     """
     Notification every day to indicate if experiment is running.
     
@@ -278,9 +279,9 @@ def deadmans_switch(experiment, dropbox_path=None):
     table = '\n'.join(table)
     content = content.format(name='{name}', overview=table)
     
-    send(subject, content, attachment, dropbox_path)
+    send(subject, content, attachment)
 
-def crash_error(exctype, value, tb, dropbox_path=None):
+def crash_error(exctype, value, tb):
     """
     Get traceback if software is crashed and send e-mail. Currently, a message 
     will be written in Dropbox.
@@ -305,7 +306,7 @@ def crash_error(exctype, value, tb, dropbox_path=None):
     attachment = None
     send(subject, content, attachment, dropbox_path)
     
-def warning_licks(logs_path, namelist, dropbox_path=None):
+def warning_licks(logs_path, namelist):
     """
     Send warning e-mail if any mouse has not licked in a period of time.
     Currently, a message will be written in Dropbox.
@@ -332,9 +333,9 @@ def warning_licks(logs_path, namelist, dropbox_path=None):
         else:
             attachment.append(dict(log="The mouse hasn't licked...",name = 'licks_log_'+name+'.txt'))
     
-    send(subject, content, attachment, dropbox_path)
+    send(subject, content, attachment)
 
-def send(subject, content, attachment, dropbox_path=None):
+def send(subject, content, attachment):
     """
     Write a message with subject, content and attachment in Dropbox.
     
