@@ -304,7 +304,7 @@ def crash_error(exctype, value, tb):
     with open(filename, encoding='utf-8') as f: content = f.read()    
     content = content.format(name='{name}',error=error)
     attachment = None
-    send(subject, content, attachment, dropbox_path)
+    send(subject, content, attachment)
     
 def warning_licks(logs_path, namelist):
     """
