@@ -178,14 +178,15 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             # We don't change the original date of creation
             if self.experiment.date is None:
                 self.experiment.date = str(datetime.datetime.now())
-                logs_path = os.path.dirname(fname)+ '/Logs/logs_' + self.experiment.name.split(".")[0]
-                self.experiment.logs_path = logs_path
-                if os.path.isdir(self.experiment.logs_path):
-                    i = 1
-                    while os.path.isdir(self.experiment.logs_path):
-                        self.experiment.logs_path = logs_path +'('+str(i)+')'
-                        i += 1
-                os.makedirs(self.experiment.logs_path)  
+                
+            logs_path = os.path.dirname(fname)+ '/Logs/logs_' + self.experiment.name.split(".")[0]
+            self.experiment.logs_path = logs_path
+            if os.path.isdir(self.experiment.logs_path):
+                i = 1
+                while os.path.isdir(self.experiment.logs_path):
+                    self.experiment.logs_path = logs_path +'('+str(i)+')'
+                    i += 1
+            os.makedirs(self.experiment.logs_path)  
             
             self.update_experiment_info()
             
