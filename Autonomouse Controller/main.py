@@ -208,6 +208,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.dropbox_path = dirname
 
             dropbox_path_file = self.config_path+"/dropbox.txt"
+            email.dropbox_path = dropbox_path_file
             
             if dirname != '':
                 with open(dropbox_path_file, 'w') as fn:
