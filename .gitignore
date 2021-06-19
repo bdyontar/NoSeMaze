@@ -1,10 +1,6 @@
 # ignoring __pycache__ folders
 **/__pycache__
 
-# ignoring cam config
-ffmpeg.exe
-**/cam.setting
-
 # ignoring vscode config
 **/.vscode
 
@@ -13,5 +9,9 @@ ffmpeg.exe
 **/icon
 **/*.spec
 
-# ignoring dropbox config
+# ignoring config
 **/dropbox.txt
+ffmpeg.exe
+**/cam.setting
+**/.autonomouseconfig
+**/hardware.config
