@@ -1276,17 +1276,47 @@ class DoAiMultiTask:
                 elif (v-licks_nz_r[i-1])>1:
                     licks_r = licks_r + 1
         
-        # GNG                
+        # GNG two ports
         water_given = [False,False]
-        if licks_l > 0:
-            if numpy.random.rand() <= self.reward_prob[0]:
-                reward.deliver_reward_static(self.reward_device[0], self.water[0])
-                water_given[0] = True
+        if self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
+            if licks_l > 0:
+                if numpy.random.rand() <= self.reward_prob[1]:
+                    reward.deliver_reward_static(self.reward_device[0], self.water[0])
+                    water_given[0] = True
+        elif self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
+            if licks_r > 0:
+                if numpy.random.rand() <= self.reward_prob[0]:
+                    reward.deliver_reward_static(self.reward_device[1], self.water[1])
+                    water_given[1] = True
+        elif self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
+            if self.reward_prob[0] >= self.reward_prob[1]-0.000001 and self.reward_prob[0] <= self.reward_prob[1]+0.000001:
+                if licks_l > 0 or licks_r > 0:
+                    if numpy.random.rand() < 0.5:
+                        reward.deliver_reward_static(self.reward_device[0], self.water[0])
+                        water_given[0]= True
+                    elif numpy.random.rand() >= 0.5:
+                        reward.deliver_reward_static(self.reward_device[1], self.water[1])
+                        water_given[1] = True
+            elif licks_l > 0 and licks_r == 0:
+                if numpy.random.rand() > self.reward_prob[0]:
+                    reward.deliver_reward_static(self.reward_device[0], self.water[0])
+                    water_given[0] = True
+            elif licks_l == 0 and licks_r > 0:
+                if numpy.random.rand() > self.reward_prob[1]:
+                    reward.deliver_reward_static(self.reward_device[1], self.water[1])
+                    water_given[1] = True
+
+        # GNG                
+        # water_given = [False,False]
+        # if licks_l > 0:
+        #     if numpy.random.rand() <= self.reward_prob[0]:
+        #         reward.deliver_reward_static(self.reward_device[0], self.water[0])
+        #         water_given[0] = True
                 
-        if licks_r > 0:
-            if numpy.random.rand() <= self.reward_prob[1]:
-                reward.deliver_reward_static(self.reward_device[1], self.water[1])
-                water_given[1] = True
+        # if licks_r > 0:
+        #     if numpy.random.rand() <= self.reward_prob[1]:
+        #         reward.deliver_reward_static(self.reward_device[1], self.water[1])
+        #         water_given[1] = True
                 
         # risk
 #        if self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
@@ -2145,19 +2175,27 @@ class DoAiMultiTaskDirectTraining:
                     timestamps_r.append(str(v/self.samp_rate))
             timestamps_r = '|'.join(timestamps_r)
         
-        
         water_given = [False,False]
         if self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
             reward.deliver_reward_static(self.reward_device[0], self.water[0])
             water_given[0] = True
-        if self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
+        elif self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
             reward.deliver_reward_static(self.reward_device[1], self.water[1])
             water_given[1] = True
-        if self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
-            reward.deliver_reward_static(self.reward_device[0], self.water[0])
-            water_given[0] = True
-            reward.deliver_reward_static(self.reward_device[1], self.water[1])
-            water_given[1] = True
+        elif self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
+            # GNG one port
+            # reward.deliver_reward_static(self.reward_device[0], self.water[0])
+            # water_given[0] = True
+            # reward.deliver_reward_static(self.reward_device[1], self.water[1])
+            # water_given[1] = True
+            
+            # GNG two ports
+            if numpy.random.rand() < 0.5:
+                reward.deliver_reward_static(self.reward_device[0], self.water[0])
+                water_given[0] = True
+            else:
+                reward.deliver_reward_static(self.reward_device[1], self.water[1])
+                water_given[1] = True
         
         return licks_l, licks_r, timestamps_l, timestamps_r, water_given
     
