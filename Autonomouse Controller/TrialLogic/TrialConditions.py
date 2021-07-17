@@ -135,28 +135,40 @@ def trial_result(_rewarded, _response_l, _response_r):
     
     prob_l = _rewarded[0]
     prob_r = _rewarded[1]
-    
-    if _response_l and _response_r:
+
+    _rewarded = prob_l>0 or prob_r>0
+    _response = _response_l or _response_r
+
+    if _rewarded and _response:
+        return TrialResult.correct_response, True, False
+    elif _rewarded and not _response:
+        return TrialResult.miss, False, False
+    elif not _rewarded and _response:
         return TrialResult.false_alarm, False, True
-    elif _response_l and not _response_r:
-        if prob_l == 0 and prob_r == 0:
-            return TrialResult.false_alarm, False, True
-        elif prob_l == 0 and prob_r != 0:
-            return TrialResult.miss, False, False
-        elif prob_l != 0:
-            return TrialResult.correct_response, True, False
-    elif not _response_l and _response_r:
-        if prob_l == 0 and prob_r == 0:
-            return TrialResult.false_alarm, False, True
-        elif prob_l != 0 and prob_r == 0:
-            return TrialResult.miss, False, False
-        elif prob_r != 0:
-            return TrialResult.correct_response, True, False
-    elif not _response_l and not _response_r:
-        if prob_l == 0 and prob_r == 0:
-            return TrialResult.correct_rejection, True, False
-        else:
-            return TrialResult.miss, False, False
+    elif not _rewarded and not _response:
+        return TrialResult.correct_rejection, True, False
+    
+    # if _response_l and _response_r:
+    #     return TrialResult.false_alarm, False, True
+    # elif _response_l and not _response_r:
+    #     if prob_l == 0 and prob_r == 0:
+    #         return TrialResult.false_alarm, False, True
+    #     elif prob_l == 0 and prob_r != 0:
+    #         return TrialResult.miss, False, False
+    #     elif prob_l != 0:
+    #         return TrialResult.correct_response, True, False
+    # elif not _response_l and _response_r:
+    #     if prob_l == 0 and prob_r == 0:
+    #         return TrialResult.false_alarm, False, True
+    #     elif prob_l != 0 and prob_r == 0:
+    #         return TrialResult.miss, False, False
+    #     elif prob_r != 0:
+    #         return TrialResult.correct_response, True, False
+    # elif not _response_l and not _response_r:
+    #     if prob_l == 0 and prob_r == 0:
+    #         return TrialResult.correct_rejection, True, False
+    #     else:
+    #         return TrialResult.miss, False, False
                 
     # returns trial result enum, correct bool, timeout bool
 #    rewarded = _rewarded == 1

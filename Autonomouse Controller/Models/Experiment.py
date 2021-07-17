@@ -166,7 +166,7 @@ class Mouse:
         wl, wr = [0, 0]
         if np.sum(water_given[0]) and not np.sum(water_given[1]):
             wl = 1
-        elif not np.sum(water_given[0]) and not np.sum(water_given[1]):
+        elif not np.sum(water_given[0]) and np.sum(water_given[1]):
             wr = 1
         elif np.sum(water_given[0]) and np.sum(water_given[1]):
             wl, wr = 1, 1

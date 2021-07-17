@@ -320,8 +320,8 @@ class ExperimentWorker(QtCore.QObject):
                         licks = [licks_l, licks_r]
 
                         # timeout if needed
-#                        if result == TrialConditions.TrialResult.false_alarm:
-#                            self.timeout()
+                        if result == TrialConditions.TrialResult.false_alarm:
+                            self.timeout()
                         
                         print('water given :', str(water_given))
                         print('wait_response :', str(wait_response))
