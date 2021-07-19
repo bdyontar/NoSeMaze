@@ -1282,12 +1282,12 @@ class DoAiMultiTask:
             if licks_r > 0:
                 if numpy.random.rand() <= self.reward_prob[1]:
                     reward.deliver_reward_static(self.reward_device[1], self.water[1])
-                    water_given[0] = True
+                    water_given[1] = True
         elif self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
             if licks_l > 0:
                 if numpy.random.rand() <= self.reward_prob[0]:
                     reward.deliver_reward_static(self.reward_device[0], self.water[0])
-                    water_given[1] = True
+                    water_given[0] = True
         elif self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
             if self.reward_prob[0] >= self.reward_prob[1]-0.000001 and self.reward_prob[0] <= self.reward_prob[1]+0.000001:
                 if licks_l > 0 or licks_r > 0:
