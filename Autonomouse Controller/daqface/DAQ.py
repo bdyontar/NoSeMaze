@@ -1278,31 +1278,32 @@ class DoAiMultiTask:
         
         # GNG two ports
         water_given = [False,False]
+        random_num = numpy.random.rand()
         if self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
             if licks_r > 0:
-                if numpy.random.rand() <= self.reward_prob[1]:
+                if random_num <= self.reward_prob[1]:
                     reward.deliver_reward_static(self.reward_device[1], self.water[1])
                     water_given[1] = True
         elif self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
             if licks_l > 0:
-                if numpy.random.rand() <= self.reward_prob[0]:
+                if random_num <= self.reward_prob[0]:
                     reward.deliver_reward_static(self.reward_device[0], self.water[0])
                     water_given[0] = True
         elif self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
             if self.reward_prob[0] >= self.reward_prob[1]-0.000001 and self.reward_prob[0] <= self.reward_prob[1]+0.000001:
                 if licks_l > 0 or licks_r > 0:
-                    if numpy.random.rand() < 0.5:
+                    if random_num <= 0.5:
                         reward.deliver_reward_static(self.reward_device[0], self.water[0])
                         water_given[0]= True
-                    elif numpy.random.rand() >= 0.5:
+                    else:
                         reward.deliver_reward_static(self.reward_device[1], self.water[1])
                         water_given[1] = True
             elif licks_l > 0 and licks_r == 0:
-                if numpy.random.rand() > self.reward_prob[0]:
+                if random_num <= self.reward_prob[0]:
                     reward.deliver_reward_static(self.reward_device[0], self.water[0])
                     water_given[0] = True
             elif licks_l == 0 and licks_r > 0:
-                if numpy.random.rand() > self.reward_prob[1]:
+                if random_num <= self.reward_prob[1]:
                     reward.deliver_reward_static(self.reward_device[1], self.water[1])
                     water_given[1] = True
 
