@@ -95,7 +95,10 @@ def deadmans_switch(experiment):
                 except:
                     water_given = np.sum(list(map(parse_list, licks_T[7][y:])))
             else:
-                water_given = 0.0
+                try:
+                    water_given = np.sum(list(map(float,licks_T[7])))
+                except:
+                    water_given = np.sum(list(map(parse_list, licks_T[7][y:])))
         else:
             water_given = 0.0
         
