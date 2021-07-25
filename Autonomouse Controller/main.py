@@ -181,12 +181,13 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
                 
             logs_path = os.path.dirname(fname)+ '/Logs/logs_' + self.experiment.name.split(".")[0]
             self.experiment.logs_path = logs_path
-            if os.path.isdir(self.experiment.logs_path):
-                i = 1
-                while os.path.isdir(self.experiment.logs_path):
+            i = 1
+            if os.path.isdir(logs_path + '(' + str(i) + ')'):
+                while os.path.isdir(logs_path + '(' + str(i+1) + ')'):
                     self.experiment.logs_path = logs_path +'('+str(i)+')'
                     i += 1
-            os.makedirs(self.experiment.logs_path)  
+            if not os.path.isdir(self.experiment.logs_path):
+                os.makedirs(self.experiment.logs_path)  
             
             self.update_experiment_info()
             
