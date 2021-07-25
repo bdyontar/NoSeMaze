@@ -181,11 +181,15 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
                 
             logs_path = os.path.dirname(fname)+ '/Logs/logs_' + self.experiment.name.split(".")[0]
             self.experiment.logs_path = logs_path
+
+            # check if there is still old format of logs dir
             i = 1
             if os.path.isdir(logs_path + '(' + str(i) + ')'):
                 while os.path.isdir(logs_path + '(' + str(i+1) + ')'):
                     self.experiment.logs_path = logs_path +'('+str(i)+')'
                     i += 1
+            
+            # create dir if not created
             if not os.path.isdir(self.experiment.logs_path):
                 os.makedirs(self.experiment.logs_path)  
             
