@@ -246,10 +246,9 @@ class ExperimentWorker(QtCore.QObject):
                         response_l = TrialConditions.lick_detect(should_lick_data[self.hardware_prefs['lick_channel_l']], 2, float(current_trial_pulse[0]['lick_fraction']))
                         response_r = TrialConditions.lick_detect(should_lick_data[self.hardware_prefs['lick_channel_r']], 2, float(current_trial_pulse[0]['lick_fraction']))
                         response = [response_l, response_r]
-                        
-                        # Currently is correct always True if water is given
+                         
                         result, correct, timeout = TrialConditions.trial_result(rewarded, response_l, response_r)
-                        correct = np.logical_or(*water_given)
+                        # correct = np.logical_or(*water_given) # If needed, correct always True if water is given
                         
                         # Detect number of licks and lick timestamps
                         lick_time_l, licks_l = TrialConditions.licks_number(should_lick_data[self.hardware_prefs['lick_channel_l']], 2, self.hardware_prefs['samp_rate'], start_time)
@@ -308,9 +307,8 @@ class ExperimentWorker(QtCore.QObject):
                         response_r = TrialConditions.lick_detect(should_lick_data[self.hardware_prefs['lick_channel_r']], 2, float(current_trial_pulse[0]['lick_fraction']))
                         response = [response_l, response_r]
                         
-                        # Actually is correct always True, if water is given
                         result, correct, timeout = TrialConditions.trial_result(rewarded, response_l, response_r) #DONE change trial result
-                        correct = np.logical_or(*water_given)
+                        # correct = np.logical_or(*water_given) # If needed: correct always True, if water is given
 
                         # Detect number of licks and lick timestamps
                         lick_time_l, licks_l = TrialConditions.licks_number(should_lick_data[self.hardware_prefs['lick_channel_l']], 2, self.hardware_prefs['samp_rate'], start_time1)
@@ -333,7 +331,7 @@ class ExperimentWorker(QtCore.QObject):
                 # Update database.
                 animal.schedule_list[animal.current_schedule_idx].add_trial_data(timestamp, wait_response, response, correct, timeout, licks, rewarded)
                 self.experiment.add_trial(animal.id, timestamp.strftime("%Y-%m-%d %H:%M:%S.%f"), animal.current_schedule_idx, animal.current_trial_idx,
-                                          list(map(str,rewarded)), wait_response, response, str(water_given), timeout, licks)
+                                          list(map(str,rewarded)), wait_response, response, str(correct), timeout, licks)
                 
                 # Update licks log.
                 self.lock_llog.lockForWrite()
