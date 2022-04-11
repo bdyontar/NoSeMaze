@@ -4,42 +4,44 @@ This module contains methods to generate randomise sequence of trials.
 
 import numpy as np
 
+
 def odor_sequence(odour_choice, n_trials):
     """
     Randomized sequence after odour.
-    
+
     Parameters
     ----------
     odour_choice : list
         List of odours to be randomised from.
-    
+
     n_trials : int
         Number of trials in a schedule defined in UI.
     """
-    
+
     sequence = np.empty(n_trials, dtype=int)
     length = len(odour_choice)
     rest = n_trials % length
-    
+
     for i in range(int(n_trials/length)):
         sequence[i*length:(i+1)*length] = np.random.choice(odour_choice,
-                                                                 length,
-                                                                 replace=False)
+                                                           length,
+                                                           replace=False)
     if rest != 0:
         sequence[-rest:] = np.random.choice(odour_choice, rest, replace=False)
-        
+
     return sequence
+
 
 def reward_sequence(n_trials):
     """
     Generate sequence after reward.
-    
+
     Parameter
     ---------
     n_trials : int
         Number of trials in a schedule defined in UI.
     """
-    
+
     sequence = [0]
     while sum(sequence) != int(n_trials/2):
         # initialise reward vector

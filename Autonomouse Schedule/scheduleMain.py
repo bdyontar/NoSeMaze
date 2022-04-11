@@ -2,6 +2,7 @@ import sys
 import inspect
 import numpy as np
 import pickle
+import traceback
 
 
 from PyQt5 import QtWidgets, QtCore
@@ -12,11 +13,13 @@ from ScheduleModels import ScheduleWidgets, ScheduleView
 from ScheduleUI import ColorMap
 from SchedulePyPulse import PulseInterface
 
+from Exceptions import RewardMapError
+
 
 class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
     """The MainApp of schedule generator UI"""
-    
-    def __init__(self,parent = None):
+
+    def __init__(self, parent=None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
@@ -40,6 +43,9 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
         # initialise schedule model
         self.scheduleView.setModel(ScheduleView.ScheduleModel([], [[]]))
 
+        # select first schedule widget
+        self.select_schedule_type()
+
         # add function bindings
         self.actionSave.triggered.connect(self.save_schedule)
         self.generateScheduleButton.clicked.connect(self.generate)
@@ -48,24 +54,32 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
 
     def generate(self):
         """Generate schedule"""
-        
+
         try:
             # get the schedule data and headers
-            self.schedule, self.schedule_headers = self.current_schedule_type.generate_schedule(self.valence_map.get_valence_map())
-        except:
-            QtWidgets.QMessageBox.about(self.parent, "Error", "An error has occured")
+            self.schedule, self.schedule_headers = self.current_schedule_type.generate_schedule(
+                self.valence_map.get_valence_map())
+        except RewardMapError:
+            # Known error. Catch error here to avoid showing error message the 2nd time.
             pass
+        except Exception as e:
+            # Show exception and traceback in an error window if error has occured
+            eStr = "".join(traceback.format_exception(e))
+            QtWidgets.QMessageBox.about(
+                self.parent, "Error", "An error has occured.\n\n{}".format(eStr))
         else:
-            # post to the schedule view
-            self.schedule_model = ScheduleView.ScheduleModel(self.schedule_headers, self.schedule, parent=self)
+            # Post to the schedule view
+            self.schedule_model = ScheduleView.ScheduleModel(
+                self.schedule_headers, self.schedule, parent=self)
             self.scheduleView.setModel(self.schedule_model)
             self.scheduleView.selectionModel().selectionChanged.connect(self.draw_pulse)
             self.generated = True
-            QtWidgets.QMessageBox.about(self.parent,"Schedule","Schedule is generated!")
+            QtWidgets.QMessageBox.about(
+                self.parent, "Schedule", "Schedule is generated!")
 
     def select_schedule_type(self):
         """Update schedule view if a schedule type is selected."""
-        
+
         self.generated = False
         schedule_name = self.scheduleTypesCombo.currentText()
 
@@ -80,8 +94,9 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
 
     def draw_pulse(self):
         """Draw or redraw pulse in UI"""
-        
-        trial = self.schedule[self.scheduleView.selectionModel().selectedRows()[0].row()]
+
+        trial = self.schedule[self.scheduleView.selectionModel().selectedRows()[
+            0].row()]
         params = self.current_schedule_type.pulse_parameters(trial)
 
         pulses, t = PulseInterface.make_pulse(1000.0, 0.0, 0.0, params)
@@ -89,17 +104,20 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
         self.pulseView.plotItem.clear()
         for p, pulse in enumerate(pulses):
             color = ColorMap.c_list[self.valence_map.get_valence_map()[p]]
-            self.pulseView.plotItem.plot(t, np.array(pulse) - (p*1.1), pen=color)
+            self.pulseView.plotItem.plot(
+                t, np.array(pulse) - (p*1.1), pen=color)
 
     def save_schedule(self):
         """Save schedule as .schedule"""
-        
+
         if self.generated:
             params = list()
             for trial in self.schedule:
-                params.append(self.current_schedule_type.pulse_parameters(trial))
-        
-            fname, suff = QtWidgets.QFileDialog.getSaveFileName(self, "Save Schedule", '', "Schedule File (*.schedule)")
+                params.append(
+                    self.current_schedule_type.pulse_parameters(trial))
+
+            fname, suff = QtWidgets.QFileDialog.getSaveFileName(
+                self, "Save Schedule", '', "Schedule File (*.schedule)")
             try:
                 with open(fname, 'wb') as fn:
                     pickle.dump({'schedule': self.schedule,
@@ -109,7 +127,9 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
                 #QtWidgets.QMessageBox.about(self.parent,"Error","An error has occurred")
                 pass
         else:
-            QtWidgets.QMessageBox.about(self.parent, "Error", "Schedule is not yet generated!")
+            QtWidgets.QMessageBox.about(
+                self.parent, "Error", "Schedule is not yet generated!")
+
 
 # Back up the reference to the exceptionhook
 sys._excepthook = sys.excepthook
@@ -122,6 +142,7 @@ def my_exception_hook(exctype, value, traceback):
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
 
+
 # Set the exception hook to our wrapping function
 sys.excepthook = my_exception_hook
 
@@ -131,6 +152,7 @@ def main():
     form = MainApp()
     form.show()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()

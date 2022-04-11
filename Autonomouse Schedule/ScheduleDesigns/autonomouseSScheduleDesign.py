@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 
-class Ui_Form(object): #DONE Namenänderung und Einbinden von Wahrscheinlichkeit und Länge des Wasserzufuhr
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(502, 372)
@@ -153,10 +153,10 @@ class Ui_Form(object): #DONE Namenänderung und Einbinden von Wahrscheinlichkeit
         self.label_13 = QtWidgets.QLabel(Form)
         self.label_13.setObjectName("label_13")
         self.gridLayout.addWidget(self.label_13, 8, 2, 1, 1)
-        self.odorTrainingCheck = QtWidgets.QRadioButton(Form)
-        self.odorTrainingCheck.setText("")
-        self.odorTrainingCheck.setObjectName("odorTrainingCheck")
-        self.gridLayout.addWidget(self.odorTrainingCheck, 9, 2, 1, 2)
+        self.odourTrainingCheck = QtWidgets.QRadioButton(Form)
+        self.odourTrainingCheck.setText("")
+        self.odourTrainingCheck.setObjectName("odourTrainingCheck")
+        self.gridLayout.addWidget(self.odourTrainingCheck, 9, 2, 1, 2)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

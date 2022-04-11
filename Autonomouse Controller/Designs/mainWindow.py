@@ -129,7 +129,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "AutonoMouse2"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AutonomouseS"))
         self.groupBox.setTitle(_translate("MainWindow", "Control Panel"))
         self.startButton.setText(_translate("MainWindow", "Start"))
         self.stopButton.setText(_translate("MainWindow", "Stop"))

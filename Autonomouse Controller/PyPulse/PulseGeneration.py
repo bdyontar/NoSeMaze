@@ -126,9 +126,9 @@ def shatter_pulse(sampling_rate, duration, frequency, duty, shatter_frequency, s
     return guide_pulse * shattered_pulse, t
 
 def random_shatter_pulse(sampling_rate, duration, frequency, duty, shatter_frequency, target_duty, amp_min, amp_max, extend=False):
-    # this function generates a shattered pulse based on major pulse frequency and duty, as well as shatter frequency.
-    # The function will generate standard pulse and then shatter it, with the duty
-    # of each shattered pulse randomised. The function will aim to keep the integral of the pulse at duty * target duty
+    """ this function generates a shattered pulse based on major pulse frequency and duty, as well as shatter frequency.
+    The function will generate standard pulse and then shatter it, with the duty
+    of each shattered pulse randomised. The function will aim to keep the integral of the pulse at duty * target duty """
     if shatter_frequency < frequency:
         raise ValueError('Shatter frequency must not be lower than major frequency.')
 
@@ -162,6 +162,7 @@ def random_shatter_pulse(sampling_rate, duration, frequency, duty, shatter_frequ
     return guide_pulse * shattered_pulse, t
 
 def random_simple_pulse(sampling_rate, params):
+    
     # Build main portion of pulse
     if params['fromDuty']:
         frequency = params['frequency']
@@ -218,6 +219,8 @@ def random_simple_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, int(total_length * sampling_rate))
 
 def spec_time_pulse(sampling_rate, params):
+    """  """
+    
     # Initial parameters
     frequency = params['frequency']
     p_times = params['pulse_times']
@@ -276,6 +279,8 @@ def spec_time_pulse(sampling_rate, params):
     return pulse, t
 
 def simple_pulse(sampling_rate, params):
+    """  """
+    
     # Build main portion of pulse
     if params['fromDuty']:
         frequency = params['frequency']
@@ -313,6 +318,8 @@ def simple_pulse(sampling_rate, params):
     return pulse, np.linspace(0, total_length, total_length*sampling_rate)
 
 def multi_simple_pulse(sampling_rate, global_onset, global_offset, params_list):
+    """  """
+    
     longest_t = []
     pulses = list()
 
@@ -332,6 +339,8 @@ def multi_simple_pulse(sampling_rate, global_onset, global_offset, params_list):
     return pulse_matrix, t
 
 def noise_pulse(sampling_rate, params):
+    """  """
+
     # Build main portion of pulse
     pulse_length = int(sampling_rate / params['frequency'])
     if params['fromLength']:
@@ -364,6 +373,8 @@ def noise_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, total_length * sampling_rate)
 
 def plume_pulse(sampling_rate, params):
+    """  """
+
     plume = sio.loadmat(params['data_path'])
     plume = plume['plume'][0]
 
@@ -388,6 +399,8 @@ def plume_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, total_length * sampling_rate)
 
 def dummy_noise_pulse(sampling_rate, params):
+    """  """
+
     # Build main portion of pulse
     pulse_length = int(sampling_rate / params['frequency'])
     if params['fromLength']:
@@ -416,6 +429,8 @@ def dummy_noise_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, total_length * sampling_rate)
 
 def multi_noise_pulse(sampling_rate, global_onset, global_offset, params_list):
+    """  """
+    
     longest_t = []
     pulses = list()
 

@@ -563,12 +563,6 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
                 event.ignore()
         else: 
             event.accept()
-
-#TODO Implementierung Leck-Port einstellung:
-# Assoziation zwischen dem Duft und dem Ort.
-# 1. Die Wahrscheinlichkeit/Lickgrenze von jedem Port soll verstellbar sein --> Einstellung über Reward map
-# 2. Die Größe des Tropfen von jedem Port soll verstellbar sein --> Einstellung über Reward map
-# Lickport von dem Düften soll wechselbar sein
             
 class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
     new_pref = pyqtSignal(dict)

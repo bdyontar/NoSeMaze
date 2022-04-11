@@ -4,6 +4,7 @@ This module contains the model of the table in Schedule Generator UI.
 
 from PyQt5 import QtCore, QtGui
 
+
 class ScheduleModel(QtCore.QAbstractTableModel):
     def __init__(self, headerdata, arraydata, parent=None, *args):
         QtCore.QAbstractTableModel.__init__(self, parent, *args)

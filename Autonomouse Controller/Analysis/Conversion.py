@@ -1,6 +1,7 @@
 """
-This module conatins methods used for converting experiment data into matlab
-data. 
+This module contains methods used for converting experiment data into matlab
+data. It is not used and not supported in AutonomouseS but still saved here for 
+archive purpose.
 """
 
 import scipy.io as sio
@@ -13,7 +14,7 @@ import numpy as np
 import collections as col
 
 
-def load_experiment(path):
+def load_experiment(path: str) -> tuple[Experiment.Experiment, list[str], dict]:
     data_files = list()
     for file in os.listdir(path):
         if file.endswith(".autmaus"):
@@ -55,7 +56,8 @@ def batch_convert(paths, out_path, out_name, trial_parameter, verbose=True, save
             for schedule in this_animal.schedule_list:
                 sched_id = schedule.id.split('.')[0]
                 sched_id = schedule_map[sched_id]
-                match_sched = [sched for sched in output[save_id].keys() if sched_id in sched]
+                match_sched = [
+                    sched for sched in output[save_id].keys() if sched_id in sched]
                 sched_id = sched_id + '_' + str(len(match_sched) + 1)
 
                 output[save_id][sched_id] = {'rewarded': list(), 'correct': list(), 'licked': list(),
@@ -68,7 +70,8 @@ def batch_convert(paths, out_path, out_name, trial_parameter, verbose=True, save
                     time = time.replace(' ', '_')
                     time = time.replace(':', '_')
 
-                    output[save_id][sched_id]['rewarded'].append(schedule.schedule_trials[t][0])
+                    output[save_id][sched_id]['rewarded'].append(
+                        schedule.schedule_trials[t][0])
                     output[save_id][sched_id]['correct'].append(trial.correct)
                     output[save_id][sched_id]['licked'].append(trial.response)
                     output[save_id][sched_id]['timestamp'].append(time)
@@ -81,19 +84,22 @@ def batch_convert(paths, out_path, out_name, trial_parameter, verbose=True, save
 
                     if save_licks:
                         if len(match_file) > 0:
-                            output[save_id][sched_id]['data_file'].append(match_file[0])
+                            output[save_id][sched_id]['data_file'].append(
+                                match_file[0])
 
                             if save_licks:
                                 # now that we know where the data file is, get the lick data from it. 3 idx is just a known,
                                 # need to change if hardware changes
                                 try:
-                                    lick_data = sio.loadmat(match_file[0])['analog_data'][3]
+                                    lick_data = sio.loadmat(match_file[0])[
+                                        'analog_data'][3]
                                 except:
                                     lick_data = []
                                 # reduce this data to a set of lick onsets to save storage space
                                 lick_diff = np.diff(lick_data)
                                 lick_onsets = np.where(lick_diff > 0.1)
-                                output[save_id][sched_id]['lick_on_times'].append(lick_onsets)
+                                output[save_id][sched_id]['lick_on_times'].append(
+                                    lick_onsets)
 
     output = {out_name: output}
 
