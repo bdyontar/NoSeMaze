@@ -15,3 +15,6 @@ ffmpeg.exe
 **/cam.setting
 **/.autonomouseconfig
 **/hardware.config
+
+# ignoring virtual environment
+.venv/
