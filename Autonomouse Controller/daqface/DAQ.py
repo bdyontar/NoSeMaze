@@ -339,9 +339,11 @@ class ThreadSafeDigitalOut:
 
         DAQmxClearTask(self.do_handle)
         DAQmxClearTask(self.ai_handle)
-#endregion
+# endregion
 
 #region [AnalogTasks]
+
+
 class ThreadSafeAnalogInput:
     """Read thread safe analog input."""
 
@@ -404,9 +406,11 @@ class ThreadSafeAnalogInput:
         time.sleep(0.05)
         DAQmxStopTask(self.ai_handle)
         DAQmxClearTask(self.ai_handle)
-#endregion
+# endregion
 
 #region [MultiTasks]
+
+
 class DoAiConcatenatedPretrainingMultiTask:
     """DAQ for concatenated pretraining schedule. Not used in current implementation."""
 
@@ -1387,7 +1391,7 @@ class DoAiMultiTask:
         # endregion
 
         # region [risk training]
-        # 
+        #
         # if self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
         #     if licks_l > 0 and licks_r == 0 and beam < 2:
         #         if numpy.random.rand() <= self.reward_prob[0]:
@@ -1439,7 +1443,7 @@ class DoAiMultiTask:
 
         if self.static:
             """onset"""
-#            print('onset')
+            # print('onset')
             self.totalLength = numpy.uint64(self.samp_rate*self.onset)
             self.analogDataOnset = numpy.zeros(
                 (self.ai_channels, self.totalLength), dtype=numpy.float64)
@@ -2497,4 +2501,4 @@ class DoAiMultiTaskOdourTraining:
         DAQmxClearTask(self.do_handle)
         DAQmxClearTask(self.ai_handle)
         DAQmxClearTask(self.fv_handle)
-#endregion
+# endregion
