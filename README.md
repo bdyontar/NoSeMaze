@@ -1,10 +1,10 @@
-# AutonomouseS
+# NoSeMaze
 
 Table of Content:
 
 [TOC]
 
-AutonomouseS is an automatic olfactometer system which was developed as a part of natural-habitat oriented sensor-rich environment maze for laboratory mice. The purpose of AutonomouseS is to train the mice olfactory tasks (e.g. a simple go or no-go task associated to some odours) without the need to remove the mice from the maze. It was developed based on AutonoMouse by Erskine et al.[^1]
+NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse by Erskine et al.[^1] which allows laboratory mice to be trained with olfactory tasks in a semi-natural habitat. This reduced contact between the mice and the experimentator reduces also external influences that might affect the mice as they are training. Since then NoSeMaze was further enriched with many sensors to gather data related to social behaviour of the mice. Hence the name NoSeMaze (natural-habitat oriented sensor-enriched maze).
 
 [^1]: [Erskine, Andrew et al. “AutonoMouse: High throughput operant conditioning reveals progressive impairment with graded olfactory bulb lesions.” PloS one vol. 14,3 e0211571. 6 Mar. 2019, doi:10.1371/journal.pone.0211571](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6402634/)
 
@@ -12,17 +12,29 @@ AutonomouseS is an automatic olfactometer system which was developed as a part o
 
 ### Hardware
 
-![overview](/Documentation/images/systemOverview.PNG)
+![overviewAutoOlfactometer](/Documentation/images/systemOverview.PNG)
 
-The AutonomouseS setup consists of 4 main parts:
+The NoSeMaze setup consists of 4 main parts:
 
-1. The lick port and water container.
-2. The olfactometer and its tubing system.
-3. National Instrument Data Acquisition Board NI-USB 6216 BNC
-4. Computer to run the user interfaces (UIs) of the AutonomouseS (*Autonomouse Controller* and *Autonomouse Schedule*)
+1. The automatic olfactometer system, which itself consists of:
+    1. a lick port and a water container.
+    2. an olfactometer and its tubing system.
+    3. a National Instrument Data Acquisition Board NI-USB 6216 BNC
 
-> **Note** :  
-> Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
+    > **Note** :  
+    > Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
+
+    </br>
+
+2. Tube test system, which is used to determine social hierarchy of a mice cohorte.
+</br>
+
+3. Ambient sensors, such as temperature sensor, gas sensor, light sensor, etc. to check if there is correlation between the result of the experiment and the environment.
+</br>
+
+4. Video cameras which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
+
+These main parts are connected to a computer which controls the experiment and gather the measured data.
 
 For more information about the hardware:
 
@@ -49,4 +61,4 @@ Software documentations for :
 
 ## User Guide
 
-For a detailed user guide in how to use AutonomouseS system for experiment and step-by-step example, click [here](/Documentation/userGuide.md).
+For a detailed user guide in how to use NoSeMaze system for experiment and step-by-step example, click [here](/Documentation/userGuide.md).
