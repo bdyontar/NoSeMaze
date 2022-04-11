@@ -83,10 +83,10 @@ class ExperimentWorker(QtCore.QObject):
                 # defined in Schedule.
 
                 # Check if schedule is defined as concetenate wait training.
-                if 'concatenate_wait_training' not in current_trial_pulse[0]:
+                if 'concatenate_odour_training' not in current_trial_pulse[0]:
                     concatenate = False
                 else:
-                    concatenate = current_trial_pulse[0]['concatenate_wait_training']
+                    concatenate = current_trial_pulse[0]['concatenate_odour_training']
 
                 # As a different NI-Board is used all actual sequences falls
                 # under 'static' option. This option can be changed in
@@ -158,11 +158,11 @@ class ExperimentWorker(QtCore.QObject):
                 else:
                     pretraining = current_trial_pulse[0]['pretraining']
 
-                # Check if schedule is defined as wait training schedule.
-                if not 'wait_training' in current_trial_pulse[0]:
-                    wait_training = False
+                # Check if schedule is defined as odour training schedule.
+                if not 'odour_training' in current_trial_pulse[0]:
+                    odour_training = False
                 else:
-                    wait_training = current_trial_pulse[0]['wait_training']
+                    odour_training = current_trial_pulse[0]['odour_training']
 
                 if pretraining and not concatenate:
                     # if a normal pretraining case, reward is given without
@@ -229,14 +229,14 @@ class ExperimentWorker(QtCore.QObject):
                     timestamp = datetime.datetime.now()
 
                 else:
-                    if wait_training:
-                        # Get DAQ for wait training.
+                    if odour_training:
+                        # Get DAQ for odour training.
                         trial_daq = self.get_trial_daq(
                             t=t,
                             odor_pulses=odor_pulses,
                             current_trial=current_trial,
                             fv_pulse=fv_pulse,
-                            wait_training=wait_training)
+                            odour_training=odour_training)
 
                         # Get data to be processed.
                         analog_data, wait_data, should_lick_data, start_time, water_given, wait_response, wait_time, start_time_2 = trial_daq.DoTask()
@@ -278,7 +278,7 @@ class ExperimentWorker(QtCore.QObject):
 #                            self.timeout()
 
                     else:
-                        # If schedule is not wait training or pretraining, then
+                        # If schedule is not odour training or pretraining, then
                         # it is normal trial.
 
                         # Get DAQ
@@ -637,7 +637,7 @@ class ExperimentWorker(QtCore.QObject):
             writer.writerow(newData)
 
     def get_trial_daq(self, t=None, odor_pulses=None, current_trial=None,
-                      fv_pulse=None, pretraining=False, wait_training=False,
+                      fv_pulse=None, pretraining=False, odour_training=False,
                       concatenate=False):
         """
         Initialise daq instance then returns it. Daq instance is responsible 
@@ -662,8 +662,8 @@ class ExperimentWorker(QtCore.QObject):
         pretraining : bool
             Indicator if schedule is for pretraining.
 
-        wait_training : bool
-            Indicator if schedule is for wait training.
+        odour_training : bool
+            Indicator if schedule is for odour training.
 
         concatenate : bool
             Indicator if schedule is for concatenated trial.
@@ -678,8 +678,8 @@ class ExperimentWorker(QtCore.QObject):
         if pretraining and not concatenate:
             trial_daq = daq.ThreadSafeAnalogInput(
                 self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'], self.hardware_prefs['samp_rate'], 2)
-        elif wait_training:
-            trial_daq = daq.DoAiMultiTaskDirectTraining(self.hardware_prefs['analog_input'],
+        elif odour_training:
+            trial_daq = daq.DoAiMultiTaskOdourTraining(self.hardware_prefs['analog_input'],
                                                         self.hardware_prefs['analog_channels'],
                                                         self.hardware_prefs['odour_output'],
                                                         self.hardware_prefs['finalvalve_output'],

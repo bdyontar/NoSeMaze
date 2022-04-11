@@ -6,7 +6,6 @@ Created on Tue Dec 15 13:51:48 2015
 @contributor : Michael Bram
 """
 
-# region [Import]
 from PyDAQmx import *
 from ctypes import *
 
@@ -19,7 +18,7 @@ import daqface.Utils as Util
 from HelperFunctions import Reward as reward
 
 
-# region [DigitalTasks]
+#region [DigitalTasks]
 class NiUsbDigitalOutTwoDevicesC:
     """Send digital signal out to two channels simultaneously 
     for concatenated training. It is currently not used"""
@@ -340,10 +339,9 @@ class ThreadSafeDigitalOut:
 
         DAQmxClearTask(self.do_handle)
         DAQmxClearTask(self.ai_handle)
+#endregion
 
-# region [AnalogTasks]
-
-
+#region [AnalogTasks]
 class ThreadSafeAnalogInput:
     """Read thread safe analog input."""
 
@@ -406,12 +404,11 @@ class ThreadSafeAnalogInput:
         time.sleep(0.05)
         DAQmxStopTask(self.ai_handle)
         DAQmxClearTask(self.ai_handle)
+#endregion
 
-# region [MultiTasks]
-
-
+#region [MultiTasks]
 class DoAiConcatenatedPretrainingMultiTask:
-    """DAQ for concatenated pretraining schedule"""
+    """DAQ for concatenated pretraining schedule. Not used in current implementation."""
 
     def __init__(self, ai_device: str, ai_channels: str, do_device: str, fv_device: str,
                  reward_device_l: str, reward_device_r: str, samp_rate: int, secs: float,
@@ -772,7 +769,7 @@ class DoAiConcatenatedPretrainingMultiTask:
 
 
 class DoAiConcatenatedWaitTrainingMultiTask:
-    """DAQ for concatenated wait training schedule"""
+    """DAQ for concatenated wait training schedule. Not used in current implementation."""
 
     def __init__(self, ai_device: str, ai_channels: int, do_device: str, fv_device: str,
                  reward_device_l: str, reward_device_r: str, samp_rate: int, secs: float,
@@ -1585,7 +1582,7 @@ class DoAiMultiTask:
 
 class DoAiMultiTaskWaitTraining:
     """DAQ for strict GNG wait training. That means, reward will not be given
-    if mouse does not wait."""
+    if mouse does not wait. Not used in current implementation."""
 
     def __init__(self, ai_device, ai_channels, do_device, fv_device,
                  reward_device_l, reward_device_r, samp_rate, secs,
@@ -2038,7 +2035,7 @@ class DoAiMultiTaskWaitTraining:
         DAQmxClearTask(self.fv_handle)
 
 
-class DoAiMultiTaskDirectTraining:
+class DoAiMultiTaskOdourTraining:
     """DAQ for normal GNG odor association training. That is reward is always given after 
     odor presentation regardless of performance."""
 
@@ -2492,3 +2489,4 @@ class DoAiMultiTaskDirectTraining:
         DAQmxClearTask(self.do_handle)
         DAQmxClearTask(self.ai_handle)
         DAQmxClearTask(self.fv_handle)
+#endregion
