@@ -1332,6 +1332,7 @@ class DoAiMultiTask:
                 elif (v-licks_nz_r[i-1]) > 1:
                     licks_r = licks_r + 1
 
+        # region [GNG two ports]
         # GNG two ports
         water_given = [False, False]
         random_num = numpy.random.rand()
@@ -1368,8 +1369,10 @@ class DoAiMultiTask:
                     reward.deliver_reward_static(
                         self.reward_device[1], self.water[1])
                     water_given[1] = True
+        # endregion
 
-        # GNG
+        # region [GNG one port]
+        #
         # water_given = [False,False]
         # if licks_l > 0:
         #     if numpy.random.rand() <= self.reward_prob[0]:
@@ -1380,27 +1383,32 @@ class DoAiMultiTask:
         #     if numpy.random.rand() <= self.reward_prob[1]:
         #         reward.deliver_reward_static(self.reward_device[1], self.water[1])
         #         water_given[1] = True
+        #
+        # endregion
 
-        # risk
-#        if self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
-#            if licks_l > 0 and licks_r == 0 and beam < 2:
-#                if numpy.random.rand() <= self.reward_prob[0]:
-#                    reward.deliver_reward_static(self.reward_device[0], self.water[0])
-#                    water_given[0] = True
-#        if self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
-#            if licks_r > 0 and licks_l == 0 and beam < 2:
-#                if numpy.random.rand() <= self.reward_prob[1]:
-#                    reward.deliver_reward_static(self.reward_device[1], self.water[1])
-#                    water_given[1] = True
-#        if self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
-#            if licks_l > 0 and licks_r == 0 and beam < 2:
-#                if numpy.random.rand() <= self.reward_prob[0]:
-#                    reward.deliver_reward_static(self.reward_device[0], self.water[0])
-#                    water_given[0] = True
-#            if licks_l == 0 and licks_r > 0 and beam < 2:
-#                if numpy.random.rand() <= self.reward_prob[1]:
-#                    reward.deliver_reward_static(self.reward_device[1], self.water[1])
-#                    water_given[1] = True
+        # region [risk training]
+        # 
+        # if self.reward_prob[0] > 0 and self.reward_prob[1] == 0:
+        #     if licks_l > 0 and licks_r == 0 and beam < 2:
+        #         if numpy.random.rand() <= self.reward_prob[0]:
+        #             reward.deliver_reward_static(self.reward_device[0], self.water[0])
+        #             water_given[0] = True
+        # if self.reward_prob[0] == 0 and self.reward_prob[1] > 0:
+        #     if licks_r > 0 and licks_l == 0 and beam < 2:
+        #         if numpy.random.rand() <= self.reward_prob[1]:
+        #             reward.deliver_reward_static(self.reward_device[1], self.water[1])
+        #             water_given[1] = True
+        # if self.reward_prob[0] > 0 and self.reward_prob[1] > 0:
+        #     if licks_l > 0 and licks_r == 0 and beam < 2:
+        #         if numpy.random.rand() <= self.reward_prob[0]:
+        #             reward.deliver_reward_static(self.reward_device[0], self.water[0])
+        #             water_given[0] = True
+        #     if licks_l == 0 and licks_r > 0 and beam < 2:
+        #         if numpy.random.rand() <= self.reward_prob[1]:
+        #             reward.deliver_reward_static(self.reward_device[1], self.water[1])
+        #             water_given[1] = True
+        #
+        # endregion
 
         return water_given
 
