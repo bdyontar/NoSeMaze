@@ -16,9 +16,7 @@ The NoSeMaze setup consists of 4 main parts:
     1. a lick port and a water container.
     2. an olfactometer and its tubing system.
     3. a National Instrument Data Acquisition Board NI-USB 6216 BNC
-
-> **Note** :  
-> Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
+</br>
 
 2. Tube test system, which is used to determine social hierarchy of a mice cohorte.
 </br>
@@ -27,6 +25,9 @@ The NoSeMaze setup consists of 4 main parts:
 </br>
 
 4. Video cameras which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
+
+> **Note** :  
+> Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
 
 These main parts are connected to a computer which controls the experiment and gather the measured data.
 
