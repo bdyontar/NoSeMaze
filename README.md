@@ -11,16 +11,13 @@ NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse 
 The NoSeMaze setup consists of 4 main modules:
 
 1. The **automatic olfactometer system**, which itself consists of:
-    1. a lick port and a water container.
-    2. an olfactometer and its tubing system.
-    3. a National Instrument Data Acquisition Board NI-USB 6216 BNC
-    </br>
+    - a lick port and a water container.
+    - an olfactometer and its tubing system.
+    - a National Instrument Data Acquisition Board NI-USB 6216 BNC
 
 2. **Tube test system**, which is used to determine social hierarchy of a mice cohorte.
-</br>
 
 3. **Environment sensors module**, which measures temperature, gas, light, etc. to check if there is correlation between the result of the experiment and the environment.
-</br>
 
 4. **Video cameras** which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
 
@@ -32,7 +29,6 @@ These main parts are connected to a computer which controls the experiment and g
 For more information about the hardware:
 
 - [Hardware Reference](/Documentation/hardwareReference.md) - Reference to hardware specification
-
 - [Setup Guide](/Documentation/setupGuide.md) - Help by setting up system and some troubleshooting
 
 ### Software
