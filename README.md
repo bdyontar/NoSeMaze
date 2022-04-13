@@ -39,18 +39,18 @@ For more information about the hardware:
 
 This repository consists of 2 main folders:
 
-- Autonomouse Controller &rarr; UI for running experiment
-- Autonomouse Schedule &rarr; UI for creating schedule
+- NoSeMaze Controller &rarr; UI for running experiment
+- NoSeMaze Schedule &rarr; UI for creating schedule
 
-The UIs are written in **Python** and can be runned directly using python_v3.10+ by running [*main.py*](/Autonomouse%20Controller/main.py) (or [*schedule_main.py*](/Autonomouse%20Schedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
+The UIs are written in **Python** and can be runned directly using python_v3.10+ by running [*main.py*](/NoSeMaze%20Controller/main.py) (or [*schedule_main.py*](/NoSeMaze%20Schedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
 > :exclamation: **Important** :  
 > The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
 Software documentations for :
 
-- [Autonomouse Controller](/Autonomouse%20Controller/README.md)
-- [Autonomouse Schedule](/Autonomouse%20Schedule/README.md)
+- [NoSeMaze Controller](/NoSeMaze%20Controller/README.md)
+- [NoSeMaze Schedule](/NoSeMaze%20Schedule/README.md)
 
 ## User Guide
 
