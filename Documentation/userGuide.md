@@ -3,7 +3,8 @@
 This documentation is meant to help user navigate the *NoSeMaze Controller* UI and *NoSeMaze Schedule* UI.
 
 Table of Content:
-[TOC]
+
+[[_TOC_]]
 
 ## NoSeMaze Controller
 

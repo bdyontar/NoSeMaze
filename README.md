@@ -2,7 +2,7 @@
 
 Table of Content:
 
-[TOC]
+[[_TOC_]]
 
 NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse by Erskine et al.[^1] which allows laboratory mice to be trained with olfactory tasks in a semi-natural habitat. This reduced contact between the mice and the experimentator reduces also external influences that might affect the mice as they are training. Since then NoSeMaze was further enriched with many sensors to gather data related to social behaviour of the mice. Hence the name NoSeMaze (natural-habitat oriented sensor-enriched maze).
 
@@ -21,10 +21,8 @@ The NoSeMaze setup consists of 4 main parts:
     2. an olfactometer and its tubing system.
     3. a National Instrument Data Acquisition Board NI-USB 6216 BNC
 
-    > **Note** :  
-    > Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
-
-    </br>
+> **Note** :  
+> Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
 
 2. Tube test system, which is used to determine social hierarchy of a mice cohorte.
 </br>

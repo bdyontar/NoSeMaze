@@ -2,7 +2,7 @@
 
 Following are the hardware used in the setup.
 
-[TOC]
+[[_TOC_]]
 
 ## National Instrument Data Acquisition Board
 
