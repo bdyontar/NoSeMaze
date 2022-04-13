@@ -25,7 +25,7 @@ The NoSeMaze setup consists of 4 main modules:
 4. **Video cameras** which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
 
 > :memo: **Note** :
-> Only NI-Board NI-USB 6216 BNC is supported by the NoSeMaze Controller UI right now.
+Only NI-Board NI-USB 6216 BNC is supported by the NoSeMaze Controller UI right now.
 
 These main parts are connected to a computer which controls the experiment and gather the measured data.
 
@@ -44,8 +44,8 @@ This repository consists of 2 main folders:
 
 The UIs are written in **Python** and can be runned directly using python_v3.10+ by running [*main.py*](/Autonomouse%20Controller/main.py) (or [*schedule_main.py*](/Autonomouse%20Schedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
-> :exclamation: **Important** :  
-> The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
+> :exclamation: **Important** :
+The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
 Software documentations for :
 
