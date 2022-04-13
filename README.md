@@ -8,14 +8,16 @@ NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse 
 
 ### Hardware
 
-![overviewAutoOlfactometer](/Documentation/images/systemOverview.PNG)
-
 The NoSeMaze setup consists of 4 main parts:
 
 1. The automatic olfactometer system, which itself consists of:
     1. a lick port and a water container.
     2. an olfactometer and its tubing system.
     3. a National Instrument Data Acquisition Board NI-USB 6216 BNC
+    </br>
+
+    ![overviewAutoOlfactometer](/Documentation/images/automaticOlfactometerOverview.PNG)
+    *Overview of Automatic 
 </br>
 
 2. Tube test system, which is used to determine social hierarchy of a mice cohorte.
@@ -26,7 +28,7 @@ The NoSeMaze setup consists of 4 main parts:
 
 4. Video cameras which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
 
-> **Note** :  
+> :memo: **Note** : 
 > Only NI-Board NI-USB 6216 BNC is supported by the UI right now.
 
 These main parts are connected to a computer which controls the experiment and gather the measured data.
@@ -46,7 +48,7 @@ This repository consists of 2 main folders:
 
 The UIs are written in **Python** and can be runned directly using python_v3.10+ by running [*main.py*](/Autonomouse%20Controller/main.py) (or [*schedule_main.py*](/Autonomouse%20Schedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
-> **Important** :  
+> :exclamation: **Important** :  
 > The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
 Software documentations for :
