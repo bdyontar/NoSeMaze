@@ -55,3 +55,7 @@ Software documentations for :
 ## User Guide
 
 For a detailed user guide in how to use NoSeMaze system for experiment and step-by-step example, click [here](/Documentation/userGuide.md).
+
+## License
+
+This 
