@@ -495,7 +495,7 @@ class ExperimentWorker(QtCore.QObject):
 
     def get_present_animal(self):
         """Returns the animal in the port. 'Rfid.check_rfid' method differs 
-        between Autonomouse 1 and Autonomuse 2."""
+        between NoSeMaze 1 and NoSeMaze 2."""
 
         # DEBUG just chooses a random animal
         # animals = list(self.experiment.animal_list.keys())

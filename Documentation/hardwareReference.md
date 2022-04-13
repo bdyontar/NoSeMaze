@@ -12,4 +12,4 @@ Following are the hardware used in the setup.
 
 ## Computer
 
-The AutonomouseS was developed in a WindowsNT operating system.
+The NoSeMaze was developed in a WindowsNT operating system.

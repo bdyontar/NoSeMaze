@@ -1,17 +1,17 @@
 # User Guide
 
-This documentation is meant to help user navigate the *Autonomouse Controller* UI and *Autonomouse Schedule* UI.
+This documentation is meant to help user navigate the *NoSeMaze Controller* UI and *NoSeMaze Schedule* UI.
 
 Table of Content:
 [TOC]
 
-## Autonomouse Controller
+## NoSeMaze Controller
 
 ### Introduction
 
-The Autonomouse Controller serves as a central control for the user to start and stop experiment session and save it.
+The NoSeMaze Controller serves as a central control for the user to start and stop experiment session and save it.
 
-![AutonomouseControlUI](/Documentation/images/)
+![NoSeMazeControlUI](/Documentation/images/)
 
 #### Experiment Flow
 
@@ -43,7 +43,7 @@ graph TD
 
 ### Starting the UI
 
-To start the UI, run *main.py* from the *Autonomouse Controller* folder using python version 3.10 or above.
+To start the UI, run *main.py* from the *NoSeMaze Controller* folder using python version 3.10 or above.
 
 > **Important** :  
 > The UI is dependent on niDAQmx as it communicates with the NI Board using niDAQmx library. Make sure to install it before starting the UI.
