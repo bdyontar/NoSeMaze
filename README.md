@@ -29,7 +29,7 @@ These main parts are connected to a computer which controls the experiment and g
 For more information about the hardware:
 
 - [Hardware Reference](/Documentation/hardwareReference.md) - Reference to hardware specification
-- [Setup Guide](/Documentation/setupGuide.md) - Help by setting up system and some troubleshooting
+- [Setup Guide](/Documentation/setupGuide.md) - Overview of the setup and guide to setting up system and information to some troubleshooting
 
 ### Software
 
@@ -54,4 +54,8 @@ For a detailed user guide in how to use NoSeMaze system for experiment and step-
 
 ## License
 
-This 
+NoSeMaze is free software: : you can redistribute it and/or modify it under the terms of GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) at any later version.
+
+NoSeMaze is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with NoSeMaze. If not, see <https://www.gnu.org/licenses/>.
