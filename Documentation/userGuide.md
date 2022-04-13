@@ -2,10 +2,6 @@
 
 This documentation is meant to help user navigate the *NoSeMaze Controller* UI and *NoSeMaze Schedule* UI.
 
-Table of Content:
-
-[[_TOC_]]
-
 ## NoSeMaze Controller
 
 ### Introduction

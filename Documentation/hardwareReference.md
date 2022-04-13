@@ -2,8 +2,6 @@
 
 Following are the hardware used in the setup.
 
-[[_TOC_]]
-
 ## National Instrument Data Acquisition Board
 
 ## Olfactometers

@@ -1,9 +1,5 @@
 # NoSeMaze
 
-Table of Content:
-
-[[_TOC_]]
-
 NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse by Erskine et al.[^1] which allows laboratory mice to be trained with olfactory tasks in a semi-natural habitat. This reduced contact between the mice and the experimentator reduces also external influences that might affect the mice as they are training. Since then NoSeMaze was further enriched with many sensors to gather data related to social behaviour of the mice. Hence the name NoSeMaze (natural-habitat oriented sensor-enriched maze).
 
 [^1]: [Erskine, Andrew et al. “AutonoMouse: High throughput operant conditioning reveals progressive impairment with graded olfactory bulb lesions.” PloS one vol. 14,3 e0211571. 6 Mar. 2019, doi:10.1371/journal.pone.0211571](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6402634/)
