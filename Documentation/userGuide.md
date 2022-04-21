@@ -20,7 +20,7 @@ graph TD
     SA{Light beam broken?}
     A[Trial/Training defined as in the schedule starts]
     B[Trial/Training ends]
-    SV[Already 10 trials?]
+    SV[10 trials has occured?]
     sv[Save experiment]
     SS{Stop button clicked} 
     Z[Stop]
@@ -42,7 +42,7 @@ graph TD
 
 To start the UI, run *main.py* from the *NoSeMaze Controller* folder using python version 3.10 or above.
 
-> **Important** :  
+> :exclamation: **Important** :  
 > The UI is dependent on niDAQmx as it communicates with the NI Board using niDAQmx library. Make sure to install it before starting the UI.
 
 ### Starting an Experiment

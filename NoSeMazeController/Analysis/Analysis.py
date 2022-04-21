@@ -4,6 +4,8 @@ module.
 
 Calculation of d' is left as commentar down below in 
 weighted_binned_performance method.
+
+
 """
 
 import numpy as np

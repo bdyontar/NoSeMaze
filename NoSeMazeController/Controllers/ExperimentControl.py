@@ -2,8 +2,8 @@
 This module contains thread controller and thread. 
 
 As this module was developed rapidly per changing demand, some actually 
-unused code is still saved as comments and there may be some codes that is 
-actually obsolete, but still not removed, as it may be used later on, if 
+unused code might still be saved as comments and there may be some codes that is 
+actually obsolete, but still not removed, as it might be used later on, if 
 demand changed.
 """
 
@@ -88,9 +88,9 @@ class ExperimentWorker(QtCore.QObject):
                 else:
                     concatenate = current_trial_pulse[0]['concatenate_odour_training']
 
-                # As a different NI-Board is used all actual sequences falls
-                # under 'static' option. This option can be changed in
-                # hardware preference window.
+                # As a different NI-Board from the autonomouse version by Andrew Erskine
+                # is used, all actual sequences falls under 'static' option. 
+                # This option can be changed in hardware preference window.
                 #
                 # WARNING: sequences not under the 'static' option was not
                 # in development and may not function properly. Hence, keep

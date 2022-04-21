@@ -4,7 +4,7 @@ Following are the hardware used in the setup.
 
 ## National Instrument Data Acquisition Board
 
-## Olfactometers
+## Olfactometer
 
 ## Lick Port
 
