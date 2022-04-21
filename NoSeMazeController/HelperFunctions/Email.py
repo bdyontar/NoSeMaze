@@ -2,10 +2,6 @@
 """
 This module contains methods used for e-mailing. Currently, is used to write
 notification message in Dropbox. Codes to send e-mail is in commentar.
-
-Created on Wed Nov  7 10:45:56 2018
-
-@author: Michael Bram
 """
 
 # Modules for e-mail messaging

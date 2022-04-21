@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 This module is used to filter analog data read from NI-Board.
-
-Created on Fri Oct 26 12:07:45 2018
-
-@author: jir-mb
 """
 
 import numpy as np
