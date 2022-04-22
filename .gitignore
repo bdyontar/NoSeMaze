@@ -10,10 +10,9 @@
 **/*.spec
 
 # ignoring config
-**/dropbox.txt
-ffmpeg.exe
+**/dropbox.txts
 **/cam.setting
-**/.autonomouseconfig
+**/.nosemazeconfig
 **/hardware.config
 
 # ignoring virtual environment
