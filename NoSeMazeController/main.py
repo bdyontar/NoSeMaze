@@ -1,3 +1,24 @@
+"""
+"""
+"""
+Copyright (c) 2022 [Insert name here]
+
+This file is part of NoSeMaze.
+
+NoSeMaze is free software: you can redistribute it and/or 
+modify it under the terms of GNU General Public License as 
+published by the Free Software Foundation, either version 3 
+of the License, or (at your option) at any later version.
+
+NoSeMaze is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty 
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public 
+License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
+"""
+
 import sys
 import os
 import pickle
@@ -18,16 +39,17 @@ from HelperFunctions import Email as email
 class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     saved = QtCore.pyqtSignal()
     loaded = QtCore.pyqtSignal()
+
     def __init__(self):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.saved_status = True
         self.config_path = ".autonomouseconfig"
-        
+
         # create config folder if not exists
         if not os.path.isdir(self.config_path):
             os.makedirs(self.config_path)
-        
+
         self.hardware_prefs = self.load_config_data()
         self.dropbox_path = self.load_dropbox_path()
         email.dropbox_path = self.dropbox_path
@@ -37,33 +59,35 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.mail_window = None
         self.control_window = None
         self.setup_experiment_bindings(Experiment.Experiment())
-        
+
         # function bindings
         self.actionAnimal_List.triggered.connect(self.open_animal_window)
-        self.actionHardware_Preferences.triggered.connect(self.open_hardware_window)
-        self.actionAnalyse_Experiment.triggered.connect(self.open_analysis_window)
+        self.actionHardware_Preferences.triggered.connect(
+            self.open_hardware_window)
+        self.actionAnalyse_Experiment.triggered.connect(
+            self.open_analysis_window)
         self.actionMailing_List.triggered.connect(self.open_mail_window)
         self.actionDropbox.triggered.connect(self.set_dropbox_path)
         self.actionVideo_Control.triggered.connect(self.open_control_window)
         self.actionSave_Experiment.triggered.connect(self.save_experiment)
         self.actionLoad_Experiment.triggered.connect(self.load_experiment)
         self.saved.connect(self.experiment_saved)
-        
+
     def setup_experiment_bindings(self, experiment):
         self.experiment = experiment
-        
+
         if self.experiment.default_row.maxlen != Experiment.Experiment().default_row.maxlen:
             self.experiment.default_row = Experiment.Experiment().default_row.copy()
             temp = self.experiment.trials.copy()
             self.experiment.trials = self.experiment.default_row.copy()
             for row in temp:
                 self.experiment.trials.append(row)
-                
+
         self.experiment_control = ExperimentControl.ExperimentController(self)
-        
+
         self.model = GuiModels.TableModel(['Animal ID', 'Time Stamp', 'Schedule Idx', 'Trial Idx', 'Odour', 'Delay', 'Rewarded',
-                                           'Wait Response', 'Response', 'Correct', 'Timeout','Number of Licks'],
-                                            self.experiment.trials, parent=self)
+                                           'Wait Response', 'Response', 'Correct', 'Timeout', 'Number of Licks'],
+                                          self.experiment.trials, parent=self)
 
         self.trialView.setModel(self.model)
 
@@ -74,12 +98,16 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             pass
         self.startButton.clicked.connect(self.experiment_control.start)
         self.stopButton.clicked.connect(self.experiment_control.stop)
-        
-        self.hardware_window.new_pref.connect(self.experiment_control.update_pref)
-        
-        self.experiment_control.trial_job.trial_end.connect(self.update_trial_view)
-        self.experiment_control.trial_job.trial_end.connect(self.update_data_view)
-        self.experiment_control.trial_job.trial_end.connect(self.status_changed)
+
+        self.hardware_window.new_pref.connect(
+            self.experiment_control.update_pref)
+
+        self.experiment_control.trial_job.trial_end.connect(
+            self.update_trial_view)
+        self.experiment_control.trial_job.trial_end.connect(
+            self.update_data_view)
+        self.experiment_control.trial_job.trial_end.connect(
+            self.status_changed)
 
         self.trialView.selectionModel().selectionChanged.connect(self.on_trial_selected)
 
@@ -107,30 +135,33 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     def open_hardware_window(self):
         self.hardware_window.show()
         #hardware_window = AppWindows.HardwareWindow(self)
-        #hardware_window.show()
-    
+        # hardware_window.show()
+
     def open_control_window(self):
-        self.control_window = AppWindows.ControlWindow(self.experiment, parent=self)
+        self.control_window = AppWindows.ControlWindow(
+            self.experiment, parent=self)
         self.control_window.show()
-    
+
     def open_mail_window(self):
         self.mail_window = AppWindows.MailWindow(self)
         self.mail_window.show()
 
     def open_analysis_window(self):
-        self.analysis_window = AppWindows.AnalysisWindow(self.experiment, parent=self)
+        self.analysis_window = AppWindows.AnalysisWindow(
+            self.experiment, parent=self)
         self.analysis_window.show()
 
     def update_trial_view(self):
         self.model.layoutChanged.emit()
 
-    def update_data_view(self): #DONE thoraxView is obsolete. ACHTUNG: von GUI wegkommentieren!
+    # DONE thoraxView is obsolete. ACHTUNG: von GUI wegkommentieren!
+    def update_data_view(self):
         self.dataLView.plotItem.clear()
         self.dataRView.plotItem.clear()
         self.dataLView.plotItem.plot(np.arange(len(self.experiment.last_data_l)) / self.hardware_prefs['samp_rate'],
-                                    np.array(self.experiment.last_data_l))
-        self.dataRView.plotItem.plot(np.arange(len(self.experiment.last_data_r)) / self.hardware_prefs['samp_rate'], 
-                                      np.array(self.experiment.last_data_r))
+                                     np.array(self.experiment.last_data_l))
+        self.dataRView.plotItem.plot(np.arange(len(self.experiment.last_data_r)) / self.hardware_prefs['samp_rate'],
+                                     np.array(self.experiment.last_data_r))
         self.dataLView.setYRange(0, 6)
         self.dataRView.setYRange(0, 6)
 
@@ -141,22 +172,28 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
         try:
             trial_data = self.experiment.animal_list[animal].schedule_list[sched_idx].trial_params[trial_idx]
-    
-            pulses, t = PulseInterface.make_pulse(self.hardware_prefs['samp_rate'], 0.0, 0.0, trial_data)
-                
-            onset = np.zeros(int(self.hardware_prefs['fv_delay']*self.hardware_prefs['samp_rate']))
-            offset = np.zeros(int((self.hardware_prefs['lick_delay']+self.hardware_prefs['thorax_delay'])*self.hardware_prefs['samp_rate']))
-            t = np.arange(len(onset)+len(offset)+len(t)) / self.hardware_prefs['samp_rate']
-                
+
+            pulses, t = PulseInterface.make_pulse(
+                self.hardware_prefs['samp_rate'], 0.0, 0.0, trial_data)
+
+            onset = np.zeros(
+                int(self.hardware_prefs['fv_delay']*self.hardware_prefs['samp_rate']))
+            offset = np.zeros(int(
+                (self.hardware_prefs['lick_delay']+self.hardware_prefs['thorax_delay'])*self.hardware_prefs['samp_rate']))
+            t = np.arange(len(onset)+len(offset)+len(t)) / \
+                self.hardware_prefs['samp_rate']
+
             self.graphicsView.plotItem.clear()
             for p, pulse in enumerate(pulses):
-                self.graphicsView.plotItem.plot(t, np.hstack((onset,np.array(pulse),offset)) - (p * 1.1))
+                self.graphicsView.plotItem.plot(t, np.hstack(
+                    (onset, np.array(pulse), offset)) - (p * 1.1))
         except:
             pass
 
     def on_trial_selected(self):
         try:
-            selected_trial = self.trialView.selectionModel().selectedRows()[0].row()
+            selected_trial = self.trialView.selectionModel().selectedRows()[
+                0].row()
         except:
             selected_trial = 0
         self.update_graphics_view(selected_trial)
@@ -168,71 +205,74 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
     def save_experiment(self):
         try:
-            #bit messy, what if the experiment class changes, should rather be saving the data in the class
-            fname, suff = QtWidgets.QFileDialog.getSaveFileName(self, "Save Experiment", '', "AutonoMouse Experiment (*.autmaus)")
+            # bit messy, what if the experiment class changes, should rather be saving the data in the class
+            fname, suff = QtWidgets.QFileDialog.getSaveFileName(
+                self, "Save Experiment", '', "AutonoMouse Experiment (*.autmaus)")
             tmpName = os.path.basename(fname)
             tmpSavePath = os.path.dirname(fname)
             self.experiment.name = tmpName
             self.experiment.save_path = tmpSavePath
-            
+
             # We don't change the original date of creation
             if self.experiment.date is None:
                 self.experiment.date = str(datetime.datetime.now())
-                
-            logs_path = os.path.dirname(fname)+ '/Logs/logs_' + self.experiment.name.split(".")[0]
+
+            logs_path = os.path.dirname(
+                fname) + '/Logs/logs_' + self.experiment.name.split(".")[0]
             self.experiment.logs_path = logs_path
 
             # check if there is still old format of logs dir
             i = 1
             if os.path.isdir(logs_path + '(' + str(i) + ')'):
                 while os.path.isdir(logs_path + '(' + str(i+1) + ')'):
-                    self.experiment.logs_path = logs_path +'('+str(i)+')'
+                    self.experiment.logs_path = logs_path + '('+str(i)+')'
                     i += 1
-            
+
             # create dir if not created
             if not os.path.isdir(self.experiment.logs_path):
-                os.makedirs(self.experiment.logs_path)  
-            
+                os.makedirs(self.experiment.logs_path)
+
             self.update_experiment_info()
-            
+
             with open(fname, 'wb') as fn:
                 pickle.dump(self.experiment, fn)
-            
+
             self.saved.emit()
         except:
             print('were not saved...')
-            
+
     def set_dropbox_path(self):
         dropbox_path = self.load_dropbox_path()
 
-        try:    
-            dirname = QtWidgets.QFileDialog.getExistingDirectory(self, 
-                                                                "Set Dropbox path", 
-                                                                dropbox_path, 
-                                                                QtWidgets.QFileDialog.Option.ShowDirsOnly)
+        try:
+            dirname = QtWidgets.QFileDialog.getExistingDirectory(self,
+                                                                 "Set Dropbox path",
+                                                                 dropbox_path,
+                                                                 QtWidgets.QFileDialog.Option.ShowDirsOnly)
             self.dropbox_path = dirname
 
             dropbox_path_file = self.config_path+"/dropbox.txt"
             email.dropbox_path = dirname
-            
+
             if dirname != '':
                 with open(dropbox_path_file, 'w') as fn:
                     fn.write(dirname+"\n")
         except:
-            print("were not saved...")        
-    
+            print("were not saved...")
+
     def experiment_saved(self):
         self.saved_status = True
         self.setWindowTitle('AutonoMouse2')
-    
+
     def status_changed(self):
         self.saved_status = False
         self.setWindowTitle('AutonoMouse2*')
-    
+
     def load_experiment(self):
         try:
-            fname, suff = QtWidgets.QFileDialog.getOpenFileName(self, "Open Experiment", '',"AutonoMouse2 Experiment (*.autmaus)")
-            
+            fname, suff = QtWidgets.QFileDialog.getOpenFileName(
+                self, "Open Experiment", '', "AutonoMouse2 Experiment (*.autmaus)")
+
             if fname != '':
                 with open(fname, 'rb') as fn:
                     experiment = pickle.load(fn)
@@ -241,11 +281,11 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
                 self.update_experiment_info()
                 self.update_trial_view()
         except:
-            QtWidgets.QMessageBox.about(self,"Error","Cannot load data")
-    
+            QtWidgets.QMessageBox.about(self, "Error", "Cannot load data")
+
     def thread_control(self):
         self.experiment_control.stop()
-    
+
     def windows_control(self):
         if self.animal_window is not None:
             self.animal_window.close()
@@ -257,10 +297,11 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.mail_window.close()
         if self.control_window is not None:
             self.control_window.close()
-    
-    def closeEvent(self,event):
+
+    def closeEvent(self, event):
         if self.saved_status == False:
-            answer = QtWidgets.QMessageBox.question(self, "Warning", "Data has not been saved.\nSave changes?",QtWidgets.QMessageBox.Yes|QtWidgets.QMessageBox.No|QtWidgets.QMessageBox.Cancel,QtWidgets.QMessageBox.Cancel)
+            answer = QtWidgets.QMessageBox.question(self, "Warning", "Data has not been saved.\nSave changes?", QtWidgets.QMessageBox.Yes |
+                                                    QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
             if answer == QtWidgets.QMessageBox.No:
                 self.windows_control()
                 self.saved_status = True
@@ -280,19 +321,21 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.windows_control()
             self.thread_control()
             event.accept()
-            
+
+
 # Back up the reference to the exceptionhook
 sys._excepthook = sys.excepthook
 
 
 def my_exception_hook(exctype, value, traceback):
-    email.crash_error(exctype,value,traceback)
+    email.crash_error(exctype, value, traceback)
     # Print the error and traceback
 #    test = "".join(traceback.format_exception(exctype,value,traceback))
 #    print(test)
     # Call the normal Exception hook after
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
+
 
 # Set the exception hook to our wrapping function
 sys.excepthook = my_exception_hook
@@ -303,6 +346,7 @@ def main():
     form = MainApp()
     form.show()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()

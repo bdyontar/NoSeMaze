@@ -2,6 +2,24 @@
 This module contains methods used to make pulses after PulseInterface decide,
 which pulse is to be made.
 """
+"""
+Copyright (c) 2022 [Insert name here]
+
+This file is part of NoSeMaze.
+
+NoSeMaze is free software: you can redistribute it and/or 
+modify it under the terms of GNU General Public License as 
+published by the Free Software Foundation, either version 3 
+of the License, or (at your option) at any later version.
+
+NoSeMaze is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty 
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public 
+License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
+"""
 
 import scipy.signal as signal
 import numpy as np
@@ -89,7 +107,7 @@ def random_shatter_pulse(sampling_rate, duration, frequency, duty, shatter_frequ
 
 
 def random_simple_pulse(sampling_rate, params):
-    
+
     # Build main portion of pulse
     if params['fromDuty']:
         frequency = params['frequency']
@@ -150,7 +168,7 @@ def random_simple_pulse(sampling_rate, params):
 
 
 def spec_time_pulse(sampling_rate, params):
-    
+
     # Initial parameters
     frequency = params['frequency']
     p_times = params['pulse_times']
@@ -212,7 +230,7 @@ def spec_time_pulse(sampling_rate, params):
 
 
 def concatenated_pulse(sampling_rate, params, number, total):
-    
+
     if params['fromDuty']:
         frequency = params['frequency']
         duty = params['duty']
@@ -261,7 +279,7 @@ def concatenated_pulse(sampling_rate, params, number, total):
 
 
 def simple_pulse(sampling_rate, params):
-    
+
     # Build main portion of pulse
     if params['fromDuty']:
         frequency = params['frequency']
@@ -303,7 +321,7 @@ def simple_pulse(sampling_rate, params):
 
 
 def multi_simple_pulse(sampling_rate, global_onset, global_offset, params_list):
-    
+
     longest_t = []
     pulses = list()
 
@@ -326,7 +344,7 @@ def multi_simple_pulse(sampling_rate, global_onset, global_offset, params_list):
 
 
 def noise_pulse(sampling_rate, params):
-    
+
     # Build main portion of pulse
     pulse_length = int(sampling_rate / params['frequency'])
     if params['fromLength']:
@@ -362,7 +380,7 @@ def noise_pulse(sampling_rate, params):
 
 
 def plume_pulse(sampling_rate, params):
-    
+
     plume = sio.loadmat(params['data_path'])
     plume = plume['plume'][0]
 
@@ -392,7 +410,7 @@ def plume_pulse(sampling_rate, params):
 
 
 def dummy_noise_pulse(sampling_rate, params):
-    
+
     # Build main portion of pulse
     pulse_length = int(sampling_rate / params['frequency'])
     if params['fromLength']:
@@ -423,7 +441,7 @@ def dummy_noise_pulse(sampling_rate, params):
 
 
 def multi_noise_pulse(sampling_rate, global_onset, global_offset, params_list):
-    
+
     longest_t = []
     pulses = list()
 

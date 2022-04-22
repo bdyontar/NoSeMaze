@@ -6,6 +6,24 @@ unused code might still be saved as comments and there may be some codes that is
 actually obsolete, but still not removed, as it might be used later on, if 
 demand changed.
 """
+"""
+Copyright (c) 2022 [Insert name here]
+
+This file is part of NoSeMaze.
+
+NoSeMaze is free software: you can redistribute it and/or 
+modify it under the terms of GNU General Public License as 
+published by the Free Software Foundation, either version 3 
+of the License, or (at your option) at any later version.
+
+NoSeMaze is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty 
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public 
+License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
+"""
 
 # import PyQt modules
 from PyQt5 import QtCore, QtWidgets
@@ -29,14 +47,14 @@ import HelperFunctions.Email as email
 
 
 class ExperimentWorker(QtCore.QObject):
+    """Worker of experiment thread. Sequence of thread is in trial method."""
+
     # define custom signals to be connected
     finished = QtCore.pyqtSignal()
     trial_end = QtCore.pyqtSignal()
 
     def __init__(self, parent: QtCore.QObject = None):
         """
-        Worker of experiment thread. Sequence of thread is in trial method.
-
         Parameters
         ----------
         parent : QObject, default=None
@@ -89,7 +107,7 @@ class ExperimentWorker(QtCore.QObject):
                     concatenate = current_trial_pulse[0]['concatenate_odour_training']
 
                 # As a different NI-Board from the autonomouse version by Andrew Erskine
-                # is used, all actual sequences falls under 'static' option. 
+                # is used, all actual sequences falls under 'static' option.
                 # This option can be changed in hardware preference window.
                 #
                 # WARNING: sequences not under the 'static' option was not
@@ -680,24 +698,24 @@ class ExperimentWorker(QtCore.QObject):
                 self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'], self.hardware_prefs['samp_rate'], 2)
         elif odour_training:
             trial_daq = daq.DoAiMultiTaskOdourTraining(self.hardware_prefs['analog_input'],
-                                                        self.hardware_prefs['analog_channels'],
-                                                        self.hardware_prefs['odour_output'],
-                                                        self.hardware_prefs['finalvalve_output'],
-                                                        self.hardware_prefs['reward_output1'],
-                                                        self.hardware_prefs['reward_output2'],
-                                                        self.hardware_prefs['samp_rate'],
-                                                        len(t) /
-                                                        self.hardware_prefs['samp_rate'],
-                                                        odor_pulses, fv_pulse,
-                                                        self.hardware_prefs['sync_clock'],
-                                                        self.hardware_prefs['static'],
-                                                        # self.hardware_prefs['thorax_delay'],
-                                                        current_trial[4],
-                                                        self.hardware_prefs['lick_delay'],
-                                                        self.hardware_prefs['lick_channel_l'],
-                                                        self.hardware_prefs['lick_channel_r'],
-                                                        self.hardware_prefs['beam_channel'],
-                                                        current_trial[0:4])
+                                                       self.hardware_prefs['analog_channels'],
+                                                       self.hardware_prefs['odour_output'],
+                                                       self.hardware_prefs['finalvalve_output'],
+                                                       self.hardware_prefs['reward_output1'],
+                                                       self.hardware_prefs['reward_output2'],
+                                                       self.hardware_prefs['samp_rate'],
+                                                       len(t) /
+                                                       self.hardware_prefs['samp_rate'],
+                                                       odor_pulses, fv_pulse,
+                                                       self.hardware_prefs['sync_clock'],
+                                                       self.hardware_prefs['static'],
+                                                       # self.hardware_prefs['thorax_delay'],
+                                                       current_trial[4],
+                                                       self.hardware_prefs['lick_delay'],
+                                                       self.hardware_prefs['lick_channel_l'],
+                                                       self.hardware_prefs['lick_channel_r'],
+                                                       self.hardware_prefs['beam_channel'],
+                                                       current_trial[0:4])
         elif concatenate and not pretraining:
             trial_daq = daq.DoAiConcatenatedWaitTrainingMultiTask(self.hardware_prefs['analog_input'],
                                                                   self.hardware_prefs['analog_channels'],
