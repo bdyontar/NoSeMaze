@@ -27,12 +27,12 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 from PyQt5 import QtWidgets
 import numpy as np
 
-from ScheduleDesigns import autonomouseSScheduleDesign
+from ScheduleDesigns import NoSeMazeScheduleDesign
 from Generation import Gen
 from Exceptions import RewardMapError
 
 
-class AutonomouseSScheduleWidget(QtWidgets.QWidget, autonomouseSScheduleDesign.Ui_Form):
+class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
     def __init__(self, parentUi=None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
@@ -161,11 +161,11 @@ class AutonomouseSScheduleWidget(QtWidgets.QWidget, autonomouseSScheduleDesign.U
 
         return params
 
-# Implementation of concatenated schedules. Not yet supported in the latest Autonomouse Controller. It
+# Implementation of concatenated schedules. Not yet supported in the latest NoSeMaze Controller. It
 # save here for archive purpose.
 
-# from ScheduleDesigns import autonomouse2ConcatenatedScheduleDesign
-# class Autonomouse2ConcatenatedScheduleWidget(QtWidgets.QWidget, autonomouse2ConcatenatedScheduleDesign.Ui_Form):
+# from ScheduleDesigns import NoSeMazeConcatenatedScheduleDesign
+# class NoSeMazeConcatenatedScheduleWidget(QtWidgets.QWidget, NoSeMazeConcatenatedScheduleDesign.Ui_Form):
 #     def __init__(self, parentUi=None):
 #         super(self.__class__, self).__init__()
 #         self.setupUi(self)
