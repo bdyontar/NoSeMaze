@@ -170,7 +170,7 @@ class Ui_Form(object): #DONE Namenänderung und Einbinden von Wahrscheinlichkeit
         item = self.rewardMapTable.item(1, 2)
         item.setText(_translate("Form", "0.8"))
         self.rewardMapTable.setSortingEnabled(__sortingEnabled)
-        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:14pt;\">Autonomouse 2 - Schedule</span></p></body></html>"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:14pt;\">NoSeMaze - Schedule</span></p></body></html>"))
 #        self.label_2.setText(_translate("Form", "<html><head/><body><p>Valve Map : <br/>0 = blank <br/>1 = odour 1 <br/>2 = odour 2<br/>3 = odour 3 <br/></p></body></html>"))
         #self.label_2.setText(_translate("Form", "Delay (s)"))
         self.label_15.setText(_translate("Form",""))

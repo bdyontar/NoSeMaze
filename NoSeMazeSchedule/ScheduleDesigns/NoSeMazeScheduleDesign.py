@@ -216,7 +216,7 @@ class Ui_Form(object):
         item = self.rewardMapTable.item(4, 1)
         item.setText(_translate("Form", "0.0"))
         self.rewardMapTable.setSortingEnabled(__sortingEnabled)
-        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:14pt;\">AutonomouseS - Schedule</span></p></body></html>"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:14pt;\">NoSeMaze - Schedule</span></p></body></html>"))
 #        self.label_2.setText(_translate("Form", "<html><head/><body><p>Valve Map : <br/>0 = blank <br/>1 = odour 1 <br/>2 = odour 2<br/>3 = odour 3 <br/></p></body></html>"))
         #self.label_2.setText(_translate("Form", "Delay (s)"))
         self.label_15.setText(_translate("Form",""))
