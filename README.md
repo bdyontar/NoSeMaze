@@ -38,12 +38,12 @@ This repository consists of 2 main folders:
 - NoSeMaze Controller &rarr; UI for running experiment.
 - NoSeMaze Schedule &rarr; UI for creating schedule used in experiment.
 
-The UIs are written in **Python** and can be runned directly using python v3.10+ by running [*main.py*](/NoSeMaze%20Controller/main.py) (or [*schedule_main.py*](/NoSeMaze%20Schedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
+The UIs are written in **Python** and can be runned directly using python v3.10+ by running [*main.py*](/NoSeMazeController/main.py) (or [*schedule_main.py*](/NoSeMazeSchedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
 > :exclamation: **Important** :  
 > The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
-For software documentations of the UI, see [NoSeMaze Controller](/NoSeMaze%20Controller/README.md) and [NoSeMaze Schedule](/NoSeMaze%20Schedule/README.md).
+For software documentations of the UI, see [NoSeMaze Controller](/NoSeMazeController/README.md) and [NoSeMaze Schedule](/NoSeMazeSchedule/README.md).
 
 ## User Guide
 
@@ -56,3 +56,15 @@ NoSeMaze is free software: you can redistribute it and/or modify it under the te
 NoSeMaze is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with NoSeMaze. If not, see [https://www.gnu.org/licenses](https://www.gnu.org/licenses).
+
+## Changes From AutonoMouse
+
+NoSeMaze is based on AutonoMouse from Andrew Erskine. Changes that is made to meet our requirements include:
+
+1. Putting `daqface` and `PyPulse` together with `autonomouse-control`.
+2. Putting `PyPulse` together with `autonomouse-schedule`.
+3. Modifying `DAQ` in `daqface` to support NI USB 6216 BNC
+4. Implementing more trials in `daqface` and `ExperimentControl`.
+5. Modifying `PyPulse` in `autonomouse-control` and `autonomouse-schedule`.
+
+For a more detailed change log, see [changelog](./Documentation/CHANGELOG.md)
