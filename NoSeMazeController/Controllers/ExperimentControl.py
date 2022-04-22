@@ -7,7 +7,7 @@ actually obsolete, but still not removed, as it might be used later on, if
 demand changed.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

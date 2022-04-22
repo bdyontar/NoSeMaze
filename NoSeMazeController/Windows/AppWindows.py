@@ -4,7 +4,7 @@ window, hardware window, control window, animal window, e-mail window and
 analysis window.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

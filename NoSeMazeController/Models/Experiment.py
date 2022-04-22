@@ -3,7 +3,7 @@ This module contains the experiment class, mouse class, schedule class, and
 trial class.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

@@ -4,7 +4,7 @@ This module contains methods used for e-mailing. Currently, is used to write
 notification message in Dropbox. Codes to send e-mail is in commentar.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 
@@ -44,8 +44,8 @@ def parse_list(string):
     """
     Method used to parse string of a list into a list of float, then sum it.
 
-    Parameter
-    ---------
+    Parameters
+    ----------
     string : str
         String of a list to be parsed.
 
@@ -63,8 +63,8 @@ def deadmans_switch(experiment):
     """
     Notification every day to indicate if experiment is running.
 
-    Parameter
-    ---------
+    Parameters
+    ----------
     exeperiment : Experiment.experiment
         Instance of Experiment.experiment class to take information from.
     """
@@ -392,8 +392,6 @@ def send(subject, content, attachment):
         today = datetime.datetime.today().isoformat().split(".")[
             0].replace(":", "")
         dire = dropbox_path + '/' + today + '/'
-        # dire = "C:/Users/Anwender/Dropbox/Autonomouse_1/Nachrichten/" + today + "/"
-    #    dire = "C:/Users/Anwender/Dropbox/Autonomouse_2/Nachrichten/" + today + "/"
         if not os.path.isdir(dire):
             os.mkdir(dire)
 

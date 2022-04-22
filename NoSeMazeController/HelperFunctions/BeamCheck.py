@@ -3,7 +3,7 @@ This module contains method to check if beam is broken, which signals the start
 of a trial.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

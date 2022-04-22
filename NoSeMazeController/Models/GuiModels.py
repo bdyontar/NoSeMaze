@@ -2,7 +2,7 @@
 This module contains the model of the table shown in controller UI.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

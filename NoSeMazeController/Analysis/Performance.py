@@ -2,7 +2,7 @@
 This module contains method to show risk taking performance of mouses.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 
@@ -277,22 +277,22 @@ def show_percent_correct(data: dict[str, list[list[float]]], mouses: list[str], 
         "Percent of correct licks (licked either left or right and not both). Bin = {}.".format(bins))
 
 
-def load_data(filepath, start_date, stop_date):
+def load_data(filepath: str, start_date: dt, stop_date: dt)->tuple[list[str], list[dict]]:
     """Load experiment data. 
 
     Parameters
     ----------
-    filepath : str
+    filepath
         Path to experiment file.
 
-    start_date : datetime.datetime
+    start_date
         Start date of time of interest.
 
-    stop_date : datetime.datetime
+    stop_date
         Stop date of time of interest.
 
-    Return
-    ------
+    Returns
+    -------
     header : list
         List of header
     all_data : list of dict

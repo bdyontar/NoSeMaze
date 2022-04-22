@@ -1,7 +1,7 @@
 """
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 
@@ -82,7 +82,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.saved_status = True
         self.config_path = ".nosemazeconfig"
 
-        # create config folder if not exists
+        # create config folder if folder does not exist
         if not os.path.isdir(self.config_path):
             os.makedirs(self.config_path)
 

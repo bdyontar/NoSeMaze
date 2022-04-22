@@ -3,7 +3,7 @@ This module contains methods used to make pulses after PulseInterface decide,
 which pulse is to be made.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

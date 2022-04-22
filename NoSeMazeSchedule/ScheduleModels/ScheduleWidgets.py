@@ -6,7 +6,7 @@ Methods needed in a class implementation of a schedule widget is:
 generate_schedule() and pulse_parameters().
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 

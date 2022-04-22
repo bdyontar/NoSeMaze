@@ -1,10 +1,10 @@
 """
 This module contains methods used for converting experiment data into matlab
-data. It is not used and not supported in AutonomouseS but still saved here for 
+data. It is not used and not supported in NoSeMaze but still saved here for 
 archive purpose.
 """
 """
-Copyright (c) 2022 [Insert name here]
+Copyright (c) 2019, 2022 [copyright holders here]
 
 This file is part of NoSeMaze.
 
@@ -33,6 +33,22 @@ import collections as col
 
 
 def load_experiment(path: str) -> tuple[Experiment.Experiment, list[str], dict]:
+    """Read all experiment files in path and return the data.
+    
+    Parameters
+    ----------
+    path : str
+        Path of the experiment files.
+
+    Returns
+    -------
+    experiment : Experiment.Experiment
+        Last experiment loaded from .autmaus file.
+    data_files : list[str]
+        List of .mat files filename.
+    schedule_map : dict
+        Last schedule read from .csv file.
+    """
     data_files = list()
     for file in os.listdir(path):
         if file.endswith(".autmaus"):
@@ -48,7 +64,19 @@ def load_experiment(path: str) -> tuple[Experiment.Experiment, list[str], dict]:
     return experiment, data_files, schedule_map
 
 
-def read_schedule_map(path):
+def read_schedule_map(path: str) -> dict:
+    """Read schedule map from csv file.
+    
+    Parameters
+    ----------
+    path : str
+        Path of the csv file.
+    
+    Returns
+    -------
+    schedule_map : dict
+        Schedule map read from the csv file.
+    """
     schedule_map = dict()
     with open(path, 'rt') as sched:
         reader = csv.reader(sched)
@@ -57,7 +85,24 @@ def read_schedule_map(path):
     return schedule_map
 
 
-def batch_convert(paths, out_path, out_name, trial_parameter, verbose=True, save_licks=False):
+def batch_convert(paths: list[str], out_path: str, out_name: str, trial_parameter: int, verbose: bool = True, save_licks: bool = False):
+    """Convert files in batch.
+    
+    Parameters
+    ----------
+    paths : list of str
+        List of paths to convert experiment data from.
+    out_path : str
+        Path to save the converted data.
+    out_name : str
+        Name of the saved file of the converted data.
+    trial_parameter : int
+        Parameter for output.
+    verbose : bool
+        Check if verbose mode should be used.
+    save_licks : bool
+        Check if licks should be saved.
+    """
     output = dict()
     for path in paths:
         if verbose:
@@ -125,6 +170,7 @@ def batch_convert(paths, out_path, out_name, trial_parameter, verbose=True, save
 
 
 def convert():
+    """Converting in a batch files with defined paths."""
     batch_convert(['I:/Automated Behaviour/CorrelationStudy2/Pretrain/',
                    'I:/Automated Behaviour/CorrelationStudy2/GNG_5/',
                    'I:/Automated Behaviour/CorrelationStudy2/InitialCorrDiscrim/',
