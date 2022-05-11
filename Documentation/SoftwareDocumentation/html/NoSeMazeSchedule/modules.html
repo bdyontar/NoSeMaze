@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NoSeMazeSchedule Modules &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exceptions module" href="Exceptions.html" />
+    <link rel="prev" title="NoSeMaze Schedule" href="../NoSeMazeSchedule.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="nosemazeschedule-modules">
+<h1>NoSeMazeSchedule Modules<a class="headerlink" href="#nosemazeschedule-modules" title="Permalink to this headline">¶</a></h1>
+<section id="schedule-generator">
+<h2>Schedule Generator<a class="headerlink" href="#schedule-generator" title="Permalink to this headline">¶</a></h2>
+<p>A GUI tool for generating schedules - sequences of trials that run in NoSeMaze</p>
+<p>Python 3.10+ (on Windows, WinPython is recommended). GUI is PyQt5/pyqtgraph based. Requires pypulse to run.</p>
+</section>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Exceptions.html">Exceptions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generation.html">Generation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Generation.html#generation">Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generation.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generation.html#module-Generation.Gen">Generation.Gen module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ScheduleDesigns.html">ScheduleDesigns package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#scheduledesigns">ScheduleDesigns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.NoSeMazeConcatenatedScheduleDesign">ScheduleDesigns.NoSeMazeConcatenatedScheduleDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.NoSeMazeScheduleDesign">ScheduleDesigns.NoSeMazeScheduleDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.concGNGDesign">ScheduleDesigns.concGNGDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.contCorrDesign">ScheduleDesigns.contCorrDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrDesign">ScheduleDesigns.corrDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrDifficultySwitchCameraTriggerDesign">ScheduleDesigns.corrDifficultySwitchCameraTriggerDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrDifficultySwitchDesign">ScheduleDesigns.corrDifficultySwitchDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrOnsetDisruptDesign">ScheduleDesigns.corrOnsetDisruptDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrRandomFrequency2Design">ScheduleDesigns.corrRandomFrequency2Design module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.corrRandomFrequencyDesign">ScheduleDesigns.corrRandomFrequencyDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.mainDesign">ScheduleDesigns.mainDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.pretrainDesign">ScheduleDesigns.pretrainDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.scheduleBeastDesign">ScheduleDesigns.scheduleBeastDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.shatterValveTestDesign">ScheduleDesigns.shatterValveTestDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.simpleCorrDesign">ScheduleDesigns.simpleCorrDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.simpleGNGDesign">ScheduleDesigns.simpleGNGDesign module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleDesigns.html#module-ScheduleDesigns.valveMapDesign">ScheduleDesigns.valveMapDesign module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ScheduleModels.html">ScheduleModels package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleModels.html#schedulemodels">ScheduleModels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleModels.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleModels.html#module-ScheduleModels.ScheduleView">ScheduleModels.ScheduleView module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleModels.html#module-ScheduleModels.ScheduleWidgets">ScheduleModels.ScheduleWidgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ScheduleModels.html#module-ScheduleModels.Widgets">ScheduleModels.Widgets module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SchedulePyPulse.html">SchedulePyPulse package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SchedulePyPulse.html#schedulepypulse">SchedulePyPulse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SchedulePyPulse.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SchedulePyPulse.html#module-SchedulePyPulse.PulseGeneration">SchedulePyPulse.PulseGeneration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SchedulePyPulse.html#module-SchedulePyPulse.PulseInterface">SchedulePyPulse.PulseInterface module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheduleMain.html">scheduleMain module</a></li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeController.html">NoSeMaze Controller</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NoSeMazeSchedule Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#schedule-generator">Schedule Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Exceptions.html">Exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generation.html">Generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ScheduleDesigns.html">ScheduleDesigns package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ScheduleModels.html">ScheduleModels package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SchedulePyPulse.html">SchedulePyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scheduleMain.html">scheduleMain module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a><ul>
+      <li>Previous: <a href="../NoSeMazeSchedule.html" title="previous chapter">NoSeMaze Schedule</a></li>
+      <li>Next: <a href="Exceptions.html" title="next chapter">Exceptions module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeSchedule/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

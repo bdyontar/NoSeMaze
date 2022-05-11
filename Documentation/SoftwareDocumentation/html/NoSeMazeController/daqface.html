@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>daqface package &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="Windows package" href="Windows.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="daqface-package">
+<h1>daqface package<a class="headerlink" href="#daqface-package" title="Permalink to this headline">¶</a></h1>
+<section id="daqface">
+<h2>daqface<a class="headerlink" href="#daqface" title="Permalink to this headline">¶</a></h2>
+<p>A high-level python interface for a number of common NI DAQmx hardware tasks. Some unused classes are removed from the original version as to maintain overview and avoid confusion.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-daqface.DAQ">
+<span id="daqface-daq-module"></span><h2>daqface.DAQ module<a class="headerlink" href="#module-daqface.DAQ" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedPretrainingMultiTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">DoAiConcatenatedPretrainingMultiTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odor_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewarded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedPretrainingMultiTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DAQ for concatenated pretraining schedule. Not used in current implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.CheckLicks">
+<span class="sig-name descname"><span class="pre">CheckLicks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analogData</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.CheckLicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if reward should be given. In this case, reward is always given
+regardless of performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – Measured data of time window of interest.</p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – Index of odour that is actually presented. E.g., for 1st odour is
+idx = 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>water_given</strong> – List of indicator when water is given between 3 odours at left port
+and right port.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2d-list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedPretrainingMultiTask.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – All measured data read during the trial</p></li>
+<li><p><strong>waitData</strong> (<em>ndarray</em>) – Measured data read during the wait window</p></li>
+<li><p><strong>shouldLickData</strong> (<em>ndarray</em>) – Measured data read during the lick window</p></li>
+<li><p><strong>timestamp1</strong> (<em>datetime.datetime</em>) – Timestamp of the start of odour presentation</p></li>
+<li><p><strong>timestamp2</strong> (<em>datetime.datetime</em>) – Timestamp of the start of trial.</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water are given on left port or right port.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">DoAiConcatenatedWaitTrainingMultiTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odor_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewarded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DAQ for concatenated wait training schedule. Not used in current implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.CheckLicks">
+<span class="sig-name descname"><span class="pre">CheckLicks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analogData</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.CheckLicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if reward should be given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – Measured data of time window of interest.</p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – Index of odour that is actually presented. E.g., for 1st odour is
+idx = 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>water_given</strong> – List of indicator when water is given between 3 odours at left port
+and/or right port.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2d-list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiConcatenatedWaitTrainingMultiTask.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – All measured data read during the trial</p></li>
+<li><p><strong>waitData</strong> (<em>ndarray</em>) – Measured data read during the wait window</p></li>
+<li><p><strong>shouldLickData</strong> (<em>ndarray</em>) – Measured data read durign the lick window</p></li>
+<li><p><strong>timestamp1</strong> (<em>datetime.datetime</em>) – Timestamp of the start of odour presentation</p></li>
+<li><p><strong>timestamp2</strong> (<em>datetime.datetime</em>) – Timestamp of the start of trial.</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water are given on left port or right port.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">DoAiMultiTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odor_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewarded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DAQ for normal GNG or risk trial</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTask.CheckLicks">
+<span class="sig-name descname"><span class="pre">CheckLicks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTask.CheckLicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if reward should be given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>water_given</strong> – List of indicator if water is given at left port and/or right port.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTask.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTask.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTask.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTask.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – All measured data read during the trial</p></li>
+<li><p><strong>waitData</strong> (<em>ndarray</em>) – Measured data read during the wait window</p></li>
+<li><p><strong>shouldLickData</strong> (<em>ndarray</em>) – Measured data read durign the lick window</p></li>
+<li><p><strong>timestamp1</strong> (<em>datetime.datetime</em>) – Timestamp of the start of odour presentation</p></li>
+<li><p><strong>timestamp2</strong> (<em>datetime.datetime</em>) – Timestamp of the start of trial.</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water are given on left port or right port.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskOdourTraining">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">DoAiMultiTaskOdourTraining</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odor_write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thorax_delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewarded</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskOdourTraining" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DAQ for normal GNG odor association training. That is reward is always given after
+odor presentation regardless of performance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskOdourTraining.CheckLicks">
+<span class="sig-name descname"><span class="pre">CheckLicks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskOdourTraining.CheckLicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check how reward should be presented. Reward is always given after
+odor presentation regardless of performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>licks_l</strong> (<em>int</em>) – Number of licks in lick window at left port during trial.</p></li>
+<li><p><strong>licks_r</strong> (<em>int</em>) – Number of licks in lick window at right port during trial.</p></li>
+<li><p><strong>timestamps_l</strong> (<em>list</em>) – Timestamps of licks in lick window.</p></li>
+<li><p><strong>timestamps_r</strong> (<em>list</em>) – Timestamps of licks in lick window.</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water is given at left port and/or right port.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskOdourTraining.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskOdourTraining.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task then clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskOdourTraining.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskOdourTraining.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – All measured data read during the trial</p></li>
+<li><p><strong>waitData</strong> (<em>ndarray</em>) – Measured data read during the wait window</p></li>
+<li><p><strong>shouldLickData</strong> (<em>ndarray</em>) – Measured data read durign the lick window</p></li>
+<li><p><strong>timestamp_1</strong> (<em>datetime.datetime</em>) – Timestamp of the start of odour presentation</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water are given on left port or right port.</p></li>
+<li><p><strong>licks</strong> (<em>list of int</em>) – List of number of licks at left port and right port.</p></li>
+<li><p><strong>timestamps</strong> (<em>2d-list</em>) – List of timestamps of licks at left port and right port.</p></li>
+<li><p><strong>timestamp_2</strong> (<em>datetime.datetime</em>) – Timestamp of the start of trial.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskWaitTraining">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">DoAiMultiTaskWaitTraining</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_device_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odor_write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thorax_delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lick_channel_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewarded</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskWaitTraining" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DAQ for strict GNG wait training. That means, reward will not be given
+if mouse does not wait. Not used in current implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskWaitTraining.CheckLicks">
+<span class="sig-name descname"><span class="pre">CheckLicks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskWaitTraining.CheckLicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if reward should be given. If mouse does not wait and licked in
+wait window, no reward will be given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>licks_l</strong> (<em>int</em>) – Number of licks in lick window at left port during trial.</p></li>
+<li><p><strong>licks_r</strong> (<em>int</em>) – Number of licks in lick window at right port during trial.</p></li>
+<li><p><strong>timestamps_l</strong> (<em>list</em>) – Timestamps of licks in lick window.</p></li>
+<li><p><strong>timestamps_r</strong> (<em>list</em>) – Timestamps of licks in lick window.</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water is given at left port and/or right port.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskWaitTraining.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskWaitTraining.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.DoAiMultiTaskWaitTraining.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.DoAiMultiTaskWaitTraining.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>analogData</strong> (<em>ndarray</em>) – All measured data read during the trial</p></li>
+<li><p><strong>waitData</strong> (<em>ndarray</em>) – Measured data read during the wait window</p></li>
+<li><p><strong>shouldLickData</strong> (<em>ndarray</em>) – Measured data read durign the lick window</p></li>
+<li><p><strong>timestamp_1</strong> (<em>datetime.datetime</em>) – Timestamp of the start of odour presentation</p></li>
+<li><p><strong>water_given</strong> (<em>list</em>) – List of indicator if water are given on left port or right port.</p></li>
+<li><p><strong>licks</strong> (<em>list of int</em>) – List of number of licks at left port and right port.</p></li>
+<li><p><strong>timestamps</strong> (<em>2d-list</em>) – List of timestamps of licks at left port and right port.</p></li>
+<li><p><strong>timestamp_2</strong> (<em>datetime.datetime</em>) – Timestamp of the start of trial.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOut">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">NiUsbDigitalOut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Send digital signal out to one device.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOut.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOut.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOut.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOut.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequence</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevices">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">NiUsbDigitalOutTwoDevices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Send digital signals out to two devices simultaneously. For giving
+reward.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevices.ClearTask">
+<span class="sig-name descname"><span class="pre">ClearTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevices.ClearTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevices.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevices.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevicesC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">NiUsbDigitalOutTwoDevicesC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevicesC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Send digital signal out to two channels simultaneously
+for concatenated training. It is currently not used</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevicesC.ClearTask">
+<span class="sig-name descname"><span class="pre">ClearTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevicesC.ClearTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop and clear all tasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.NiUsbDigitalOutTwoDevicesC.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.NiUsbDigitalOutTwoDevicesC.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequences</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeAnalogInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">ThreadSafeAnalogInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ai_device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeAnalogInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read thread safe analog input.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeAnalogInput.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeAnalogInput.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeAnalogInput.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeAnalogInput.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and read input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>analogData</strong> – Data measured.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeDigitalOut">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daqface.DAQ.</span></span><span class="sig-name descname"><span class="pre">ThreadSafeDigitalOut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samprate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeDigitalOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Send thread safe digital signal out to a device.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeDigitalOut.ClearTasks">
+<span class="sig-name descname"><span class="pre">ClearTasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeDigitalOut.ClearTasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop task and clear it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="daqface.DAQ.ThreadSafeDigitalOut.DoTask">
+<span class="sig-name descname"><span class="pre">DoTask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#daqface.DAQ.ThreadSafeDigitalOut.DoTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start task and execute sequence</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-daqface.Utils">
+<span id="daqface-utils-module"></span><h2>daqface.Utils module<a class="headerlink" href="#module-daqface.Utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="daqface.Utils.binary_to_digital_map">
+<span class="sig-prename descclassname"><span class="pre">daqface.Utils.</span></span><span class="sig-name descname"><span class="pre">binary_to_digital_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#daqface.Utils.binary_to_digital_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>If we have a sequence of 1s and 0s corresponding to digital ON
+and OFF times, we want to map this to digital commands that the digital
+ports can read and implement.</p>
+<p>Input should be mapped as a 2d numpy array (dtype=numpy.uint32), rows are
+individual lines, columns are continuous time points. Ignores sampling
+rate until we tell NIDAQmx what it is.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bin_buffer</strong> (<em>ndarray</em>) – An integer array of zeros and ones to be converted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>digital</strong> – Mapped digital commands.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeController.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeController Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Analysis.html">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HelperFunctions.html">HelperFunctions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyPulse.html">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">Windows package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">daqface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeController.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeController Modules</a><ul>
+      <li>Previous: <a href="Windows.html" title="previous chapter">Windows package</a></li>
+      <li>Next: <a href="main.html" title="next chapter">main module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeController/daqface.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

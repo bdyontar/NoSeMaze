@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>main module &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NoSeMaze Schedule" href="../NoSeMazeSchedule.html" />
+    <link rel="prev" title="daqface package" href="daqface.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-main">
+<span id="main-module"></span><h1>main module<a class="headerlink" href="#module-main" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="main.MainApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">MainApp</span></span><a class="headerlink" href="#main.MainApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.mainWindow.Ui_MainWindow" title="Designs.mainWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.mainWindow.Ui_MainWindow</span></code></a></p>
+<p>The main window class of the UI.</p>
+<p>Inherits QMainWindow from QtWidgest and uses UI design from
+mainWindow.py.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.saved_status">
+<span class="sig-name descname"><span class="pre">saved_status</span></span><a class="headerlink" href="#main.MainApp.saved_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status if experiments already saved. Checked while closing the windows
+and changed if any trials are executed or experiment is saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.config_path">
+<span class="sig-name descname"><span class="pre">config_path</span></span><a class="headerlink" href="#main.MainApp.config_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the config files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.hardware_prefs">
+<span class="sig-name descname"><span class="pre">hardware_prefs</span></span><a class="headerlink" href="#main.MainApp.hardware_prefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hardware preferences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.dropbox_path">
+<span class="sig-name descname"><span class="pre">dropbox_path</span></span><a class="headerlink" href="#main.MainApp.dropbox_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to dropbox to save deadman-switch, warning and error messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.hardware_window">
+<span class="sig-name descname"><span class="pre">hardware_window</span></span><a class="headerlink" href="#main.MainApp.hardware_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hardware window to configure hardware preferences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>instance of AppWindows.HardwareWindow class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.animal_window">
+<span class="sig-name descname"><span class="pre">animal_window</span></span><a class="headerlink" href="#main.MainApp.animal_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animal window to input animals in the experiment and their schedules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>instance of AppWindows.AnimalWindow class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.analysis_window">
+<span class="sig-name descname"><span class="pre">analysis_window</span></span><a class="headerlink" href="#main.MainApp.analysis_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analysis window that shows the performance curve of the experiment and of
+each mouses respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>instance of AppWindows.AnalysisWindow class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.mail_window">
+<span class="sig-name descname"><span class="pre">mail_window</span></span><a class="headerlink" href="#main.MainApp.mail_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mail window to input the mailing list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>instance of AppWindows.MailWindow class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.control_window">
+<span class="sig-name descname"><span class="pre">control_window</span></span><a class="headerlink" href="#main.MainApp.control_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control window which shows video feed of usb cameras connected. Currently not maintained.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>instance of AppWindows.ControlWindow class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>E-Mailing functionality is deprecated as messages are now saved in a cloud folder.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Things to be executed if closeEvent occured (x in main window is clicked).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>instance of QCloseEvent</em>) – Events with close event information sent to the window.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.experiment_saved">
+<span class="sig-name descname"><span class="pre">experiment_saved</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.experiment_saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changing status and name of window if experiment is saved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.load_config_data">
+<span class="sig-name descname"><span class="pre">load_config_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.load_config_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load hardware configuration data. Load files from path defined in config_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>hardware_configs</strong> – Hardware configurations saved in hardware.config</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.load_dropbox_path">
+<span class="sig-name descname"><span class="pre">load_dropbox_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.load_dropbox_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load dropbox path saved in dropbox.txt to dropbox_path_file variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>dropbox_path_file</strong> – Path to dropbox file for messages to be written.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.load_experiment">
+<span class="sig-name descname"><span class="pre">load_experiment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.load_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load experiment.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.loaded">
+<span class="sig-name descname"><span class="pre">loaded</span></span><a class="headerlink" href="#main.MainApp.loaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>pyqtSignal sent if experiment is loaded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>QtCore.pyqtSignal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.on_trial_selected">
+<span class="sig-name descname"><span class="pre">on_trial_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.on_trial_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update trial if trial is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.open_analysis_window">
+<span class="sig-name descname"><span class="pre">open_analysis_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.open_analysis_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open analysis window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.open_animal_window">
+<span class="sig-name descname"><span class="pre">open_animal_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.open_animal_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open animal window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.open_control_window">
+<span class="sig-name descname"><span class="pre">open_control_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.open_control_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open control window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.open_hardware_window">
+<span class="sig-name descname"><span class="pre">open_hardware_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.open_hardware_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open hardware window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.open_mail_window">
+<span class="sig-name descname"><span class="pre">open_mail_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.open_mail_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open mail window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.save_experiment">
+<span class="sig-name descname"><span class="pre">save_experiment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.save_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save experiment.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainApp.saved">
+<span class="sig-name descname"><span class="pre">saved</span></span><a class="headerlink" href="#main.MainApp.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>pyqtSignal sent if experiment is saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>QtCore.pyqtSignal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.set_dropbox_path">
+<span class="sig-name descname"><span class="pre">set_dropbox_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.set_dropbox_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set dropbox path in which the deadman-switch, warning and error messages to be saved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.setup_experiment_bindings">
+<span class="sig-name descname"><span class="pre">setup_experiment_bindings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.setup_experiment_bindings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up experiment in the GUI and populate the experiment table in the GUI.</p>
+<dl class="simple">
+<dt>experiment<span class="classifier">instance of Experiment.Experiment class</span></dt><dd><p>Experiment to be set up.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.show_about">
+<span class="sig-name descname"><span class="pre">show_about</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.show_about" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the <em>about</em> message.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.status_changed">
+<span class="sig-name descname"><span class="pre">status_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.status_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changing status and name of window if a trial is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.thread_control">
+<span class="sig-name descname"><span class="pre">thread_control</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.thread_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop experiment control thread.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.update_data_view">
+<span class="sig-name descname"><span class="pre">update_data_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.update_data_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update data view of the trial.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.update_experiment_info">
+<span class="sig-name descname"><span class="pre">update_experiment_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.update_experiment_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update experiment labels in the GUI.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.update_graphics_view">
+<span class="sig-name descname"><span class="pre">update_graphics_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.update_graphics_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update graph view to the odour signal of the selected trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trial</strong> (<em>int</em>) – Trial index to be viewed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.update_trial_view">
+<span class="sig-name descname"><span class="pre">update_trial_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.update_trial_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update graph view of the trial if a trial is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainApp.windows_control">
+<span class="sig-name descname"><span class="pre">windows_control</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainApp.windows_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if any window is opened, then close it.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.main">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main method to be called.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.my_exception_hook">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">my_exception_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exctype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traceback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.my_exception_hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom exception hook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exctype</strong> (<em>type of BaseException</em>) – Type of exception.</p></li>
+<li><p><strong>value</strong> (<em>BaseException</em>) – Exception occured.</p></li>
+<li><p><strong>traceback</strong> (<em>TracebackType</em>) – Traceback up to the exception.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeController.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeController Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Analysis.html">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HelperFunctions.html">HelperFunctions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyPulse.html">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">Windows package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daqface.html">daqface package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeController.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeController Modules</a><ul>
+      <li>Previous: <a href="daqface.html" title="previous chapter">daqface package</a></li>
+      <li>Next: <a href="../NoSeMazeSchedule.html" title="next chapter">NoSeMaze Schedule</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeController/main.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

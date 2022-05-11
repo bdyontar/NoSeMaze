@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>scheduleMain module &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="SchedulePyPulse package" href="SchedulePyPulse.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-scheduleMain">
+<span id="schedulemain-module"></span><h1>scheduleMain module<a class="headerlink" href="#module-scheduleMain" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scheduleMain.MainApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scheduleMain.</span></span><span class="sig-name descname"><span class="pre">MainApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="ScheduleDesigns.html#ScheduleDesigns.mainDesign.Ui_MainWindow" title="ScheduleDesigns.mainDesign.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleDesigns.mainDesign.Ui_MainWindow</span></code></a></p>
+<p>The MainApp of schedule generator UI. Inherits QMainWindow
+and uses design from mainDesign.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><a class="headerlink" href="#scheduleMain.MainApp.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent of the main window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>QtWidgets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.current_schedule_type">
+<span class="sig-name descname"><span class="pre">current_schedule_type</span></span><a class="headerlink" href="#scheduleMain.MainApp.current_schedule_type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>widget from ScheduleWidgets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.draw_pulse">
+<span class="sig-name descname"><span class="pre">draw_pulse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.draw_pulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for drawing or redrawing pulse in UI if a new trial is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for generating schedule if generate button is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.open_software_doc">
+<span class="sig-name descname"><span class="pre">open_software_doc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.open_software_doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.open_user_guide">
+<span class="sig-name descname"><span class="pre">open_user_guide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.open_user_guide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open User Guide. If there is no user guide locally available, open the user guide from github.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.save_schedule">
+<span class="sig-name descname"><span class="pre">save_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.save_schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for saving schedule as .schedule</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.select_schedule_type">
+<span class="sig-name descname"><span class="pre">select_schedule_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.select_schedule_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for updating schedule view if a schedule type is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scheduleMain.MainApp.show_about">
+<span class="sig-name descname"><span class="pre">show_about</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.MainApp.show_about" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the <em>about</em> message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scheduleMain.main">
+<span class="sig-prename descclassname"><span class="pre">scheduleMain.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main method to be runned.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scheduleMain.my_exception_hook">
+<span class="sig-prename descclassname"><span class="pre">scheduleMain.</span></span><span class="sig-name descname"><span class="pre">my_exception_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exctype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseException</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseException</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traceback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">types.TracebackType</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scheduleMain.my_exception_hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom exception hook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exctype</strong> (<em>type of exception</em>) – Type of exception catch.</p></li>
+<li><p><strong>value</strong> (<em>BaseException</em>) – Exception catched.</p></li>
+<li><p><strong>traceback</strong> (<em>TracebackType</em>) – Traceback associated with the exception.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeController.html">NoSeMaze Controller</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeSchedule Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#schedule-generator">Schedule Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Exceptions.html">Exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generation.html">Generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ScheduleDesigns.html">ScheduleDesigns package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ScheduleModels.html">ScheduleModels package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SchedulePyPulse.html">SchedulePyPulse package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">scheduleMain module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a><ul>
+  <li><a href="modules.html">NoSeMazeSchedule Modules</a><ul>
+      <li>Previous: <a href="SchedulePyPulse.html" title="previous chapter">SchedulePyPulse package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeSchedule/scheduleMain.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

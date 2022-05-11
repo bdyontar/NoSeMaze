@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyPulse package &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TrialLogic package" href="TrialLogic.html" />
+    <link rel="prev" title="HelperFunctions package" href="HelperFunctions.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="pypulse-package">
+<h1>PyPulse package<a class="headerlink" href="#pypulse-package" title="Permalink to this headline">¶</a></h1>
+<section id="pypulse">
+<h2>PyPulse<a class="headerlink" href="#pypulse" title="Permalink to this headline">¶</a></h2>
+<p>A set of tools for generating complex pulse trains for digital inputs, largely for use in driving high speed valves / PWM.</p>
+<p>This contains a slightly different methods that from PyPulse in schedule generator because of pulse parameters that is needed to be prepared for DAQ.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-PyPulse.PulseGeneration">
+<span id="pypulse-pulsegeneration-module"></span><h2>PyPulse.PulseGeneration module<a class="headerlink" href="#module-PyPulse.PulseGeneration" title="Permalink to this headline">¶</a></h2>
+<p>This module contains methods to generate pulse for use in DAQ.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.concatenated_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">concatenated_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.concatenated_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.dummy_noise_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">dummy_noise_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.dummy_noise_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.extended_square_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">extended_square_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.extended_square_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.fv_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">fv_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fv_delay</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.fv_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.lick_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">lick_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.lick_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.multi_noise_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">multi_noise_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_onset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.multi_noise_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.multi_simple_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">multi_simple_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_onset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.multi_simple_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.noise_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">noise_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.noise_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.plume_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">plume_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.plume_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.random_shatter_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">random_shatter_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shatter_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_duty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.random_shatter_pulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function generates a shattered pulse based on major pulse frequency and duty, as well as shatter frequency.
+The function will generate standard pulse and then shatter it, with the duty
+of each shattered pulse randomised. The function will aim to keep the integral of the pulse at duty * target duty</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.random_simple_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">random_simple_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.random_simple_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.shatter_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">shatter_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shatter_frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shatter_duty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.shatter_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.simple_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">simple_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.simple_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.simple_pulse_static">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">simple_pulse_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.simple_pulse_static" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.spec_time_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">spec_time_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.spec_time_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseGeneration.square_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseGeneration.</span></span><span class="sig-name descname"><span class="pre">square_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseGeneration.square_pulse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-PyPulse.PulseInterface">
+<span id="pypulse-pulseinterface-module"></span><h2>PyPulse.PulseInterface module<a class="headerlink" href="#module-PyPulse.PulseInterface" title="Permalink to this headline">¶</a></h2>
+<p>This module contains method to input pulse parameters to
+get desired pulse.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="PyPulse.PulseInterface.make_pulse">
+<span class="sig-prename descclassname"><span class="pre">PyPulse.PulseInterface.</span></span><span class="sig-name descname"><span class="pre">make_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_onset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyPulse.PulseInterface.make_pulse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampling_rate</strong> (<em>int</em>) – Sampling rate defined in hardware configuration</p></li>
+<li><p><strong>global_onset</strong> (<em>float</em>) – Number of element set to be an onset.</p></li>
+<li><p><strong>global_offset</strong> (<em>float</em>) – Number of element set to be an offset.</p></li>
+<li><p><strong>params_list</strong> (<em>list</em>) – List of pulse parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>pulse_matrix</strong> (<em>2d-list</em>) – List of pulse.</p></li>
+<li><p><strong>t</strong> (<em>ndarray</em>) – Time axis.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeController.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeController Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Analysis.html">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HelperFunctions.html">HelperFunctions package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">Windows package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daqface.html">daqface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeController.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeController Modules</a><ul>
+      <li>Previous: <a href="HelperFunctions.html" title="previous chapter">HelperFunctions package</a></li>
+      <li>Next: <a href="TrialLogic.html" title="next chapter">TrialLogic package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeController/PyPulse.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
