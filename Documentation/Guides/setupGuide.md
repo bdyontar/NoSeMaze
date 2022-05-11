@@ -4,7 +4,7 @@ This documentation is intended to help user have an overview of the setup and ho
 
 ## Automatic Olfactometer System
 
-![Overview of Automatic Olfactometer](/Documentation/images/automaticOlfactometerOverview.PNG)
+![Overview of Automatic Olfactometer](/Documentation/_images/automaticOlfactometerOverview.PNG)
     *Overview of Automatic Olfactometer*
 
 ## Tube Test System

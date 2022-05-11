@@ -28,8 +28,8 @@ These main parts are connected to a computer which controls the experiment and g
 
 For more information about the hardware, see the following documentations:
 
-- [Hardware Reference](/Documentation/hardwareReference.md) - Reference to hardware specification.
-- [NoSeMaze Setup](/Documentation/setupGuide.md) - Overview of the setup and guide to setting up the system, including some information to some troubleshooting.
+- [Hardware Reference](/Documentation/HardwareDocumentation/hardwareReference.md) - Reference to hardware specification.
+- [NoSeMaze Setup](/Documentation/Guides/setupGuide.md) - Overview of the setup and guide to setting up the system, including some information to some troubleshooting.
 
 ### Software
 
@@ -47,7 +47,7 @@ For software documentations of the UI, see [NoSeMaze Controller](/NoSeMazeContro
 
 ## User Guide
 
-For a detailed user guide in how to use NoSeMaze system for experiment and step-by-step example, see [User Guide](/Documentation/userGuide.md).
+For a detailed user guide in how to use NoSeMaze system for experiment and step-by-step example, see [User Guide](/Documentation/Guides/userGuide.md).
 
 ## License
 

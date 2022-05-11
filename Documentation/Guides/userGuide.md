@@ -8,7 +8,7 @@ This documentation is meant to help user navigate the *NoSeMaze Controller* UI a
 
 The NoSeMaze Controller serves as a central control for the user to start and stop experiment session and save it.
 
-![NoSeMazeControlUI](/Documentation/images/)
+![NoSeMazeControlUI](/Documentation/_images/)
 
 #### Experiment Flow
 
@@ -54,7 +54,7 @@ To start an experiment, there are several things that should be done first.
     Before starting the experiment, the animal table must be populated first. Click *animal* in the menu bar to open the table.
     </br>
 
-    ![animalWindow](/Documentation/images/)
+    ![animalWindow](/Documentation/_images/)
     </br>
 
 2. **Saving the experiment session**
@@ -62,7 +62,7 @@ To start an experiment, there are several things that should be done first.
     After populating the animal table with the animals and its respectives schedules, save the experiment. Click *File* in the menu and save the experiment.
     </br>
 
-    ![savingExperiment](Documentation/images/)
+    ![savingExperiment](Documentation/_images/)
     </br>
 
 3. **Configure the hardware preferences** (optional)
