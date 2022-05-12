@@ -13,7 +13,7 @@ All notable changes to the project will be documented here. Changes from AutonoM
 - Add `PyPulse` in `autonomouse-control`.
 - Add `daqface` in `autonomouse-control`.
 - Add `Performance` module in `Analysis`.
-- Add `Filter` and `Email` module in `HelperFunctions`
+- Add `Filter` and `Email` module in `HelperFunctions`.
 - Add `README`s.
 - Add e-mailing functionality.
 - Add mailing list functionality.
@@ -23,9 +23,11 @@ All notable changes to the project will be documented here. Changes from AutonoM
 
 **Changes to `autonomouse-schedule` :**
 
-- Add `PyPulse` in `autonomouse-schedule`
-- Add `README`s
-- Add custom exception in `Exceptions`
+- Add `PyPulse` in `autonomouse-schedule`.
+- Add `README`s.
+- Add custom exception in `Exceptions`.
+- Add implementation of `NoSeMazeScheduleWidget` and `NoSeMazeConcatenatedScheduleWidget` in `ScheduleWidgets`.
+- Add error handling for `generate` method in `ScheduleMain`.
 
 ### Changed
 
@@ -50,15 +52,17 @@ All notable changes to the project will be documented here. Changes from AutonoM
 - Rename `Designs` to `ScheduleDesigns`.
 - Rename `Models` to `ScheduleModels`.
 - Rename `PyPulse` to `SchedulePyPulse`.
-- Rename 
+- Rename `UI` to `ScheduleUI`.
+- Comment `NoSeMazeConcatenatedScheduleWidget` in `ScheduleWidget` out.
 
 ### Removed
+
+**Changes to `autonomouse-schedule` :**
+
+- Remove `AutonomouseScheduleWidget` from `ScheduleWidget`.
 
 ### Deprecated
 
 **Changes to `autonomouse-control` :**
 
 - E-mailing function is not supported anymore. Messages is saved in cloud folder instead.
-
-**Changes to `autonomouse-schedule` :**
-

@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HelperFunctions package &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyPulse package" href="PyPulse.html" />
+    <link rel="prev" title="Designs package" href="Designs.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="helperfunctions-package">
+<h1>HelperFunctions package<a class="headerlink" href="#helperfunctions-package" title="Permalink to this headline">¶</a></h1>
+<section id="helperfunctions">
+<h2>HelperFunctions<a class="headerlink" href="#helperfunctions" title="Permalink to this headline">¶</a></h2>
+<p>This package contains useful methods used in the measurement thread.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-HelperFunctions.BeamCheck">
+<span id="helperfunctions-beamcheck-module"></span><h2>HelperFunctions.BeamCheck module<a class="headerlink" href="#module-HelperFunctions.BeamCheck" title="Permalink to this headline">¶</a></h2>
+<p>This module contains method to check if beam is broken, which signals the start
+of a trial.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.BeamCheck.check_beam">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.BeamCheck.</span></span><span class="sig-name descname"><span class="pre">check_beam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.BeamCheck.check_beam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if beam is broken. If beam is broken, TTL is high and data is
+measured at 5 V. If beam is not broken, TTL is low and data is measured at
+0 V. If mean of data &gt; 1, means that in 0.1 s there is a TTL high, ergo
+beam was broken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<em>str</em>) – Name of device in NI-board where beam sensor is connected.</p></li>
+<li><p><strong>channels</strong> (<em>int</em>) – Number of analog input channels read.</p></li>
+<li><p><strong>beam_channel</strong> (<em>int</em>) – Index of beam channel.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>broken</strong> – Indicator if beam is broken or not.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-HelperFunctions.Email">
+<span id="helperfunctions-email-module"></span><h2>HelperFunctions.Email module<a class="headerlink" href="#module-HelperFunctions.Email" title="Permalink to this headline">¶</a></h2>
+<p>This module contains methods used for e-mailing. Currently, is used to write
+notification message in Dropbox. Codes to send e-mail is in commentar.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Email.crash_error">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Email.</span></span><span class="sig-name descname"><span class="pre">crash_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exctype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tb</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Email.crash_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get traceback if software is crashed and send e-mail. Currently, a message
+will be written in Dropbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exctype</strong> (<em>Type of Exception</em>) – Type of exception</p></li>
+<li><p><strong>value</strong> (<em>int</em>) – Error id.</p></li>
+<li><p><strong>tb</strong> (<em>obj</em>) – Traceback object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Email.deadmans_switch">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Email.</span></span><span class="sig-name descname"><span class="pre">deadmans_switch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Email.deadmans_switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notification every day to indicate if experiment is running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>exeperiment</strong> (<em>Experiment.experiment</em>) – Instance of Experiment.experiment class to take information from.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Email.parse_list">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Email.</span></span><span class="sig-name descname"><span class="pre">parse_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Email.parse_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to parse string of a list into a list of float, then sum it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – String of a list to be parsed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>result</strong> – Sum of the parsed list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Email.send">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Email.</span></span><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Email.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a message with subject, content and attachment in Dropbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subject</strong> (<em>str</em>) – Subject of message</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – Content of message</p></li>
+<li><p><strong>attachement</strong> (<em>list</em>) – List of attachment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Email.warning_licks">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Email.</span></span><span class="sig-name descname"><span class="pre">warning_licks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logs_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namelist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Email.warning_licks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send warning e-mail if any mouse has not licked in a period of time.
+Currently, a message will be written in Dropbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logs_path</strong> (<em>str</em>) – Directory path to folder with all licks log of mouses.</p></li>
+<li><p><strong>namelist</strong> (<em>list</em>) – List of mouse’s ID which has not licked in a period of time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-HelperFunctions.Filter">
+<span id="helperfunctions-filter-module"></span><h2>HelperFunctions.Filter module<a class="headerlink" href="#module-HelperFunctions.Filter" title="Permalink to this headline">¶</a></h2>
+<p>This module is used to filter analog data read from NI-Board.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Filter.Gauss_Filter">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Filter.</span></span><span class="sig-name descname"><span class="pre">Gauss_Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Filter.Gauss_Filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Filter.Square_Filter">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Filter.</span></span><span class="sig-name descname"><span class="pre">Square_Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Filter.Square_Filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-HelperFunctions.RFID">
+<span id="helperfunctions-rfid-module"></span><h2>HelperFunctions.RFID module<a class="headerlink" href="#module-HelperFunctions.RFID" title="Permalink to this headline">¶</a></h2>
+<p>This module read the rfid tag of the mouse present at the port.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.RFID.check_rfid">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.RFID.</span></span><span class="sig-name descname"><span class="pre">check_rfid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.RFID.check_rfid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the rfid from the rfid reader with a 2 seconds timeout.
+If no valid rfid read in 2 seconds, returns ‘default’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>str</em>) – COM-port of rfid reader.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Total number of ID. In this case, it is not used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – ID of mouse present.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-HelperFunctions.Reward">
+<span id="helperfunctions-reward-module"></span><h2>HelperFunctions.Reward module<a class="headerlink" href="#module-HelperFunctions.Reward" title="Permalink to this headline">¶</a></h2>
+<p>This module contains methods to deliver reward at different situations.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Reward.deliver_reward">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Reward.</span></span><span class="sig-name descname"><span class="pre">deliver_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">do_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_clock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_channels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Reward.deliver_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deliver reward to a device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>do_device</strong> (<em>str</em>) – Name of digital out device</p></li>
+<li><p><strong>samp_rate</strong> (<em>int</em>) – Sample rate specified in hardware configuration.</p></li>
+<li><p><strong>secs</strong> (<em>float</em>) – Duration that the ventil should be opened (water amount).</p></li>
+<li><p><strong>sync_clock</strong> (<em>str</em>) – Clock preferred for synchronised reading.</p></li>
+<li><p><strong>ai_channels</strong> (<em>int</em>) – Number of analog input channels read.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – Currently, there is no analog data read.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Reward.deliver_reward_static">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Reward.</span></span><span class="sig-name descname"><span class="pre">deliver_reward_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">do_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Reward.deliver_reward_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deliver reward from a ventil.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>do_device</strong> (<em>str</em>) – Name of device.</p></li>
+<li><p><strong>secs</strong> (<em>float</em>) – Duration that the ventil should be opened (water amount).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – Currently no analog input is read.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Reward.deliver_reward_static_concatenate">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Reward.</span></span><span class="sig-name descname"><span class="pre">deliver_reward_static_concatenate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Reward.deliver_reward_static_concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deliver reward for concetanted training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device1</strong> (<em>str</em>) – Name of device 1 (left port).</p></li>
+<li><p><strong>device2</strong> (<em>str</em>) – Name of device 2 (right port).</p></li>
+<li><p><strong>secs</strong> (<em>float</em>) – Duration that the ventil should be opened (water amount).</p></li>
+<li><p><strong>index</strong> (<em>int</em>) – Index of odour actually presented.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – There is currently no analog input read.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="HelperFunctions.Reward.deliver_reward_static_two">
+<span class="sig-prename descclassname"><span class="pre">HelperFunctions.Reward.</span></span><span class="sig-name descname"><span class="pre">deliver_reward_static_two</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secs2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#HelperFunctions.Reward.deliver_reward_static_two" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deliver reward for concetanted training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device1</strong> (<em>str</em>) – Name of device 1 (left port).</p></li>
+<li><p><strong>device2</strong> (<em>str</em>) – Name of device 2 (right port).</p></li>
+<li><p><strong>secs1</strong> (<em>float</em>) – Duration that left ventil should be opened (water amount).</p></li>
+<li><p><strong>secs2</strong> (<em>float</em>) – Duration that right ventil should be opened (water amount).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – There is currently no analog input read.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeControl Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Analysis.html">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HelperFunctions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyPulse.html">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">Windows package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daqface.html">daqface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeControl Modules</a><ul>
+      <li>Previous: <a href="Designs.html" title="previous chapter">Designs package</a></li>
+      <li>Next: <a href="PyPulse.html" title="next chapter">PyPulse package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeControl/HelperFunctions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

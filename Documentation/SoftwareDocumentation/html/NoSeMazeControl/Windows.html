@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Windows package &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="daqface package" href="daqface.html" />
+    <link rel="prev" title="TrialLogic package" href="TrialLogic.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="windows-package">
+<h1>Windows package<a class="headerlink" href="#windows-package" title="Permalink to this headline">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all implementation of windows in UI. There are adjustment window, hardware window, control window, animal window, e-mail window and analysis window.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-Windows.AppWindows">
+<span id="windows-appwindows-module"></span><h2>Windows.AppWindows module<a class="headerlink" href="#module-Windows.AppWindows" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all implementation of windows in UI. There are adjustment
+window, hardware window, control window, animal window, e-mail window and
+analysis window.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.AdjustmentWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">AdjustmentWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AdjustmentWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QDockWidget</span></code>, <a class="reference internal" href="Designs.html#Designs.adjustmentWidget.Ui_DockWidget" title="Designs.adjustmentWidget.Ui_DockWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.adjustmentWidget.Ui_DockWidget</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AdjustmentWidget.set_brightness">
+<span class="sig-name descname"><span class="pre">set_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AdjustmentWidget.set_brightness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AdjustmentWidget.set_contrast">
+<span class="sig-name descname"><span class="pre">set_contrast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AdjustmentWidget.set_contrast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AdjustmentWidget.set_saturation">
+<span class="sig-name descname"><span class="pre">set_saturation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AdjustmentWidget.set_saturation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">AnalysisWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.analysisWindow.Ui_MainWindow" title="Designs.analysisWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.analysisWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.current_animal">
+<span class="sig-name descname"><span class="pre">current_animal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.current_animal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.display_animal_performance">
+<span class="sig-name descname"><span class="pre">display_animal_performance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.display_animal_performance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.display_group_performance">
+<span class="sig-name descname"><span class="pre">display_group_performance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.display_group_performance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.on_animal_selected">
+<span class="sig-name descname"><span class="pre">on_animal_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.on_animal_selected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.on_tab_selected">
+<span class="sig-name descname"><span class="pre">on_tab_selected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.on_tab_selected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnalysisWindow.populate_stats_table">
+<span class="sig-name descname"><span class="pre">populate_stats_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnalysisWindow.populate_stats_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">AnimalWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.animalWindow.Ui_MainWindow" title="Designs.animalWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.animalWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.add_row">
+<span class="sig-name descname"><span class="pre">add_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.add_row" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.add_schedule">
+<span class="sig-name descname"><span class="pre">add_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.add_schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.animal_selected">
+<span class="sig-name descname"><span class="pre">animal_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.animal_selected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.change_false">
+<span class="sig-name descname"><span class="pre">change_false</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.change_false" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.change_true">
+<span class="sig-name descname"><span class="pre">change_true</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.change_true" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.changed">
+<span class="sig-name descname"><span class="pre">changed</span></span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>int = …, arguments: Sequence = …) -&gt; PYQT_SIGNAL</p>
+<p>types is normally a sequence of individual types.  Each type is either a
+type object or a string that is the name of a C++ type.  Alternatively
+each type could itself be a sequence of types each describing a different
+overloaded signal.
+name is the optional C++ name of the signal.  If it is not specified then
+the name of the class attribute that is bound to the signal is used.
+revision is the optional revision of the signal that is exported to QML.
+If it is not specified then 0 is used.
+arguments is the optional sequence of the names of the signal’s arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyqtSignal(<a href="#id1"><span class="problematic" id="id2">*</span></a>types, name</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>str = …, revision</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QCloseEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.current_animal">
+<span class="sig-name descname"><span class="pre">current_animal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.current_animal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.current_sched_index">
+<span class="sig-name descname"><span class="pre">current_sched_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.current_sched_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.populate_animal_table">
+<span class="sig-name descname"><span class="pre">populate_animal_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.populate_animal_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.remove_row">
+<span class="sig-name descname"><span class="pre">remove_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.remove_row" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.remove_schedule">
+<span class="sig-name descname"><span class="pre">remove_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.remove_schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.saved">
+<span class="sig-name descname"><span class="pre">saved</span></span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>int = …, arguments: Sequence = …) -&gt; PYQT_SIGNAL</p>
+<p>types is normally a sequence of individual types.  Each type is either a
+type object or a string that is the name of a C++ type.  Alternatively
+each type could itself be a sequence of types each describing a different
+overloaded signal.
+name is the optional C++ name of the signal.  If it is not specified then
+the name of the class attribute that is bound to the signal is used.
+revision is the optional revision of the signal that is exported to QML.
+If it is not specified then 0 is used.
+arguments is the optional sequence of the names of the signal’s arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyqtSignal(<a href="#id3"><span class="problematic" id="id4">*</span></a>types, name</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>str = …, revision</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.schedule_selected">
+<span class="sig-name descname"><span class="pre">schedule_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.schedule_selected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.AnimalWindow.update_animals">
+<span class="sig-name descname"><span class="pre">update_animals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.AnimalWindow.update_animals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">ControlWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">experiment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.controlWindow.Ui_MainWindow" title="Designs.controlWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.controlWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.adjust_cam1">
+<span class="sig-name descname"><span class="pre">adjust_cam1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.adjust_cam1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.adjust_cam2">
+<span class="sig-name descname"><span class="pre">adjust_cam2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.adjust_cam2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QCloseEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.configure_settings">
+<span class="sig-name descname"><span class="pre">configure_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.configure_settings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.get_cam1">
+<span class="sig-name descname"><span class="pre">get_cam1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.get_cam1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.get_cam2">
+<span class="sig-name descname"><span class="pre">get_cam2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.get_cam2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.get_res_cam1">
+<span class="sig-name descname"><span class="pre">get_res_cam1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.get_res_cam1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.get_res_cam2">
+<span class="sig-name descname"><span class="pre">get_res_cam2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.get_res_cam2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.on_animal_selected">
+<span class="sig-name descname"><span class="pre">on_animal_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.on_animal_selected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.populate_table">
+<span class="sig-name descname"><span class="pre">populate_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.populate_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.qsize_to_string">
+<span class="sig-name descname"><span class="pre">qsize_to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qsize</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.qsize_to_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.set_cam1">
+<span class="sig-name descname"><span class="pre">set_cam1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cam</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.set_cam1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.set_cam2">
+<span class="sig-name descname"><span class="pre">set_cam2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cam</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.set_cam2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.set_res_cam1">
+<span class="sig-name descname"><span class="pre">set_res_cam1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.set_res_cam1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.set_res_cam2">
+<span class="sig-name descname"><span class="pre">set_res_cam2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.set_res_cam2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.ControlWindow.update_licks_view">
+<span class="sig-name descname"><span class="pre">update_licks_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.ControlWindow.update_licks_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">HardwareWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.hardwareWindow.Ui_MainWindow" title="Designs.hardwareWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.hardwareWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.change">
+<span class="sig-name descname"><span class="pre">change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QCloseEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.new_pref">
+<span class="sig-name descname"><span class="pre">new_pref</span></span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.new_pref" title="Permalink to this definition">¶</a></dt>
+<dd><p>int = …, arguments: Sequence = …) -&gt; PYQT_SIGNAL</p>
+<p>types is normally a sequence of individual types.  Each type is either a
+type object or a string that is the name of a C++ type.  Alternatively
+each type could itself be a sequence of types each describing a different
+overloaded signal.
+name is the optional C++ name of the signal.  If it is not specified then
+the name of the class attribute that is bound to the signal is used.
+revision is the optional revision of the signal that is exported to QML.
+If it is not specified then 0 is used.
+arguments is the optional sequence of the names of the signal’s arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyqtSignal(<a href="#id5"><span class="problematic" id="id6">*</span></a>types, name</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>str = …, revision</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.save_preferences">
+<span class="sig-name descname"><span class="pre">save_preferences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.save_preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.saved">
+<span class="sig-name descname"><span class="pre">saved</span></span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>int = …, arguments: Sequence = …) -&gt; PYQT_SIGNAL</p>
+<p>types is normally a sequence of individual types.  Each type is either a
+type object or a string that is the name of a C++ type.  Alternatively
+each type could itself be a sequence of types each describing a different
+overloaded signal.
+name is the optional C++ name of the signal.  If it is not specified then
+the name of the class attribute that is bound to the signal is used.
+revision is the optional revision of the signal that is exported to QML.
+If it is not specified then 0 is used.
+arguments is the optional sequence of the names of the signal’s arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pyqtSignal(<a href="#id7"><span class="problematic" id="id8">*</span></a>types, name</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>str = …, revision</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.saved_status">
+<span class="sig-name descname"><span class="pre">saved_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.saved_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.set_preferences">
+<span class="sig-name descname"><span class="pre">set_preferences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.set_preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.HardwareWindow.zero_edit">
+<span class="sig-name descname"><span class="pre">zero_edit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.HardwareWindow.zero_edit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">MailWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.mailWindow.Ui_MainWindow" title="Designs.mailWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.mailWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow.add_address">
+<span class="sig-name descname"><span class="pre">add_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_addrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow.add_address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow.get_address">
+<span class="sig-name descname"><span class="pre">get_address</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow.get_address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow.populate_mailing_list">
+<span class="sig-name descname"><span class="pre">populate_mailing_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow.populate_mailing_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow.remove_address">
+<span class="sig-name descname"><span class="pre">remove_address</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow.remove_address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.MailWindow.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.MailWindow.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Windows.AppWindows.PreferencesWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Windows.AppWindows.</span></span><span class="sig-name descname"><span class="pre">PreferencesWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.PreferencesWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code>, <a class="reference internal" href="Designs.html#Designs.prefsWindow.Ui_MainWindow" title="Designs.prefsWindow.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Designs.prefsWindow.Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.PreferencesWindow.save_preferences">
+<span class="sig-name descname"><span class="pre">save_preferences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.PreferencesWindow.save_preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.PreferencesWindow.select_save_path">
+<span class="sig-name descname"><span class="pre">select_save_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.PreferencesWindow.select_save_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Windows.AppWindows.PreferencesWindow.set_preferences">
+<span class="sig-name descname"><span class="pre">set_preferences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Windows.AppWindows.PreferencesWindow.set_preferences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeControl Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Analysis.html">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HelperFunctions.html">HelperFunctions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyPulse.html">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Windows package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daqface.html">daqface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeControl Modules</a><ul>
+      <li>Previous: <a href="TrialLogic.html" title="previous chapter">TrialLogic package</a></li>
+      <li>Next: <a href="daqface.html" title="next chapter">daqface package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeControl/Windows.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

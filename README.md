@@ -35,15 +35,15 @@ For more information about the hardware, see the following documentations:
 
 This repository consists of 2 main folders:
 
-- NoSeMaze Controller &rarr; UI for running experiment.
-- NoSeMaze Schedule &rarr; UI for creating schedule used in experiment.
+- NoSeMazeController &rarr; UI for running experiment.
+- NoSeMazeSchedule &rarr; UI for creating schedule used in experiment.
 
 The UIs are written in **Python** and can be runned directly using python v3.10+ by running [*main.py*](/NoSeMazeController/main.py) (or [*schedule_main.py*](/NoSeMazeSchedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
 > :exclamation: **Important** :  
 > The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
-For software documentations of the UI, see [NoSeMaze Controller](/NoSeMazeController/README.md) and [NoSeMaze Schedule](/NoSeMazeSchedule/README.md).
+For software documentations of the UI, see [NoSeMazeController](/NoSeMazeController/README.md) and [NoSeMazeSchedule](/NoSeMazeSchedule/README.md).
 
 ## User Guide
 

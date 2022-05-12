@@ -1,6 +1,0 @@
-NoSeMaze Controller
-===================
-
-.. toctree::
-
-    NoSeMazeController/modules

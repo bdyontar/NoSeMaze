@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Analysis package &#8212; NoSeMaze 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Controllers package" href="Controllers.html" />
+    <link rel="prev" title="NoSeMazeControl Modules" href="modules.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="analysis-package">
+<h1>Analysis package<a class="headerlink" href="#analysis-package" title="Permalink to this headline">¶</a></h1>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<p>This package contains the modules used in analysis window. To implement new analysis, please change the analysis window implementation and designs accordingly.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-Analysis.Analysis">
+<span id="analysis-analysis-module"></span><h2>Analysis.Analysis module<a class="headerlink" href="#module-Analysis.Analysis" title="Permalink to this headline">¶</a></h2>
+<p>This module contains methods used in analysis windows or in report in Email
+module.</p>
+<p>Calculation of d’ is left as commentar in
+weighted_binned_performance method.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Analysis.binned_performance">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Analysis.</span></span><span class="sig-name descname"><span class="pre">binned_performance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Models.Experiment.Mouse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Analysis.Analysis.binned_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate hit rate and correct rejection rate and returns them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse</strong> (<em>Experiment.mouse class</em>) – Instance of Experiment.mouse class that is of interest.</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em>) – <p>Size of bin.</p>
+<p>It is the number of trials used to calculate hit rate or
+correct rejection rate.</p>
+</p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – <p>Index of tab window selected on analysis window.</p>
+<p>It differentiate between left GNG or right GNG</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>binned_correct</strong> – List of correct rate (hit and correct rejection altogether) to be shown
+in graphic view on analysis window.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Analysis.n_trials_last_24">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Analysis.</span></span><span class="sig-name descname"><span class="pre">n_trials_last_24</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Models.Experiment.Mouse</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Analysis.Analysis.n_trials_last_24" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of trials in last 24h.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mouse</strong> (<em>Experiment.mouse class</em>) – Instance of mouse to calculate number of trials.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>n_trials</strong> – Number of trials since 1 day.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Analysis.n_trials_performed">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Analysis.</span></span><span class="sig-name descname"><span class="pre">n_trials_performed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Models.Experiment.Mouse</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Analysis.Analysis.n_trials_performed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of trials performed by a mouse since the start of the
+experiment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mouse</strong> (<em>Experiment.mouse class</em>) – Instance of mouse to calculate total trials performed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>total_trials</strong> – Total trials performed since experiment start.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Analysis.n_trials_since">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Analysis.</span></span><span class="sig-name descname"><span class="pre">n_trials_since</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Models.Experiment.Mouse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">since</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Analysis.Analysis.n_trials_since" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate number of trials since a time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse</strong> (<em>Experiment.mouse class</em>) – Instance of mouse to calculate number of trials of.</p></li>
+<li><p><strong>since</strong> (<em>datetime.datetime</em>) – Instance of datetime.datetime as start point to calculate number of
+trials performed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>n_trials</strong> – Number of trials since time given.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Analysis.weighted_binned_performance">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Analysis.</span></span><span class="sig-name descname"><span class="pre">weighted_binned_performance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Models.Experiment.Mouse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Analysis.Analysis.weighted_binned_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>In this function we examine performance by how many rewarded vs.
+unrewarded trials there were.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse</strong> (<em>Experiment.mouse class</em>) – Instance of Experiment.mouse class that is of interest.</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em>) – <p>Size of bin.</p>
+<p>It is the number of trials used to calculate hit rate or
+correct rejection rate.</p>
+</p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – <p>Index of tab window selected on analysis window.</p>
+<p>It differentiate between left GNG or right GNG</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>binned_perf_p</strong> (<em>list of float</em>) – List of hit rate in bin to be viewed in graphic view on analysis
+window.</p></li>
+<li><p><strong>binned_perf_m</strong> (<em>list of float</em>) – List of correct rejection rate in bin to be viewed in graphic view on
+analysis window.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-Analysis.Conversion">
+<span id="analysis-conversion-module"></span><h2>Analysis.Conversion module<a class="headerlink" href="#module-Analysis.Conversion" title="Permalink to this headline">¶</a></h2>
+<p>This module contains methods used for converting experiment data into matlab
+data. It is not used and not supported in NoSeMaze but still saved here for
+archive purpose.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Conversion.batch_convert">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Conversion.</span></span><span class="sig-name descname"><span class="pre">batch_convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial_parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_licks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Analysis.Conversion.batch_convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert files in batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paths</strong> (<em>list of str</em>) – List of paths to convert experiment data from.</p></li>
+<li><p><strong>out_path</strong> (<em>str</em>) – Path to save the converted data.</p></li>
+<li><p><strong>out_name</strong> (<em>str</em>) – Name of the saved file of the converted data.</p></li>
+<li><p><strong>trial_parameter</strong> (<em>int</em>) – Parameter for output.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Check if verbose mode should be used.</p></li>
+<li><p><strong>save_licks</strong> (<em>bool</em>) – Check if licks should be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Conversion.convert">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Conversion.</span></span><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Analysis.Conversion.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converting in a batch files with defined paths.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Conversion.load_experiment">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Conversion.</span></span><span class="sig-name descname"><span class="pre">load_experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Models.Experiment.Experiment</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Analysis.Conversion.load_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all experiment files in path and return the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the experiment files.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>experiment</strong> (<em>Experiment.Experiment</em>) – Last experiment loaded from .autmaus file.</p></li>
+<li><p><strong>data_files</strong> (<em>list[str]</em>) – List of .mat files filename.</p></li>
+<li><p><strong>schedule_map</strong> (<em>dict</em>) – Last schedule read from .csv file.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Conversion.read_schedule_map">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Conversion.</span></span><span class="sig-name descname"><span class="pre">read_schedule_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#Analysis.Conversion.read_schedule_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read schedule map from csv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path of the csv file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>schedule_map</strong> – Schedule map read from the csv file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="module-Analysis.Performance">
+<span id="analysis-performance-module"></span><h2>Analysis.Performance module<a class="headerlink" href="#module-Analysis.Performance" title="Permalink to this headline">¶</a></h2>
+<p>This module contains method to show risk taking performance of mouses.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.get_performance">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">get_performance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Analysis.Performance.get_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get performance list in data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_data</strong> (<em>list of dict</em>) – Data is a list of data.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Window to determine performance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>performance</strong> – A list of performance with the length of data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2d-list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.load_data">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Analysis.Performance.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load experiment data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> – Path to experiment file.</p></li>
+<li><p><strong>start_date</strong> – Start date of time of interest.</p></li>
+<li><p><strong>stop_date</strong> – Stop date of time of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>header</strong> (<em>list</em>) – List of header</p></li>
+<li><p><strong>all_data</strong> (<em>list of dict</em>) – List of dictionary of all data with headers as keys.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.show_percent_correct">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">show_percent_correct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Analysis.Performance.show_percent_correct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot rate of correct hit or correct rejection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>2d-list of float</em>) – Data to be plotted.</p></li>
+<li><p><strong>mouse</strong> (<em>str</em>) – Id of the mouse.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Bin size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.show_percent_left_right">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">show_percent_left_right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Analysis.Performance.show_percent_left_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot rate of licks between left and right.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>2d-list of float</em>) – Data to be plotted.</p></li>
+<li><p><strong>mouse</strong> (<em>str</em>) – Id of the mouse.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Bin size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.show_risk_per_mouse">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">show_risk_per_mouse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Analysis.Performance.show_risk_per_mouse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot rate of risk taken per mouse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>2d-list of float</em>) – Data to be plotted.</p></li>
+<li><p><strong>mouse</strong> (<em>str</em>) – Id of the mouse.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Bin size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.show_risk_per_odour">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">show_risk_per_odour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Analysis.Performance.show_risk_per_odour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot rate of risk taken per odour.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>2d-list of float</em>) – Data to be plotted.</p></li>
+<li><p><strong>mouse</strong> (<em>list of str</em>) – Id of the mouses</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Bin size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Analysis.Performance.show_total_risk">
+<span class="sig-prename descclassname"><span class="pre">Analysis.Performance.</span></span><span class="sig-name descname"><span class="pre">show_total_risk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Analysis.Performance.show_total_risk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot rate of risk taken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>2d-list of float</em>) – Data to be plotted.</p></li>
+<li><p><strong>mouse</strong> (<em>list of str</em>) – Id of the mouse.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – Bin size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">NoSeMaze</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">NoSeMazeControl Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="modules.html#nosemaze-controller">NoSeMaze Controller</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Analysis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Controllers.html">Controllers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Designs.html">Designs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HelperFunctions.html">HelperFunctions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyPulse.html">PyPulse package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TrialLogic.html">TrialLogic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Windows.html">Windows package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daqface.html">daqface package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NoSeMazeSchedule.html">NoSeMaze Schedule</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../NoSeMazeControl.html">NoSeMaze Controller</a><ul>
+  <li><a href="modules.html">NoSeMazeControl Modules</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">NoSeMazeControl Modules</a></li>
+      <li>Next: <a href="Controllers.html" title="next chapter">Controllers package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/NoSeMazeControl/Analysis.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
