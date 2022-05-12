@@ -18,5 +18,5 @@
 # ignoring virtual environment
 .venv/
 
-# ignoring sphinx created files
-sphinx_docs/
+# ignoring sphinx build files
+sphinxDoc/build/
