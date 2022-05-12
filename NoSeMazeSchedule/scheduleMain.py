@@ -20,25 +20,35 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
 import sys
+import os
+import webbrowser
 import inspect
+from types import TracebackType
 import numpy as np
 import pickle
 import traceback
-
-
+from typing import Type
 from PyQt5 import QtWidgets, QtCore
 from ScheduleDesigns import mainDesign
 from ScheduleModels import Widgets
-
 from ScheduleModels import ScheduleWidgets, ScheduleView
 from ScheduleUI import ColorMap
 from SchedulePyPulse import PulseInterface
-
 from Exceptions import RewardMapError
 
 
 class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
-    """The MainApp of schedule generator UI"""
+    """The MainApp of schedule generator UI. Inherits QMainWindow
+    and uses design from mainDesign.
+
+    Attributes
+    ----------
+    parent : QtWidgets
+        Parent of the main window.
+
+    current_schedule_type : widget from ScheduleWidgets
+
+    """
 
     def __init__(self, parent=None):
         super(self.__class__, self).__init__()
@@ -69,12 +79,14 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
 
         # add function bindings
         self.actionSave.triggered.connect(self.save_schedule)
+        self.actionOpenUserGuide.triggered.connect(self.open_user_guide)
+        self.actionAbout.triggered.connect(self.show_about)
         self.generateScheduleButton.clicked.connect(self.generate)
         self.scheduleTypesCombo.activated.connect(self.select_schedule_type)
         self.scheduleView.selectionModel().selectionChanged.connect(self.draw_pulse)
 
     def generate(self):
-        """Generate schedule"""
+        """Slot for generating schedule if generate button is clicked."""
 
         try:
             # get the schedule data and headers
@@ -99,7 +111,7 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
                 self.parent, "Schedule", "Schedule is generated!")
 
     def select_schedule_type(self):
-        """Update schedule view if a schedule type is selected."""
+        """Slot for updating schedule view if a schedule type is selected."""
 
         self.generated = False
         schedule_name = self.scheduleTypesCombo.currentText()
@@ -114,7 +126,7 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
         self.scheduleView.setModel(ScheduleView.ScheduleModel([], [[]]))
 
     def draw_pulse(self):
-        """Draw or redraw pulse in UI"""
+        """Slot for drawing or redrawing pulse in UI if a new trial is selected."""
 
         trial = self.schedule[self.scheduleView.selectionModel().selectedRows()[
             0].row()]
@@ -129,7 +141,7 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
                 t, np.array(pulse) - (p*1.1), pen=color)
 
     def save_schedule(self):
-        """Save schedule as .schedule"""
+        """Slot for saving schedule as .schedule"""
 
         if self.generated:
             params = list()
@@ -151,12 +163,68 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
             QtWidgets.QMessageBox.about(
                 self.parent, "Error", "Schedule is not yet generated!")
 
+    def open_user_guide(self):
+        """Open User Guide. If there is no user guide locally available, 
+        open the user guide in Github.
+        """
+        
+        # Relative path to user guide document.
+        docsPath = "Documentation/Guides/userGuide.pdf"
+
+        dPath = "../" + docsPath
+        
+        if os.path.isfile(dPath): # If current working directory in NoSeMazeSchedule
+            os.startfile(dPath)
+        else:
+            dPath = "./" + docsPath # If current working directory in NoSeMaze
+            if os.path.isfile(dPath):
+                os.startfile(dPath)
+            else: # Else open docs in github
+                webbrowser.open("https://github.com/KelschLAB/AutonomouseS/blob/master/Documentation/Guides/userGuide.md#nosemaze-schedule")
+
+    def show_about(self):
+        """Show the *about* message."""
+
+        msgBox = QtWidgets.QMessageBox()
+        msgBox.setIcon(QtWidgets.QMessageBox.Information)
+        msgBox.setTextFormat(QtCore.Qt.TextFormat.RichText)
+        msgBox.setWindowTitle("About")
+        msgBox.setText("<html><strong style=\"font-size:18px\">NoSeMaze Scheduler v1.0</strong>")
+        infText = ("<html><em style=\"font-size:14px\">NoSeMaze Scheduler</em> is part of <em>NoSeMaze</em>." +
+                   "<br /><div style=\"font-size:14px;white-space:nowrap\">NoSeMaze&nbsp;&nbsp;Copyright (c) 2019, 2022&nbsp;&nbsp;\"name of author(s)\"</div>" +
+                   "<div style=\"font-size:14px;white-space:wrap;text-align:justify;text-justify:inter-word\">This program comes with ABSOLUTELY NO WARRANTY. " +
+                   "This is free software, and you are welcome to redistribute it under certain conditions. " +
+                   "Click <em style=\"white-space:nowrap\">Show Details...</em> below for more details.</div>")
+        msgBox.setInformativeText(infText)
+        detText = ("NoSeMaze is free software: you can redistribute it and/or " +
+                   "modify it under the terms of GNU General Public License as " +
+                   "published by the Free Software Foundation, either version 3 " +
+                   "of the License, or (at your option) at any later version.\n\n" +
+
+                   "NoSeMaze is distributed in the hope that it will be useful, " +
+                   "but WITHOUT ANY WARRANTY; without even the implied warranty " +
+                   "of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. " +
+                   "See the GNU General Public License for more details.")
+        msgBox.setDetailedText(detText)
+        msgBox.exec()
+
 
 # Back up the reference to the exceptionhook
 sys._excepthook = sys.excepthook
 
 
-def my_exception_hook(exctype, value, traceback):
+def my_exception_hook(exctype: Type[BaseException], value: BaseException, traceback: TracebackType):
+    """Custom exception hook.
+
+    Parameters
+    ----------
+    exctype : type of exception
+        Type of exception catch.
+    value : BaseException
+        Exception catched.
+    traceback : TracebackType
+        Traceback associated with the exception.
+    """
     # Print the error and traceback
     print(exctype, value, traceback)
     # Call the normal Exception hook after
@@ -169,6 +237,8 @@ sys.excepthook = my_exception_hook
 
 
 def main():
+    """The main method to be runned."""
+
     app = QtWidgets.QApplication(sys.argv)
     form = MainApp()
     form.show()
