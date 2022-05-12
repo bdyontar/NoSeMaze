@@ -68,3 +68,6 @@ To start an experiment, there are several things that should be done first.
 3. **Configure the hardware preferences** (optional)
 
     There might be some configuration that need to be done, such as which analog input channel of the NI board used to detect  
+
+
+# NoSeMazeSchedule

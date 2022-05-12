@@ -167,20 +167,28 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
         """Open User Guide. If there is no user guide locally available, 
         open the user guide in Github.
         """
-        
+
+        def _open_file_in(dPath):
+            """Check if file is available. If yes, then open file
+            in default apps. Return true, if file is available; else 
+            return false.
+            """
+            isFile = os.path.isfile(dPath)
+            if isFile:
+                os.startfile(dPath)
+
+            return isFile
+
         # Relative path to user guide document.
         docsPath = "Documentation/Guides/userGuide.pdf"
-
         dPath = "../" + docsPath
-        
-        if os.path.isfile(dPath): # If current working directory in NoSeMazeSchedule
-            os.startfile(dPath)
-        else:
-            dPath = "./" + docsPath # If current working directory in NoSeMaze
-            if os.path.isfile(dPath):
-                os.startfile(dPath)
-            else: # Else open docs in github
-                webbrowser.open("https://github.com/KelschLAB/AutonomouseS/blob/master/Documentation/Guides/userGuide.md#nosemaze-schedule")
+        # If file not found, assuming current working directory is NoSeMazeSchedule
+        if not _open_file_in(dPath):
+            dPath = "./" + docsPath
+            # If file not found, assuming current working directory is NoSeMaze
+            if not _open_file_in(dPath):
+                webbrowser.open(
+                    "https://github.com/KelschLAB/AutonomouseS/blob/master/Documentation/Guides/userGuide.md#nosemazeschedule")
 
     def show_about(self):
         """Show the *about* message."""
@@ -189,7 +197,8 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
         msgBox.setIcon(QtWidgets.QMessageBox.Information)
         msgBox.setTextFormat(QtCore.Qt.TextFormat.RichText)
         msgBox.setWindowTitle("About")
-        msgBox.setText("<html><strong style=\"font-size:18px\">NoSeMaze Scheduler v1.0</strong>")
+        msgBox.setText(
+            "<html><strong style=\"font-size:18px\">NoSeMaze Scheduler v1.0</strong>")
         infText = ("<html><em style=\"font-size:14px\">NoSeMaze Scheduler</em> is part of <em>NoSeMaze</em>." +
                    "<br /><div style=\"font-size:14px;white-space:nowrap\">NoSeMaze&nbsp;&nbsp;Copyright (c) 2019, 2022&nbsp;&nbsp;\"name of author(s)\"</div>" +
                    "<div style=\"font-size:14px;white-space:wrap;text-align:justify;text-justify:inter-word\">This program comes with ABSOLUTELY NO WARRANTY. " +

@@ -111,6 +111,8 @@ class Ui_MainWindow(object):
         self.actionDropbox.setObjectName("actionDropbox")
         self.actionVideo_Control = QtWidgets.QAction(MainWindow)
         self.actionVideo_Control.setObjectName("actionVideo_Control")
+        self.actionOpenUserGuide = QtWidgets.QAction(MainWindow)
+        self.actionOpenUserGuide.setObjectName("actionOpenUserGuide")
         self.actionAbout = QtWidgets.QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
         self.menuFile.addAction(self.actionSave_Experiment)
@@ -121,6 +123,8 @@ class Ui_MainWindow(object):
         self.menuNotification.addAction(self.actionMailing_List)
         self.menuNotification.addAction(self.actionDropbox)
         self.menuVideo.addAction(self.actionVideo_Control)
+        self.menuHelp.addAction(self.actionOpenUserGuide)
+        self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuHardware.menuAction())
@@ -163,6 +167,7 @@ class Ui_MainWindow(object):
         self.actionMailing_List.setText(_translate("MainWindow", "Mailing List"))
         self.actionDropbox.setText(_translate("MainWindow", "Dropbox"))
         self.actionVideo_Control.setText(_translate("MainWindow", "Video Control"))
+        self.actionOpenUserGuide.setText(_translate("MainWindow", "Open User Guide"))
         self.actionAbout.setText(_translate("MainWindow", "About"))
 
 from pyqtgraph import PlotWidget

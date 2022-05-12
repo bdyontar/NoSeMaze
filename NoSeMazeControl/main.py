@@ -21,12 +21,12 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 
 import sys
 import os
+import webbrowser
 import pickle
 import datetime
 import numpy as np
-#import traceback
-
 from PyQt5 import QtWidgets, QtCore
+
 from Designs import mainWindow
 from Windows import AppWindows
 from Models import GuiModels
@@ -105,6 +105,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionMailing_List.triggered.connect(self.open_mail_window)
         self.actionDropbox.triggered.connect(self.set_dropbox_path)
         self.actionVideo_Control.triggered.connect(self.open_control_window)
+        self.actionOpenUserGuide.triggered.connect(self.open_user_guide)
         self.actionAbout.triggered.connect(self.show_about)
         self.actionSave_Experiment.triggered.connect(self.save_experiment)
         self.actionLoad_Experiment.triggered.connect(self.load_experiment)
@@ -360,6 +361,33 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         except:
             QtWidgets.QMessageBox.about(self, "Error", "Cannot load data")
 
+    def open_user_guide(self):
+        """Open User Guide. If user guide is not locally available, 
+        open user guide in Github
+        """
+
+        def _open_file_in(dPath):
+            """Check if file is available. If yes, then open file
+            in default apps. Return true, if file is available; else 
+            return false.
+            """
+            isFile = os.path.isfile(dPath)
+            if isFile:
+                os.startfile(dPath)
+
+            return isFile
+
+        # Relative path to doc file.
+        docsPath = "Documentation/Guides/userGuide.pdf"
+        dPath = "../" + docsPath
+        # If file not found, assuming current working directory is NoSeMazeControl
+        if not _open_file_in(dPath):
+            dPath = "./" + docsPath
+            # If file not found, assuming current working directory is NoSeMaze
+            if not _open_file_in(dPath):
+                webbrowser.open(
+                    "https://github.com/KelschLAB/AutonomouseS/blob/master/Documentation/Guides/userGuide.md#nosemazecontrol")
+
     def show_about(self):
         """Show the *about* message."""
 
@@ -367,7 +395,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         msgBox.setIcon(QtWidgets.QMessageBox.Information)
         msgBox.setTextFormat(QtCore.Qt.TextFormat.RichText)
         msgBox.setWindowTitle("About")
-        msgBox.setText("<html><strong style=\"font-size:18px\">NoSeMaze Controller v1.0</strong>")
+        msgBox.setText(
+            "<html><strong style=\"font-size:18px\">NoSeMaze Controller v1.0</strong>")
         infText = ("<html><em style=\"font-size:14px\">NoSeMaze Controller</em> is part of <em>NoSeMaze</em>." +
                    "<br /><div style=\"font-size:14px;white-space:nowrap\">NoSeMaze&nbsp;&nbsp;Copyright (c) 2019, 2022&nbsp;&nbsp;\"name of author(s)\"</div>" +
                    "<div style=\"font-size:14px;white-space:wrap;text-align:justify;text-justify:inter-word\">This program comes with ABSOLUTELY NO WARRANTY. " +
