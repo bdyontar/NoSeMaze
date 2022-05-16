@@ -22,7 +22,7 @@ The NoSeMaze setup consists of 4 main modules:
 4. **Video cameras** which record areas of interest in the NoSeMaze. Video recorded will be used for tracking the mice using DeepLabCut, whereafter the social interactions between the mice are analysed.
 
 > :memo: **Note** :  
-> Only NI-Board NI-USB 6216 BNC is supported by the NoSeMaze Controller UI right now.
+> Only NI-Board NI-USB 6216 BNC is supported by the NoSeMazeControl UI right now.
 
 These main parts are connected to a computer which controls the experiment and gather the measured data.
 
@@ -35,15 +35,15 @@ For more information about the hardware, see the following documentations:
 
 This repository consists of 2 main folders:
 
-- NoSeMazeController &rarr; UI for running experiment.
+- NoSeMazeControl &rarr; UI for running experiment.
 - NoSeMazeSchedule &rarr; UI for creating schedule used in experiment.
 
-The UIs are written in **Python** and can be runned directly using python v3.10+ by running [*main.py*](/NoSeMazeController/main.py) (or [*schedule_main.py*](/NoSeMazeSchedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
+The UIs are written in **Python** and can be runned directly using python v3.10+ by running [*main.py*](/NoSeMazeControl/main.py) (or [*schedule_main.py*](/NoSeMazeSchedule/scheduleMain.py)) with the [required python packages](/pythonRequirements.txt) installed. To install the packages required, use the `pip install -r pythonRequirements.txt` or (`pip3 install -r pythonRequirements.txt` on MacOS/Linux).
 
 > :exclamation: **Important** :  
 > The UI use PyDAQmx as a python wrapper for niDAQmx library, which is distributed together with the NI Board. Make sure niDAQmx is installed before running the UI.
 
-For software documentations of the UI, see [NoSeMazeController](/NoSeMazeController/README.md) and [NoSeMazeSchedule](/NoSeMazeSchedule/README.md).
+For software documentations of the UI, see [NoSeMazeControl](/NoSeMazeControl/README.md) and [NoSeMazeSchedule](/NoSeMazeSchedule/README.md).
 
 ## User Guide
 
@@ -51,7 +51,7 @@ For a detailed user guide in how to use NoSeMaze system for experiment and step-
 
 ## License
 
-NoSeMaze is free software: you can redistribute it and/or modify it under the terms of GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) at any later version.
+NoSeMaze is free software and its documentation is free documentation: you can redistribute it and/or modify it under the terms of GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) at any later version.
 
 NoSeMaze is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
