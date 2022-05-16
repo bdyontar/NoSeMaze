@@ -51,8 +51,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         Path to the config files.
     hardware_prefs : dict
         Hardware preferences.
-    dropbox_path : str
-        Path to dropbox to save deadman-switch, warning and error messages.
+    message_folder_path : str
+        Path to message folder to save deadman-switch, warning and error messages.
     hardware_window : instance of AppWindows.HardwareWindow class
         Hardware window to configure hardware preferences.
     animal_window : instance of AppWindows.AnimalWindow class
@@ -87,8 +87,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             os.makedirs(self.config_path)
 
         self.hardware_prefs = self.load_config_data()
-        self.dropbox_path = self.load_dropbox_path()
-        email.dropbox_path = self.dropbox_path
+        self.message_folder_path = self.load_message_folder_path()
+        email.message_folder_path = self.message_folder_path
         self.hardware_window = AppWindows.HardwareWindow(self)
         self.animal_window = None
         self.analysis_window = None
@@ -103,7 +103,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionAnalyse_Experiment.triggered.connect(
             self.open_analysis_window)
         self.actionMailing_List.triggered.connect(self.open_mail_window)
-        self.actionDropbox.triggered.connect(self.set_dropbox_path)
+        self.actionMessage_Folder.triggered.connect(self.set_message_folder_path)
         self.actionVideo_Control.triggered.connect(self.open_control_window)
         self.actionOpenUserGuide.triggered.connect(self.open_user_guide)
         self.actionAbout.triggered.connect(self.show_about)
@@ -172,17 +172,17 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         else:
             return None
 
-    def load_dropbox_path(self):
-        """Load dropbox path saved in dropbox.txt to dropbox_path_file variable.
+    def load_message_folder_path(self):
+        """Load message folder path saved in messageFolder.txt to message_folder_path_file variable.
 
         Returns
         -------
-        dropbox_path_file : str
-            Path to dropbox file for messages to be written.
+        message_folder_path_file : str
+            Path to message folder path file for messages to be written.
         """
-        dropbox_path_file = self.config_path+"/dropbox.txt"
-        if os.path.exists(dropbox_path_file):
-            with open(dropbox_path_file, 'r') as fn:
+        message_folder_path_file = self.config_path+"/messageFolder.txt"
+        if os.path.exists(message_folder_path_file):
+            with open(message_folder_path_file, 'r') as fn:
                 return fn.readline().strip("\n")
         else:
             return None
@@ -204,9 +204,20 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.control_window.show()
 
     def open_mail_window(self):
-        """Open mail window."""
-        self.mail_window = AppWindows.MailWindow(self)
-        self.mail_window.show()
+        """Open mail window. E-Mailing is deprecated and not implemented 
+        in current version. Open message box notifying about deprecation
+        notice instead.
+        """
+        QtWidgets.QMessageBox(self, "Deprecation Notice",
+                              "E-Mailing function is deprecated\nand not implemented in current version.")
+        # Implementation of open_mail_window are commented out below
+        # for archive purpose, in case there is a need to have
+        # e-mailing implementation again
+        #
+        # region [mailWindow]
+        # self.mail_window = AppWindows.MailWindow(self)
+        # self.mail_window.show()
+        # endregion
 
     def open_analysis_window(self):
         """Open analysis window."""
@@ -315,22 +326,22 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         except:
             print('were not saved...')
 
-    def set_dropbox_path(self):
-        """Set dropbox path in which the deadman-switch, warning and error messages to be saved."""
-        dropbox_path = self.load_dropbox_path()
+    def set_message_folder_path(self):
+        """Set message folder path in which the deadman-switch, warning and error messages to be saved."""
+        message_folder_path = self.load_message_folder_path()
 
         try:
             dirname = QtWidgets.QFileDialog.getExistingDirectory(self,
-                                                                 "Set Dropbox path",
-                                                                 dropbox_path,
+                                                                 "Set message folder path",
+                                                                 message_folder_path,
                                                                  QtWidgets.QFileDialog.Option.ShowDirsOnly)
-            self.dropbox_path = dirname
+            self.message_folder_path = dirname
 
-            dropbox_path_file = self.config_path+"/dropbox.txt"
-            email.dropbox_path = dirname
+            message_folder_path_file = self.config_path+"/messageFolder.txt"
+            email.message_folder_path = dirname
 
             if dirname != '':
-                with open(dropbox_path_file, 'w') as fn:
+                with open(message_folder_path_file, 'w') as fn:
                     fn.write(dirname+"\n")
         except:
             print("were not saved...")

@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-This module contains methods used for e-mailing. Currently, is used to write
-notification message in Dropbox. Codes to send e-mail is in commentar.
+This module contains methods used for e-mailing. Currently, is used to write 
+notification message in a folder. Codes to send e-mail is saved as commentar.
+
+Custom notification messages are saved in Email folder also in HelperFunctions
+folder as text files. The text files can be edited accordingly, but the keywords
+with curly braces must be included in the text, as the keywords will be used to
+display some information messages from the methods below.
 """
 """
 Copyright (c) 2019, 2022 [copyright holders here]
@@ -37,7 +42,7 @@ import os
 import numpy as np
 import scipy.stats as stats
 Z = stats.norm.ppf
-dropbox_path = None
+message_folder_path = None
 
 
 def parse_list(string):
@@ -59,6 +64,31 @@ def parse_list(string):
     return result
 
 
+def _get_file_path(file):
+    """Check wether the file is in Email folder, if folder exists.
+
+    Parameters
+    ----------
+    file : str
+        Name of the file to be checked.
+    
+    Returns
+    -------
+    res : str | None
+        Result of checking file. If file can be found, return the file path. Else return None.
+    """
+
+    currWorkDir = os.getcwd()
+    if "NoSeMazeControl" in currWorkDir:
+        filepath = "./HelperFunctions/Email/" + file
+    else:
+        filepath = "./NoSeMazeControl/HelperFunctions/Email/" + file
+    
+    if os.path.isfile(filepath):
+        return filepath
+    else:
+        return None
+
 def deadmans_switch(experiment):
     """
     Notification every day to indicate if experiment is running.
@@ -70,9 +100,12 @@ def deadmans_switch(experiment):
     """
 
     subject = "Report of the Hours"
-    filename = os.getcwd()+'\\HelperFunctions\\Email\\deadmans_switch.txt'
-    with open(filename, encoding='utf-8') as f:
-        content = f.read()
+    filename = _get_file_path("deadmans_switch.txt")
+    if filename:
+        with open(filename, encoding='utf-8') as f:
+            content = f.read()
+    else:  # set content to default message if text file does not exist
+        content = "Hello {name}, this is the overview.\n\n{overview}"
 
     # table will be shown in the notification message. First, header of the
     # table should be defined. Then, the table will be extended with the actual
@@ -313,7 +346,7 @@ def deadmans_switch(experiment):
 def crash_error(exctype, value, tb):
     """
     Get traceback if software is crashed and send e-mail. Currently, a message 
-    will be written in Dropbox.
+    will be written in a folder.
 
     Parameters
     ----------
@@ -329,9 +362,12 @@ def crash_error(exctype, value, tb):
 
     subject = "Software has crashed"
     error = "".join(traceback.format_exception(exctype, value, tb))
-    filename = os.getcwd()+'\\HelperFunctions\\Email\\crash_error.txt'
-    with open(filename, encoding='utf-8') as f:
-        content = f.read()
+    filename = _get_file_path("crash_error.txt")
+    if filename:
+        with open(filename, encoding='utf-8') as f:
+            content = f.read()
+    else:
+        content = "Hello {name}, this the error.\n\n{error}"
     content = content.format(name='{name}', error=error)
     attachment = None
     send(subject, content, attachment)
@@ -340,22 +376,25 @@ def crash_error(exctype, value, tb):
 def warning_licks(logs_path, namelist):
     """
     Send warning e-mail if any mouse has not licked in a period of time.
-    Currently, a message will be written in Dropbox.
+    Currently, a message will be written in a folder.
 
     Parameters
     ----------
     logs_path : str
-        Directory path to folder with all licks log of mouses.
+        Directory path to folder with all licks log of mice.
 
     namelist : list
         List of mouse's ID which has not licked in a period of time.
     """
     subject = "Warning"
-    mouses = "\n".join(namelist)
-    filename = os.getcwd()+'\\HelperFunctions\\Email\\warning_licks.txt'
-    with open(filename, encoding='utf-8') as f:
-        content = f.read()
-    content = content.format(name='{name}', mouses=mouses)
+    mice = "\n".join(namelist)
+    filename = _get_file_path("warning_licks.txt")
+    if filename:
+        with open(filename, encoding='utf-8') as f:
+            content = f.read()
+    else:
+        content = "Hello {name}, this is the lists of mice.\n\n{mice}"
+    content = content.format(name='{name}', mice=mice)
     attachment = list()
     for name in namelist:
         if os.path.isfile(logs_path+'/licks_log_'+name+'.txt'):
@@ -374,7 +413,7 @@ def warning_licks(logs_path, namelist):
 
 def send(subject, content, attachment):
     """
-    Write a message with subject, content and attachment in Dropbox.
+    Write a message with subject, content and attachment in a folder.
 
     Parameters
     ----------
@@ -388,14 +427,14 @@ def send(subject, content, attachment):
         List of attachment.
     """
 
-    if dropbox_path is not None:
+    if message_folder_path is not None:
         today = datetime.datetime.today().isoformat().split(".")[
             0].replace(":", "")
-        dire = dropbox_path + '/' + today + '/'
+        dire = message_folder_path + '/' + today + '/'
         if not os.path.isdir(dire):
             os.mkdir(dire)
 
-        filename = dire + subject + ".txt"  # File in Dropbox folder
+        filename = dire + subject + ".txt"  # File in folder
 
         text = content.format(name="User")
         print(repr(text))

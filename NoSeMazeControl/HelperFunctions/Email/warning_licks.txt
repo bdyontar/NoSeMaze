@@ -1,7 +1,7 @@
 Hi {name},
 
-There was not much activity detected for the following mouses:
-{mouses}
+There was not much activity detected for the following mice:
+{mice}
 
 Could you please check the logs I send you? Thanks!
 
