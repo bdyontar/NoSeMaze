@@ -59,6 +59,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.trialView, 1, 0, 1, 2)
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_3.setObjectName("groupBox_3")
+        self.groupBox_3.setToolTip("The data view shows the following information:\n1. Odor data.\n2. Licks data (right) or analog input connected to it.\n3. Licks data (left) or analog input connected to it.")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.dataRView = PlotWidget(self.groupBox_3)
