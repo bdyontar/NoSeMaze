@@ -188,7 +188,7 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
             # If file not found, assuming current working directory is NoSeMaze
             if not _open_file_in(dPath):
                 webbrowser.open(
-                    "https://github.com/KelschLAB/AutonomouseS/blob/master/Documentation/Guides/userGuide.md#nosemazeschedule")
+                    "https://github.com/KelschLAB/NoSeMaze/blob/master/Documentation/Guides/userGuide.md#nosemazeschedule")
 
     def show_about(self):
         """Show the *about* message."""
