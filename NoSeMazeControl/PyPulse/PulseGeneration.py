@@ -25,8 +25,6 @@ import numpy as np
 import scipy.io as sio
 
 # The input signals needed for debugging without NI Board
-
-
 def lick_pulse(sampling_rate, duration, frequency, duty):
     t = np.linspace(0, duration, sampling_rate * duration, endpoint=False)
     if np.random.rand() > 0.5:
@@ -41,8 +39,6 @@ def lick_pulse(sampling_rate, duration, frequency, duty):
 pulse = lick_pulse(1000, 2, 5, 0.9)
 
 # The pulses needed for final valve
-
-
 def fv_pulse(sampling_rate, params_list, length, fv_delay):
     onset = np.zeros(int(sampling_rate*params_list[0]['onset']))
     offset = np.zeros(int(sampling_rate*params_list[0]['offset']))
@@ -54,8 +50,6 @@ def fv_pulse(sampling_rate, params_list, length, fv_delay):
     return pulse
 
 # The pulses needed for experiment control
-
-
 def simple_pulse_static(sampling_rate, params):
     # Build main portion of pulse
     if params['fromDuty']:
@@ -82,8 +76,6 @@ def simple_pulse_static(sampling_rate, params):
     return pulse
 
 # Added pulses
-
-
 def concatenated_pulse(sampling_rate, params, number, total):
     if params['fromDuty']:
         frequency = params['frequency']

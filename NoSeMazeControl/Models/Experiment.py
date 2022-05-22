@@ -21,12 +21,15 @@ You should have received a copy of the GNU General Public
 License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
+
 from collections import deque
 import numpy as np
-
 import pickle
 import csv
 import os
+
+# imports for type hinting
+import datetime as dt
 
 # MAX_NUM_TRIALS in a queue. Queue-algorithmus using deque-collections
 MAX_NUM_TRIALS = 1500
@@ -39,23 +42,49 @@ QUANTITY_OF_APPENDED_SCHEDULES = 4
 class Experiment:
     """
     Contains all information of the experiment up to the last MAX_NUM_TRIALS
+
+    Attributes
+    ----------
+    animal_list : dict[str, Mouse]
+        List of animal in experiment.
+
+    default_row : deque
+        Default table row for the trials.
+
+    trials : deque
+        Trials executed by all animals.
+
+    name : str
+        Name of the experiment.
+
+    save_path : str
+        Path to last saved file.
+
+    logs_path : str
+        Path to saved logs file of each animal.
+
+    date : str
+        String of datetime.datetime.now()
+
+    last_data_l : NDArray[float64]
+        Last data from analog input assign to the left lick port.
+
+    last_data_r : NDArray[float64]
+        Last data from analog input assign to the right lick port.
     """
 
     def __init__(self):
-        # Create default mouse.
-        self.animal_list = {'default': Mouse('default')}
-        self.default_row = deque(
+        """Initiate animal list with _'default'_ mouse and initiate trials with _'default'_ row."""
+        self.animal_list: dict[str, Mouse] = {'default': Mouse('default')}
+        self.default_row: deque = deque(
             [['', '', '', '', '', '', '', '', '', '', '', '']], MAX_NUM_TRIALS)
-        self.trials = self.default_row.copy()
-
-        # Attributes.
-        self.name = None
-        self.save_path = None
-        self.logs_path = None
-        self.date = None
-
-        self.last_data_l = None
-        self.last_data_r = None
+        self.trials: deque = self.default_row.copy()
+        self.name: str = None
+        self.save_path: str = None
+        self.logs_path: str = None
+        self.date: str = None
+        self.last_data_l: np.ndarray = None
+        self.last_data_r: np.ndarray = None
 
     def add_mouse(self, id):
         """Add mouse in animal_list with key of id."""
@@ -65,7 +94,7 @@ class Experiment:
     def add_trial(self, animal_id, timestamp, schedule, trial,
                   rewarded, wait_response, response, correct, timeout, licks):
         """
-        Add trial in 'trials'.
+        Append trial in 'trials'-list.
 
         Parameters
         ----------
@@ -122,27 +151,48 @@ class Experiment:
 
 
 class Mouse:
-    """Contains information of a mouse."""
+    """Contains information of a mouse.
+    
+    Attributes
+    ----------
+    id : str
+        ID of the mouse.
+    
+    licks_list : list
+        List of licks made by the mouse.
+    
+    current_schedule_idx : int
+        Index of current schedule.
+    
+    schedule_list : list
+        List of schedule assign to the mouse.
+
+    total_licks : int
+        Total licks made by the mouse.
+    
+    fname : str
+        Name of the log file(s) of the mouse.
+    """
 
     def __init__(self, id):
         """
-        Parameter
-        ---------
+        Parameters
+        ----------
         id : str
-            ID of the mouse
+            ID of the mouse.
         """
 
-        self.id = id
-        self.licks_list = list()
-        self.current_schedule_idx = 0
-        self.schedule_list = list()
-        self.total_licks = 0
-        self.fname = None
+        self.id : str = id
+        self.licks_list : list = list()
+        self.current_schedule_idx : int = 0
+        self.schedule_list : list = list()
+        self.total_licks : int = 0
+        self.fname : str = None
 
     def update_licks(self, timestamp, rewarded, licks_before, licks_after,
                      save_path, water_given, correct, timeout):
         """
-        Update licks log.
+        Update licks in log file.
 
         Parameters
         ----------
@@ -230,17 +280,21 @@ class Mouse:
         schedule_name : str
             Name of schedule.
 
-        schedule_data : dict
+        schedule_data : list[dict]
             Data of schedule.
 
         schedule_headers : list
             Schedule headers.
 
-        trial_parameters : dict
+        trial_parameters : list[dict]
             Parameter of a trial.
 
         idx : int
             Index of current schedule.
+        
+        Notes
+        -----
+        For more information about the parameter of a trial or a schedule, see software documentation of NoSeMazeSchedule.
         """
         self.schedule_list.insert(idx+1, Schedule(schedule_name,
                                                   schedule_data,
@@ -248,26 +302,52 @@ class Mouse:
                                                   trial_parameters))
 
     def current_trial(self):
-        """Get current trial and returns it."""
+        """Get current trial and returns it.
+        
+        Returns
+        -------
+        current_trial : list[list]
+            Current trial in the current schedule to be executed.
+        
+        Notes
+        -----
+        For more information about the parameter of a trial or a schedule, see software documentation of NoSeMazeSchedule.
+        """
 
         if len(self.schedule_list)-1 < self.current_schedule_idx:
             self.current_schedule_idx = len(self.schedule_list)-1
-        current_schedule = self.schedule_list[self.current_schedule_idx]
-        current_trial = current_schedule.schedule_trials[current_schedule.current_trial]
+        current_schedule: Schedule = self.schedule_list[self.current_schedule_idx]
+        current_trial: list[list] = current_schedule.schedule_trials[current_schedule.current_trial]
         return current_trial
 
     def current_trial_pulse(self):
-        """Get current trial pulse and returns it."""
+        """Get current trial pulse and returns it.
+        
+        Returns
+        -------
+        pulse_params : list[dict]
+            Current trial param of the current trial.
+        
+        Notes
+        -----
+        For more information about the parameter of a trial or a schedule, see software documentation of NoSeMazeSchedule.
+        """
 
         while len(self.schedule_list) - 1 < self.current_schedule_idx:
             self.current_schedule_idx = len(self.schedule_list)-1
-        current_schedule = self.schedule_list[self.current_schedule_idx]
-        pulse_params = current_schedule.trial_params[current_schedule.current_trial]
+        current_schedule: Schedule = self.schedule_list[self.current_schedule_idx]
+        pulse_params: list[dict] = current_schedule.trial_params[current_schedule.current_trial]
         return pulse_params
 
     @property
     def current_trial_idx(self):
-        """Get current trial index."""
+        """Get current trial index.
+        
+        Returns
+        -------
+        current_trial_idx : int
+            Index of current trial in the schedule.
+        """
         return self.schedule_list[self.current_schedule_idx].current_trial
 
     def advance_trial(self):
@@ -302,16 +382,53 @@ class Mouse:
 
 
 class Schedule:
-    """Contains information in a schedule."""
+    """Contains information in a schedule.
+    
+    Attributes
+    ----------
+    id : str
+        Name of the schedule.
+    
+    current_trial : int
+        Current trial index.
+    
+    schedule_trials : list[list]
+        Data of the trials in a schedule.
+    
+    schedule_headers : list
+        Headers of the schedule.
+    
+    trial_params : list[dict]
+        Parameter of a trial.
+    """
 
     def __init__(self, id, schedule_trials, schedule_headers, trial_params):
-        self.id = id
-        self.current_trial = 0
-        self.schedule_trials = schedule_trials
-        self.schedule_headers = schedule_headers
-        self.trial_params = trial_params
+        """
+        Parameters
+        ----------
+        id : str
+            Name of the schedule.
+        
+        schedule_trials : list[list]
+            Data of the schedule.
 
-        self.trial_list = list()
+        schedule_headers : list
+            Header of the schedule.
+
+        trial_params : list[dict]
+            Parameter of a trial.
+        
+        Notes
+        -----
+        For more information about the parameter of a trial or a schedule, see software documentation of NoSeMazeSchedule.
+        """
+        self.id : str = id
+        self.current_trial : int = 0
+        self.schedule_trials : list[list] = schedule_trials
+        self.schedule_headers : list = schedule_headers
+        self.trial_params : list[dict] = trial_params
+
+        self.trial_list : list = list()
 
     def add_trial_data(self, timestamp, wait_response, response, correct,
                        timeout, licks, rewarded):
@@ -347,18 +464,56 @@ class Schedule:
                                      correct, timeout, licks, rewarded))
 
     def n_trials(self):
-        """Total number of trials that should be performed in the schedule."""
+        """Total number of trials that should be performed in the schedule.
+        
+        Returns
+        -------
+        len : int
+            Number of trials available in the schedule. 
+        """
 
         return len(self.schedule_trials)
 
     def trials_left(self):
-        """Number of trials left in a schedule."""
+        """Number of trials left in a schedule.
+        
+        Returns
+        -------
+        trial_left : bool
+            Return true if current trial index is not the last index; else return false.
+        """
 
         return self.current_trial < self.n_trials() - 1
 
 
 class Trial:
-    """Contains information of a trial."""
+    """Contains information of a trial.
+    
+    Attributes
+    ----------
+    timestamp : datetime.datetime
+        Start time of the trial.
+
+    wait_response : list
+        List of indicator if mouse has licked before odor is presented.
+
+    response : list
+        List of indicator if mouse has licked after odor is presented.
+
+    correct : bool
+        Indicator if trials is performed correctly. Currently, it shows 
+        only if water is given.
+
+    timeout : bool
+        Indicator if timeout is given. Currently not used and should always
+        be 'False'
+
+    licks : list
+        Number of licks at left port and right port.
+
+    rewarded : list
+        List of reward parameters (reward probability and amount of reward)
+    """
 
     def __init__(self, timestamp, wait_response, response, correct,
                  timeout, licks, rewarded):
@@ -389,10 +544,10 @@ class Trial:
             List of reward parameters (reward probability and amount of reward)
         """
 
-        self.timestamp = timestamp
-        self.rewarded = rewarded
-        self.wait_response = wait_response
-        self.response = response
-        self.correct = correct
-        self.timeout = timeout
-        self.licks = licks
+        self.timestamp : dt.datetime = timestamp
+        self.rewarded : list = rewarded
+        self.wait_response : list = wait_response
+        self.response : list = response
+        self.correct : bool = correct
+        self.timeout : bool = timeout
+        self.licks : list = licks

@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public
 License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
+from typing import Any
 import scipy.signal as signal
 import numpy as np
 import scipy.io as sio
@@ -34,7 +35,7 @@ def square_pulse(sampling_rate, duration, frequency, duty):
 def extended_square_pulse(sampling_rate, duration, frequency, duty):
     # extension direction: 1 = forwards, -1 = backwards
     t = np.linspace(0, duration, int(sampling_rate * duration), endpoint=False)
-    pulse = (np.array(signal.square(2 * np.pi * frequency * t, duty=duty)) / 2) + 0.5
+    pulse : np.ndarray = (np.array(signal.square(2 * np.pi * frequency * t, duty=duty)) / 2) + 0.5
 
     distance = ((1.0 / frequency) * duty) * sampling_rate
     extender = np.ones((int(distance)))
@@ -42,7 +43,7 @@ def extended_square_pulse(sampling_rate, duration, frequency, duty):
     pulse = np.append(extender, pulse)
 
     new_duration = duration+((1.0 / frequency) * duty)
-    t = np.linspace(0, new_duration, int(
+    t : np.ndarray = np.linspace(0, new_duration, int(
         sampling_rate * new_duration), endpoint=False)
 
     return pulse, t
@@ -106,7 +107,7 @@ def random_shatter_pulse(sampling_rate, duration, frequency, duty, shatter_frequ
     return guide_pulse * shattered_pulse, t
 
 
-def random_simple_pulse(sampling_rate, params):
+def random_simple_pulse(sampling_rate, params) -> tuple[np.ndarray, np.ndarray]:
 
     # Build main portion of pulse
     if params['fromDuty']:
@@ -167,7 +168,7 @@ def random_simple_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, int(total_length * sampling_rate))
 
 
-def spec_time_pulse(sampling_rate, params):
+def spec_time_pulse(sampling_rate, params) -> tuple[np.ndarray, np.ndarray]:
 
     # Initial parameters
     frequency = params['frequency']
@@ -229,7 +230,7 @@ def spec_time_pulse(sampling_rate, params):
     return pulse, t
 
 
-def concatenated_pulse(sampling_rate, params, number, total):
+def concatenated_pulse(sampling_rate, params, number, total) -> tuple[np.ndarray, np.ndarray]:
 
     if params['fromDuty']:
         frequency = params['frequency']
@@ -269,7 +270,7 @@ def concatenated_pulse(sampling_rate, params, number, total):
         offset = np.hstack(
             (offset, np.zeros(int(sampling_rate*params['pulse_width'][i]))))
 
-    pulse = np.hstack((onset, pulse, offset))
+    pulse : np.ndarray = np.hstack((onset, pulse, offset))
 
     # N.B. Have to round here due to floating point representation problem
     total_length = round(
@@ -368,7 +369,7 @@ def noise_pulse(sampling_rate, params):
 
     guide_pulse = guide_pulse[0:int(sampling_rate*duration)]
 
-    pulse = (np.array(signal.square(
+    pulse : np.ndarray = (np.array(signal.square(
         2 * np.pi * params['shatter_frequency'] * t, duty=guide_pulse)) / 2) + 0.5
 
     # Attach onset and offset
@@ -379,7 +380,7 @@ def noise_pulse(sampling_rate, params):
     return np.hstack((onset, pulse, offset)), np.linspace(0, total_length, int(total_length * sampling_rate))
 
 
-def plume_pulse(sampling_rate, params):
+def plume_pulse(sampling_rate : int, params : dict[str, Any]) -> tuple[np.ndarray, np.ndarray]:
 
     plume = sio.loadmat(params['data_path'])
     plume = plume['plume'][0]

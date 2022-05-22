@@ -44,11 +44,42 @@ import HelperFunctions.RFID as rfid
 import HelperFunctions.Reward as reward
 import HelperFunctions.BeamCheck as beam
 import HelperFunctions.Email as email
+
+# import for type hinting
 from Models.Experiment import Mouse
+from .ExperimentControl import ExperimentController
+from ..main import MainApp
 
 
 class ExperimentWorker(QtCore.QObject):
-    """Worker of experiment thread. Sequence of thread is in trial method."""
+    """Worker of experiment thread. Sequence of thread is in trial method.
+    
+    Attributes
+    ----------
+    parent : QtCore.QObject
+        Parent of worker instance.
+    
+    lock_llog : ReadWriteLock
+        Read-Write-Lock for log files.
+
+    hardware_prefs : dict[str, Any]
+        Hardware preferences. Configured in hardware preference window.
+    
+    experiment : Experiment
+        Experiment instance of this experiment session.
+    
+    save_timestamp : datetime
+        Timestamp when experiment is last saved.
+    
+    morning_notification_sent : bool
+        True if morning notification has been sent; else false.
+    
+    afternoon_notification_sent : bool
+        True if afternoon notification has been sent; else false.
+    
+    notification_sent : bool
+        True if notification has been sent; else false.
+    """
 
     # define custom signals to be connected
     finished = QtCore.pyqtSignal()
@@ -57,7 +88,7 @@ class ExperimentWorker(QtCore.QObject):
     trial_end = QtCore.pyqtSignal()
     """pyqtSignal : Signal sent if a trial has ended."""
 
-    def __init__(self, parent: QtCore.QObject = None):
+    def __init__(self, parent: ExperimentController = None):
         """
         Parameters
         ----------
@@ -72,16 +103,16 @@ class ExperimentWorker(QtCore.QObject):
         self.parent = parent
 
         # set lock
-        self.lock_llog = QReadWriteLock()
+        self.lock_llog : QReadWriteLock = QReadWriteLock()
 
         # attributes
         self.hardware_prefs = self.parent.parent.hardware_prefs
         self.experiment = self.parent.parent.experiment
         self.save_timestamp = datetime.datetime.now()
-        self.morning_mail_sent = False
-        self.evening_mail_sent = False
-        self.night_mail_sent = False
-        self.mail_sent = False
+        self.morning_notification_sent = False
+        self.afternoon_notification_sent = False
+        self.evening_notification_sent = False
+        self.notification_sent = False
 
     def trial(self):
         """Sequence of trial. Contains pre-trial sequences, trial sequences in 
@@ -96,7 +127,7 @@ class ExperimentWorker(QtCore.QObject):
             start = time()
 
             if self.animal_present():
-                animal = self.get_present_animal()
+                animal : Mouse = self.get_present_animal()
                 current_trial = animal.current_trial()
                 current_trial_pulse = animal.current_trial_pulse()
 
@@ -121,10 +152,10 @@ class ExperimentWorker(QtCore.QObject):
                 # Parse parameter in trial pulse to be given to DAQ.
                 if self.hardware_prefs['static']:
                     if concatenate:
-                        odor_pulses = current_trial[9]
-                        onset = current_trial_pulse[0]['onset']
-                        offset = current_trial_pulse[0]['offset']
-                        total_length = np.sum(odor_pulses) + onset + offset
+                        odor_pulses : list = current_trial[9]
+                        onset : float = current_trial_pulse[0]['onset']
+                        offset : float = current_trial_pulse[0]['offset']
+                        total_length : float= np.sum(odor_pulses) + onset + offset
 
                         t = np.linspace(0,
                                         total_length,
@@ -421,29 +452,29 @@ class ExperimentWorker(QtCore.QObject):
 
         if datetime.date.today() != self.today:
             self.today = datetime.date.today()
-            self.morning_mail_sent = False
-            self.evening_mail_sent = False
-            self.night_mail_sent = False
+            self.morning_notification_sent = False
+            self.afternoon_notification_sent = False
+            self.evening_notification_sent = False
 
         morning = datetime.datetime.combine(self.today, datetime.time(hour=8))
-        evening = datetime.datetime.combine(self.today, datetime.time(hour=17))
-        night = datetime.datetime.combine(self.today, datetime.time(hour=22))
+        afternoon = datetime.datetime.combine(self.today, datetime.time(hour=17))
+        evening = datetime.datetime.combine(self.today, datetime.time(hour=22))
         now = datetime.datetime.now()
 
-        if now > morning and now <= evening and not self.morning_mail_sent:
+        if now > morning and now <= afternoon and not self.morning_notification_sent:
             print('sending morning mail')
             email.deadmans_switch(self.experiment)
-            self.morning_mail_sent = True
-        elif now > evening and now <= night and not self.evening_mail_sent:
-            print('sending evening mail')
+            self.morning_notification_sent = True
+        elif now > afternoon and now <= evening and not self.afternoon_notification_sent:
+            print('sending afternoon mail')
             email.deadmans_switch(self.experiment)
-            self.evening_mail_sent = True
-        elif now > night and not self.night_mail_sent:
+            self.afternoon_notification_sent = True
+        elif now > evening and not self.evening_notification_sent:
             email.deadmans_switch(self.experiment)
-            self.night_mail_sent = True
-        elif now < morning and not self.mail_sent:
+            self.evening_notification_sent = True
+        elif now < morning and not self.notification_sent:
             email.deadmans_switch(self.experiment)
-            self.mail_sent = True
+            self.notification_sent = True
 
     def check_licks(self):
         """
@@ -784,23 +815,44 @@ class ExperimentWorker(QtCore.QObject):
 
 
 class ExperimentController:
-    def __init__(self, parent: QtWidgets.QMainWindow):
-        """
-        Thread controller. Controls if thread should be started or stopped.
+    """
+    Thread controller. Controls if thread should be started or stopped.
 
+    Attributes
+    ----------
+    parent : MainApp
+        Parent of ExperimentController.
+    
+    thread : QtCore.QThread
+        Thread of the experiment controller where worker should work.
+    
+    trial_job : ExperimentWorker
+        Instance of ExperimentWorker that will be moved to thread.
+    
+    should_run : bool
+        True if experiment should run; else false.
+    
+    start_timestamp : datetime
+        Timestamp when experiment is started.
+    
+    count : float
+        Time from epoch in seconds as the experiment is started. Obsolete.
+    """
+    def __init__(self, parent: MainApp):
+        """
         Parameters
         ----------
         parent : obj
             Parent of this class. It should be MainApp
         """
 
-        self.parent = parent
+        self.parent : MainApp = parent
 
         # initialise thread
-        self.thread = QtCore.QThread()
+        self.thread : QtCore.QThread = QtCore.QThread()
 
         # initialise job then move it to thread
-        self.trial_job = ExperimentWorker(self)
+        self.trial_job : ExperimentWorker = ExperimentWorker(self)
         self.trial_job.moveToThread(self.thread)
 
         # connecting signals and slots
@@ -808,7 +860,7 @@ class ExperimentController:
         self.thread.started.connect(self.trial_job.trial)
 
         # attributes
-        self.should_run = False
+        self.should_run : bool = False
 
     def update_pref(self, new_pref: dict[str, object]):
         """Slot for updating hardware preferences while the experiment is 
@@ -845,8 +897,8 @@ class ExperimentController:
             # Only start experiment if experiment is not started.
             if not self.should_run:
                 self.should_run = True
-                self.start_timestamp = datetime.datetime.now()
-                self.count = time()
+                self.start_timestamp : datetime.datetime = datetime.datetime.now()
+                self.count : float = time()
                 self.thread.start()
                 print('thread started')
         else:

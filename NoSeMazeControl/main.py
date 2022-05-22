@@ -21,6 +21,7 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 
 import sys
 import os
+from types import NoneType
 import webbrowser
 import pickle
 import datetime
@@ -47,23 +48,34 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     saved_status : bool
         Status if experiments already saved. Checked while closing the windows
         and changed if any trials are executed or experiment is saved.
+
     config_path : str
         Path to the config files.
+
     hardware_prefs : dict
         Hardware preferences.
+
     message_folder_path : str
         Path to message folder to save deadman-switch, warning and error messages.
+
     hardware_window : instance of AppWindows.HardwareWindow class
         Hardware window to configure hardware preferences.
+
     animal_window : instance of AppWindows.AnimalWindow class
         Animal window to input animals in the experiment and their schedules.
+
     analysis_window : instance of AppWindows.AnalysisWindow class
         Analysis window that shows the performance curve of the experiment and of
         each mouses respectively.
+
     mail_window : instance of AppWindows.MailWindow class
         Mail window to input the mailing list.
-    control_window: instance of AppWindows.ControlWindow class
+
+    control_window : instance of AppWindows.ControlWindow class
         Control window which shows video feed of usb cameras connected. Currently not maintained.
+
+    experiment : instance of Experiment class
+        Variable where data are saved.
 
     Note
     ----
@@ -79,21 +91,21 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
         self.setupUi(self)
-        self.saved_status = True
-        self.config_path = ".nosemazeconfig"
+        self.saved_status : bool = True
+        self.config_path : str = ".nosemazeconfig"
 
         # create config folder if folder does not exist
         if not os.path.isdir(self.config_path):
             os.makedirs(self.config_path)
 
-        self.hardware_prefs = self.load_config_data()
-        self.message_folder_path = self.load_message_folder_path()
+        self.hardware_prefs : dict = self.load_config_data()
+        self.message_folder_path : str = self.load_message_folder_path()
         email.message_folder_path = self.message_folder_path
-        self.hardware_window = AppWindows.HardwareWindow(self)
-        self.animal_window = None
-        self.analysis_window = None
-        self.mail_window = None
-        self.control_window = None
+        self.hardware_window : AppWindows.HardwareWindow = AppWindows.HardwareWindow(self)
+        self.animal_window : AppWindows.AnimalWindow = None
+        self.analysis_window : AppWindows.AnalysisWindow = None
+        self.mail_window : NoneType = None
+        self.control_window : AppWindows.ControlWindow = None
         self.setup_experiment_bindings(Experiment.Experiment())
 
         # binding functions to the signals
@@ -111,13 +123,13 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionLoad_Experiment.triggered.connect(self.load_experiment)
         self.saved.connect(self.experiment_saved)
 
-    def setup_experiment_bindings(self, experiment):
+    def setup_experiment_bindings(self, experiment : Experiment.Experiment):
         """
         Set up experiment in the GUI and populate the experiment table in the GUI.
 
-        Paremeters
+        Parameters
         ----------
-        experiment : instance of Experiment.Experiment class
+        experiment : Experiment.Experiment
             Experiment to be set up.
         """
         self.experiment = experiment
@@ -240,7 +252,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.dataLView.setYRange(0, 6)
         self.dataRView.setYRange(0, 6)
 
-    def update_graphics_view(self, trial):
+    def update_graphics_view(self, trial : int):
         """Update graph view to the odour signal of the selected trial.
 
         Parameters
@@ -443,7 +455,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         if self.control_window is not None:
             self.control_window.close()
 
-    def closeEvent(self, event):
+    def closeEvent(self, event : QtCore.QEvent):
         """Things to be executed if closeEvent occured (x in main window is clicked).
         
         Parameters

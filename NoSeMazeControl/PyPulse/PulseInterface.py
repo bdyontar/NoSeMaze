@@ -25,7 +25,7 @@ from PyPulse import PulseGeneration
 import numpy as np
 
 
-def make_pulse(sampling_rate, global_onset, global_offset, params_list):
+def make_pulse(sampling_rate : int, global_onset : float, global_offset : float, params_list : list[dict]):
     """
     Parameters
     ----------

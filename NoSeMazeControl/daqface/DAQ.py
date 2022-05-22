@@ -31,6 +31,7 @@ import math
 import daqface.Utils as Util
 from HelperFunctions import Reward as reward
 
+# TODO: describe attributes in classes as well? All classes?
 
 #region [DigitalTasks]
 class NiUsbDigitalOutTwoDevicesC:
@@ -1608,7 +1609,8 @@ class DoAiMultiTask:
 
 class DoAiMultiTaskWaitTraining:
     """DAQ for strict GNG wait training. That means, reward will not be given
-    if mouse does not wait. Not used in current implementation."""
+    if mouse does not wait. Not used in current implementation.
+    """
 
     def __init__(self, ai_device, ai_channels, do_device, fv_device,
                  reward_device_l, reward_device_r, samp_rate, secs,

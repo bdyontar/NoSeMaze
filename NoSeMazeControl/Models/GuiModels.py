@@ -20,22 +20,76 @@ You should have received a copy of the GNU General Public
 License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
+from typing import Any
+from collections import deque
 from PyQt5 import QtCore, QtGui
 
 
 class TableModel(QtCore.QAbstractTableModel):
-    def __init__(self, headerdata, arraydata, parent=None, *args):
-        QtCore.QAbstractTableModel.__init__(self, parent, *args)
-        self.headerdata = headerdata
-        self.arraydata = arraydata
+    """Abstract model used for trial results table shown in the MainApp.
 
-    def rowCount(self, parent):
+    Attributes
+    ----------
+    headerdata : list
+        Header of the table.
+    
+    arraydata : deque
+        Data of the table.
+    """
+    def __init__(self, headerdata : list, arraydata : deque, parent=None, *args):
+        """
+        """
+        QtCore.QAbstractTableModel.__init__(self, parent, *args)
+        self.headerdata : list = headerdata
+        self.arraydata : deque = arraydata
+
+    def rowCount(self, parent:Any):
+        """Return the number of rows in the table.
+
+        Parameters
+        ----------
+        parent : Any
+            Not in used.
+        
+        Returns
+        -------
+        len : int
+            Number of row availables.
+        """
         return len(self.arraydata)
 
-    def columnCount(self, parent):
+    def columnCount(self, parent:Any):
+        """Return the number of column in a row.
+
+        Parameters
+        ----------
+        parent : Any
+            Not in used.
+        
+        Returns
+        -------
+        len : int
+            Number of column availables.
+        """
         return len(self.arraydata[0])
 
-    def data(self, index, role):
+    def data(self, index : QtCore.QModelIndex, role : int):
+        """Get data on index.
+        
+        Parameters
+        ----------
+        index : QtCore.QModelIndex
+            Index of data to be retreived.
+        
+        role : int
+            Role of data.
+        
+        Returns
+        -------
+        data : QtCore.QVariant
+            Data retrieved from index.row() and index.column()
+
+        """
         if not index.isValid():
             return QtCore.QVariant()
         # TODO - Specific case for main table, colouring true / false correct, doesn't work for animal table
@@ -50,7 +104,26 @@ class TableModel(QtCore.QAbstractTableModel):
 
         return QtCore.QVariant(str(self.arraydata[index.row()][index.column()]))
 
-    def headerData(self, col, orientation, role):
+    def headerData(self, col, orientation : int, role : int):
+        """Get header data.
+        
+        Parameters
+        ----------
+        col : int
+            Selected column.
+        
+        orientation : int
+            Orientation of the header.
+        
+        role : int
+            Role of header.
+
+        Returns
+        -------
+        header : QtCoreVariant | int
+            Header of the data.
+
+        """
         if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             return QtCore.QVariant(self.headerdata[col])
         if orientation == QtCore.Qt.Vertical and role == QtCore.Qt.DisplayRole:

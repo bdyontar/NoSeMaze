@@ -23,15 +23,19 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 from PyQt5 import QtWidgets
 from ScheduleDesigns import valveMapDesign
 
+# import for type hinting
+from ..scheduleMain import MainApp
+
 
 class ValveMapWidget(QtWidgets.QWidget, valveMapDesign.Ui_Form):
-    def __init__(self, parentUi=None):
+    """Widget to configure valve map."""
+    def __init__(self, parentUi : MainApp = None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parentUi = parentUi
         self.valveNumberSelect.valueChanged.connect(self.change_valve_map)
 
-    def flatten_value(self, value):
+    def flatten_value(self, value : int):
         if value < 0:
             return 0
         else:

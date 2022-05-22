@@ -31,16 +31,22 @@ from ScheduleDesigns import NoSeMazeScheduleDesign
 from Generation import Gen
 from Exceptions import RewardMapError
 
+# import for type hinting
+from ..scheduleMain import MainApp
+from types import NoneType
+
+# TODO: Describe attributes of all class in docstring?
 
 class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
-    def __init__(self, parentUi=None):
+    """Widget for configuring the schedule and trials parameters."""
+    def __init__(self, parentUi : MainApp = None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
-        self.parentUi = parentUi
-        self.valence_map = None
+        self.parentUi : MainApp = parentUi
+        self.valence_map : NoneType = None # not used
         self.nValveSpin.valueChanged.connect(self.change_reward_map)
 
-    def flatten_value(self, value):
+    def flatten_value(self, value : int) -> int:
         if value < 0:
             return 0
         else:
@@ -53,7 +59,7 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
             label.append(str(i+1))
         self.rewardMapTable.setHorizontalHeaderLabels(label)
 
-    def generate_schedule(self, valence_map):
+    def generate_schedule(self, valence_map : list) -> tuple[list, list]:
         # getting maps
         try:
             reward_map = [[self.flatten_value(float(self.rewardMapTable.item(x, y).text())) for y in range(
@@ -126,8 +132,8 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
 
                 return schedule, ['Probability Left', 'Probabilty Right', 'Reward Left', 'Reward Right', ' Delay', 'Odour', 'Valve', 'Valence Map', 'Lick Fraction']
 
-    def pulse_parameters(self, trial):
-        params = list()
+    def pulse_parameters(self, trial : list) -> list[dict]:
+        params : list = list()
 
         onset = float(self.trialOnsetEdit.text())
         offset = float(self.trialOffsetEdit.text())
@@ -186,7 +192,7 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
 #             label.append(str(i+1))
 #         self.rewardMapTable.setHorizontalHeaderLabels(label)
 
-#     def generate_schedule(self, valence_map):#DONE Reward Map hier neustrukturieren.
+#     def generate_schedule(self, valence_map):
 #         #getting maps
 #         try:
 #             reward_map = [[self.flatten_value(float(self.rewardMapTable.item(x,y).text())) for y in range(self.rewardMapTable.columnCount())] for x in range(self.rewardMapTable.rowCount())]

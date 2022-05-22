@@ -24,7 +24,30 @@ from SchedulePyPulse import PulseGeneration
 import numpy as np
 
 
-def make_pulse(sampling_rate, global_onset, global_offset, params_list):
+def make_pulse(sampling_rate : int, global_onset : float, global_offset : float, params_list : list[dict]):
+    """
+    Parameters
+    ----------
+    sampling_rate : int
+        Sampling rate defined in hardware configuration
+
+    global_onset : float
+        Number of element set to be an onset.
+
+    global_offset : float
+        Number of element set to be an offset.
+
+    params_list : list
+        List of pulse parameters.
+
+    Returns
+    -------
+    pulse_matrix : 2d-list
+        List of pulse.
+
+    t : ndarray
+        Time axis.
+    """
 
     longest_t = []
     pulses = list()

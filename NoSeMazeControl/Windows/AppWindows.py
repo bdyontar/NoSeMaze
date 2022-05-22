@@ -27,15 +27,24 @@ import os
 import numpy as np
 import datetime
 
-from PyQt5 import QtWidgets, QtMultimedia
+from PyQt5 import QtWidgets, QtMultimedia, QtCore
 from PyQt5.QtCore import pyqtSignal, Qt
 from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow
 from Models import GuiModels
 from Analysis import Analysis
 
+# importing for type hinting
+import typing
+from NoSeMazeControl.Models.Experiment import Experiment
+from main import MainApp
+from Models import Experiment
+from .AppWindows import ControlWindow # need to import first because ControlWindow was defined after type hinting used
 
+# TODO: Also describe attributes of all classes instead of only type hinting?
 class AdjustmentWidget(QtWidgets.QDockWidget, adjustmentWidget.Ui_DockWidget):
-    def __init__(self, cam, settings, parent=None):
+    """Widget for adjusting camera control. """
+
+    def __init__(self, cam: str, settings: dict[str, dict[str, typing.Any]], parent: ControlWindow = None):
         QtWidgets.QDockWidget.__init__(self, parent)
         self.setupUi(self)
         self.setWindowTitle('Adjustment ' + cam)
@@ -78,8 +87,11 @@ class AdjustmentWidget(QtWidgets.QDockWidget, adjustmentWidget.Ui_DockWidget):
                 QtWidgets.QMessageBox.about(
                     self.parent, "Error", "Adjustment is not supported by the Camera 2.")
 
-    def set_brightness(self, value):
-        value = self.brightnessSlider.value()
+    def set_brightness(self, value : int|None = None):
+        if value is None:
+            value = self.brightnessSlider.value()
+        else:
+            self.brightnessSlider.setValue(value)
         brightness = value/100
         self.imgPro.setBrightness(brightness)
         if self.cam == 'Camera 1':
@@ -107,25 +119,30 @@ class AdjustmentWidget(QtWidgets.QDockWidget, adjustmentWidget.Ui_DockWidget):
 
 
 class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
-    def __init__(self, experiment, parent=None):
+    """Window to view camera feedback."""
+
+    def __init__(self, experiment: Experiment.Experiment, parent: MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
-        self.parent = parent
-        self.experiment = experiment
-        self.setting_path = self.parent.config_path + "/cam.setting"
-        self.camOne = None
-        self.camTwo = None
-        self.cameras_pos = dict()
-        self.settings = {
+        self.parent: MainApp = parent
+        self.experiment: Experiment.Experiment = experiment
+        self.setting_path: str = self.parent.config_path + "/cam.setting"
+        self.camOne: QtMultimedia.QCamera | None = None
+        self.camTwo: QtMultimedia.QCamera | None = None
+        self.cameras_pos: dict = dict()
+        self.settings: dict[str, dict[str, typing.Any]] = {
             'cam1': {
                 'pos': None,
                 'saturation': 0,
                 'brightness': 0,
-                'contrast': 0}, 'cam2': {
+                'contrast': 0
+            },
+            'cam2': {
                 'pos': None,
                 'saturation': 0,
                 'brightness': 0,
-                'contrast': 0}
+                'contrast': 0
+            }
         }
         self.populate_table()
 
@@ -151,7 +168,7 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
 
     def adjust_cam1(self):
         if self.camOne is not None:
-            self.adjWidget1 = AdjustmentWidget(
+            self.adjWidget1 : AdjustmentWidget = AdjustmentWidget(
                 "Camera 1", self.settings, parent=self)
             self.addDockWidget(Qt.RightDockWidgetArea, self.adjWidget1)
         else:
@@ -160,14 +177,14 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
 
     def adjust_cam2(self):
         if self.camTwo is not None:
-            self.adjWidget2 = AdjustmentWidget(
+            self.adjWidget2 : adjustmentWidget = AdjustmentWidget(
                 "Camera 2", self.settings, parent=self)
             self.addDockWidget(Qt.RightDockWidgetArea, self.adjWidget2)
         else:
             QtWidgets.QMessageBox.about(
                 self, "Error", "Camera has not been set.")
 
-    def configure_settings(self, settings):
+    def configure_settings(self, settings : dict[str, dict[str, typing.Any]]):
         for cam in settings.keys():
             if cam == 'cam1':
                 if settings['cam1']['pos'] is not None:
@@ -220,8 +237,8 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
             self.settings['cam1']['pos'] = key
             self.set_cam1(self.cameras_pos[key])
 
-    def set_cam1(self, cam):
-        self.camOne = QtMultimedia.QCamera(cam)
+    def set_cam1(self, cam : QtMultimedia.QCameraInfo):
+        self.camOne : QtMultimedia.QCamera = QtMultimedia.QCamera(cam)
         if self.settings['cam2']['pos'] is not None and self.settings['cam1']['pos'][0] == self.settings['cam2']['pos'][0]:
             self.settings['cam2']['pos'] = None
             if self.camTwo is not None:
@@ -254,8 +271,8 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
             QtWidgets.QMessageBox.about(
                 self, "Error", "Camera has not been set.")
 
-    def set_res_cam1(self, x, y):
-        self.viewfinderOneSettings = QtMultimedia.QCameraViewfinderSettings()
+    def set_res_cam1(self, x : int, y : int):
+        self.viewfinderOneSettings : QtMultimedia.QCameraViewfinderSettings = QtMultimedia.QCameraViewfinderSettings()
         self.viewfinderOneSettings.setResolution(x, y)
         self.camOne.setViewfinderSettings(self.viewfinderOneSettings)
 
@@ -267,8 +284,8 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
             self.settings['cam2']['pos'] = key
             self.set_cam2(self.cameras_pos[key])
 
-    def set_cam2(self, cam):
-        self.camTwo = QtMultimedia.QCamera(cam)
+    def set_cam2(self, cam : QtMultimedia.QCameraInfo):
+        self.camTwo : QtMultimedia.QCamera = QtMultimedia.QCamera(cam)
         if self.settings['cam1']['pos'] is not None and self.settings['cam2']['pos'] == self.settings['cam1']['pos']:
             self.settings['cam1']['pos'] = None
             if self.camOne is not None:
@@ -301,19 +318,19 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
             QtWidgets.QMessageBox.about(
                 self, "Error", "Camera has not been set.")
 
-    def set_res_cam2(self, x, y):
+    def set_res_cam2(self, x : int, y : int):
         self.viewfinderTwoSettings = QtMultimedia.QCameraViewfinderSettings()
         self.viewfinderTwoSettings.setResolution(x, y)
         self.camTwo.setViewfinderSettings(self.viewfinderTwoSettings)
 
-    def qsize_to_string(self, qsize):
+    def qsize_to_string(self, qsize : QtCore.QSize):
         string = str(qsize)
         string = string.strip("PyQt5.QtCore.QSize()")
         string = string.replace(", ", "x")
         return string
 
     def populate_table(self):
-        self.table_list = list()
+        self.table_list : list = list()
         for animal in self.experiment.animal_list:
             this_animal = self.experiment.animal_list[animal]
             self.table_list.append([animal, this_animal.total_licks])
@@ -359,7 +376,7 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
         self.licksView.plotItem.clear()
         self.licksView.plotItem.plot(t, licks_data)
 
-    def closeEvent(self, event):
+    def closeEvent(self, event : QtCore.QEvent):
         if self.camOne is not None:
             self.camOne.stop()
             self.camOne.unload()
@@ -373,7 +390,9 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
 
 
 class MailWindow(QtWidgets.QMainWindow, mailWindow.Ui_MainWindow):
-    def __init__(self, parent=None):
+    """Window for configuring mailing list."""
+
+    def __init__(self, parent : MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.parent = parent
@@ -418,7 +437,7 @@ class MailWindow(QtWidgets.QMainWindow, mailWindow.Ui_MainWindow):
                     QtWidgets.QMessageBox.about(
                         self.parent, "Error", "Invalid Address")
 
-    def populate_mailing_list(self, mlist):
+    def populate_mailing_list(self, mlist : list[str]):
         self.mailingListWidget.clear()
         self.mailingListWidget.addItems(mlist)
         self.mailingListWidget.sortItems()
@@ -431,27 +450,28 @@ class MailWindow(QtWidgets.QMainWindow, mailWindow.Ui_MainWindow):
         self.populate_mailing_list(self.mlist)
         self.save(self.mlist)
 
-    def add_address(self, new_addrs):
+    def add_address(self, new_addrs : list[str]):
         for addr in new_addrs:
             if not addr in self.mlist:
                 self.mlist.append(addr)
         self.populate_mailing_list(self.mlist)
         self.save(self.mlist)
 
-    def save(self, mlist):
+    def save(self, mlist : list[str]):
         with open(self.fn, 'w') as f:
             for addr in mlist:
                 f.write(addr+'\n')
 
 
 class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
+    """Window for configurin animal list."""
     changed = pyqtSignal()
     saved = pyqtSignal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent : MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
-        self.parent = parent
+        self.parent : MainApp = parent
 
         self.status = True
         self.populate_animal_table(parent.experiment.animal_list)
@@ -474,33 +494,44 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
         self.changed.emit()
 
     def remove_row(self):
-        row = self.animalTable.selectedIndexes()[0].row()
-        animal = self.animalTable.item(row, 0).text()
-        if self.animalTable.rowCount() > 1:
-            if animal:
-                answer = QtWidgets.QMessageBox.question(self, "Warning", "All data of <b> {animal} </b> will be deleted.<br> Are you sure?".format(
-                    animal=animal), QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
-                if answer == QtWidgets.QMessageBox.Yes:
-                    del self.parent.experiment.animal_list[animal]
-                    self.animalTable.removeRow(row)
+        selectedRows = self.animalTable.selectedIndexes()
+        rows = [row.row() for row in selectedRows]
+        if rows == []:
+            rows = [self.animalTable.rowCount()-1]
+        else:
+            rows.sort()
+            rows.reverse()
+        for row in rows:
+            animal = self.animalTable.item(row, 0).text(
+            ) if self.animalTable.item(row, 0) is not None else ""
+            
+            if animal != 'default': # do nothing if it is default mouse
+                if animal:
+                    answer = QtWidgets.QMessageBox.question(
+                        self,
+                        "Warning",
+                        ("All data of <strong> {animal} </strong> will be deleted.<br/>" +
+                        "Are you sure?<br/><br/><em>Hint: You can also delete specific animal from<br/>" +
+                        "the list by selecting the animal<br/>before clicking the minus button.</em>").format(
+                            animal=animal), QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
+                    if answer == QtWidgets.QMessageBox.Yes:
+                        if animal in self.parent.experiment.animal_list.keys():
+                            del self.parent.experiment.animal_list[animal]
+                        self.animalTable.removeRow(row)
                 else:
-                    pass
-            else:
-                self.animalTable.removeRow(row)
+                    self.animalTable.removeRow(row)
+        
         self.changed.emit()
 
     def populate_animal_table(self, animal_list):
         self.animalTable.clear()
 
         self.animalTable.setRowCount(len(animal_list.keys()))
-#        self.animalTable.setColumnCount(2)
         self.animalTable.setColumnCount(1)
 
         for a, animal in enumerate(sorted(list(animal_list.keys()))):
             id = QtWidgets.QTableWidgetItem(animal_list[animal].id)
-#            water = QtWidgets.QTableWidgetItem(str(animal_list[animal].water))
             self.animalTable.setItem(a, 0, id)
-#            self.animalTable.setItem(a, 1, water)
 
     def current_animal(self):
         try:
@@ -522,10 +553,7 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
         try:
             for row in range(self.animalTable.rowCount()):
                 id = self.animalTable.item(row, 0).text()
-#                    water = float(self.animalTable.item(row, 1).text())
-#                    self.parent.experiment.add_mouse(id, water)
                 self.parent.experiment.add_mouse(id)
-            #QtWidgets.QMessageBox.about(self.parent,"Update","Successfully updated!")
             self.saved.emit()
         except:
             QtWidgets.QMessageBox.about(
@@ -535,7 +563,6 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
         animal = self.current_animal()
         if animal is not None:
             self.scheduleTable.setRowCount(len(animal.schedule_list))
-#            self.scheduleTable.setColumnCount(4)
             self.scheduleTable.setColumnCount(3)
 
             for s, schedule in enumerate(animal.schedule_list):
@@ -545,21 +572,10 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
                 perc_complete = round(
                     ((schedule.current_trial) / (len(schedule.schedule_trials) - 1)) * 100, 2)
                 progress = QtWidgets.QTableWidgetItem(str(perc_complete))
-#                correct_wait = 0
-#                for trial in schedule.trial_list:
-#                    if trial.wait_response == False:
-#                        correct_wait = correct_wait + 1
-#                if len(schedule.trial_list) == 0:
-#                    perc_correct_wait = 0
-#                else:
-#                    perc_correct_wait = round(correct_wait/len(schedule.trial_list)*100,2)
-
-#                wait = QtWidgets.QTableWidgetItem(str(perc_correct_wait))
 
                 self.scheduleTable.setItem(s, 0, sched_name)
                 self.scheduleTable.setItem(s, 1, n_trials)
                 self.scheduleTable.setItem(s, 2, progress)
-#                self.scheduleTable.setItem(s, 3, wait)
 
     def schedule_selected(self):
         try:
@@ -606,11 +622,12 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
             self.setWindowTitle('Animal Management')
 
     def change_false(self):
+        animal = self.current_animal()
         if self.status == True:
             self.status = False
             self.setWindowTitle('Animal Management*')
 
-    def closeEvent(self, event):
+    def closeEvent(self, event : QtCore.QEvent):
         if self.status == False:
             answer = QtWidgets.QMessageBox.question(self, "Warning", "<b>Animal Management</b> has been modified.<br>Do you want to save changes?",
                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
@@ -630,10 +647,11 @@ class AnimalWindow(QtWidgets.QMainWindow, animalWindow.Ui_MainWindow):
 
 
 class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
+    """Window for configurin hardware preferences."""
     new_pref = pyqtSignal(dict)
     saved = pyqtSignal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent : MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.parent = parent
@@ -657,9 +675,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.lickChannelSpin.valueChanged.connect(self.change)
         self.timeoutEdit.textEdited.connect(self.change)
         self.beamChannelSpin.valueChanged.connect(self.change)
-        # DONE Das hier ist obsolete.
         self.lickChannel2Spin.valueChanged.connect(self.change)
-        # DONE Das hier ist obsolete.
         self.analogInput3Spin.valueChanged.connect(self.change)
         self.usbBox.stateChanged.connect(self.change)
         self.fvDelayEdit.textEdited.connect(self.change)
@@ -677,13 +693,10 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.fvOutputEdit.setText(prefs['finalvalve_output'])
         self.rfidPortEdit.setText(prefs['rfid_port'])
         self.samplingRateEdit.setText(str(prefs['samp_rate']))
-        # DONE das Lick Channel muss erweitert sein. ACHTUNG! Analogeingang bei richtigen Monitoring verbinden.
         self.lickChannelSpin.setValue(prefs['lick_channel_l'])
         self.timeoutEdit.setText(str(prefs['timeout']))
         self.beamChannelSpin.setValue(prefs['beam_channel'])
-        # DONE Das hier ist obsolete. Stattdessen Lick channel 2
         self.lickChannel2Spin.setValue(prefs['lick_channel_r'])
-        # DONE Das hier ist obsolete. Stattdessen Lick channel 2
         self.analogInput3Spin.setValue(prefs['analog_input_3'])
         self.usbBox.setChecked(prefs['static'])
         self.fvDelayEdit.setText(str(prefs['fv_delay']))
@@ -703,15 +716,6 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
 
     def save_preferences(self):
 
-        #        if float(self.thoraxMonitorDelayEdit.text()) == 0.0:
-        #            number = self.zero_edit()
-        #            self.thoraxMonitorDelayEdit.setText("{}".format(number))
-        #        if float(self.fvDelayEdit.text()) == 0.0:
-        #            number = self.zero_edit()
-        #            self.fvDelayEdit.setText("{}".format(number))
-        #        if float(self.lickMonitorDelayEdit.text()) == 0.0:
-        #            number = self.zero_edit()
-        #            self.lickMonitorDelayEdit.setText("{}".format(number))
         try:
             prefs = {'analog_input': self.analogInputEdit.text(),
                      'analog_channels': int(self.analogChannelsSpin.value()),
@@ -745,7 +749,6 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                 pickle.dump(prefs, fn)
                 fn.flush()
             self.saved.emit()
-            #QtWidgets.QMessageBox.about(self.parent,"Save","Successfuly saved!")
 
     def saved_status(self):
         if self.status == False:
@@ -757,7 +760,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
             self.status = False
             self.setWindowTitle('Hardware Preferences*')
 
-    def closeEvent(self, event):
+    def closeEvent(self, event : QtCore.QEvent):
         if self.status == False:
             answer = QtWidgets.QMessageBox.question(self, "Warning", "<b>Hardware Preferences</b> has been modified.\nDo you want to save changes?",
                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
@@ -776,6 +779,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
 
 
 class PreferencesWindow(QtWidgets.QMainWindow, prefsWindow.Ui_MainWindow):
+    """Older version of hardware preference window."""
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
@@ -807,7 +811,8 @@ class PreferencesWindow(QtWidgets.QMainWindow, prefsWindow.Ui_MainWindow):
 
 
 class AnalysisWindow(QtWidgets.QMainWindow, analysisWindow.Ui_MainWindow):
-    def __init__(self, experiment, parent=None):
+    """Window to see some analysis of trial results."""
+    def __init__(self, experiment : Experiment.Experiment, parent : MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.parent = parent

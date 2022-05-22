@@ -23,7 +23,7 @@ import sys
 import os
 import webbrowser
 import inspect
-from types import TracebackType
+from types import NoneType, TracebackType
 import numpy as np
 import pickle
 import traceback
@@ -43,25 +43,37 @@ class MainApp(QtWidgets.QMainWindow, mainDesign.Ui_MainWindow):
 
     Attributes
     ----------
-    parent : QtWidgets
-        Parent of the main window.
+    parent : NoneType
+        Parent of the main window. MainApp does not have a parent widget.
 
-    current_schedule_type : widget from ScheduleWidgets
+    current_schedule_type : QWidget
+        Current schedule type chosen in drop down menu.
+    
+    schedule : dict
+        Schedule created.
+    
+    schedule_headers : list
+        Header of the schedule.
+    
+    generated : bool, default=False
+        Status if schedule is generated.
 
+    schedule_types : dict
+        Types of schedules available.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent : NoneType = None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parent = parent
 
-        self.current_schedule_type = None
-        self.schedule = dict()
-        self.schedule_headers = []
-        self.generated = False
+        self.current_schedule_type : str = None
+        self.schedule : dict = dict()
+        self.schedule_headers : list = []
+        self.generated : bool= False
 
         # add the valence map
-        self.valence_map = Widgets.ValveMapWidget(self.valveMapContents)
+        self.valence_map : Widgets.ValveMapWidget = Widgets.ValveMapWidget(self.valveMapContents)
         self.valveMapContents.layout().addWidget(self.valence_map)
 
         # populate schedule types
