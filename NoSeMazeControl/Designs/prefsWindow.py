@@ -8,37 +8,42 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow: QtWidgets.QMainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget: QtWidgets.QWidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout: QtWidgets.QGridLayout = QtWidgets.QGridLayout(
+            self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.savePathEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.savePathEdit: QtWidgets.QLineEdit = QtWidgets.QLineEdit(
+            self.centralwidget)
         self.savePathEdit.setObjectName("savePathEdit")
         self.gridLayout.addWidget(self.savePathEdit, 0, 2, 1, 1)
-        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label: QtWidgets.QLabel = QtWidgets.QLabel(self.centralwidget)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
-        self.savePathButton = QtWidgets.QPushButton(self.centralwidget)
+        self.savePathButton: QtWidgets.QPushButton = QtWidgets.QPushButton(
+            self.centralwidget)
         self.savePathButton.setObjectName("savePathButton")
         self.gridLayout.addWidget(self.savePathButton, 0, 3, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2: QtWidgets.QLabel = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 1, 1, 1, 1)
-        self.experimentNameEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.experimentNameEdit: QtWidgets.QLineEdit = QtWidgets.QLineEdit(
+            self.centralwidget)
         self.experimentNameEdit.setObjectName("experimentNameEdit")
         self.gridLayout.addWidget(self.experimentNameEdit, 1, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar: QtWidgets.QMenuBar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
-        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile: QtWidgets.QMenu = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar: QtWidgets.QStatusBar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionSave_Preferences = QtWidgets.QAction(MainWindow)
@@ -56,5 +61,5 @@ class Ui_MainWindow(object):
         self.savePathButton.setText(_translate("MainWindow", "..."))
         self.label_2.setText(_translate("MainWindow", "Experiment Name"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.actionSave_Preferences.setText(_translate("MainWindow", "Save Preferences"))
-
+        self.actionSave_Preferences.setText(
+            _translate("MainWindow", "Save Preferences"))
