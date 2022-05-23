@@ -35,7 +35,7 @@ from Analysis import Analysis
 
 # importing for type hinting
 import typing
-from NoSeMazeControl.Models.Experiment import Experiment
+from ..Models.Experiment import Experiment
 from main import MainApp
 from Models import Experiment
 from .AppWindows import ControlWindow # need to import first because ControlWindow was defined after type hinting used
