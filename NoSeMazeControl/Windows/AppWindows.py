@@ -35,16 +35,17 @@ from Analysis import Analysis
 
 # importing for type hinting
 import typing
-from ..Models.Experiment import Experiment
 from main import MainApp
 from Models import Experiment
-from .AppWindows import ControlWindow # need to import first because ControlWindow was defined after type hinting used
 
+# TODO: Type hinting ControlWindow as parent of AdjustmentWidget.
 # TODO: Also describe attributes of all classes instead of only type hinting?
+
+
 class AdjustmentWidget(QtWidgets.QDockWidget, adjustmentWidget.Ui_DockWidget):
     """Widget for adjusting camera control. """
 
-    def __init__(self, cam: str, settings: dict[str, dict[str, typing.Any]], parent: ControlWindow = None):
+    def __init__(self, cam: str, settings: dict[str, dict[str, typing.Any]], parent = None):
         QtWidgets.QDockWidget.__init__(self, parent)
         self.setupUi(self)
         self.setWindowTitle('Adjustment ' + cam)

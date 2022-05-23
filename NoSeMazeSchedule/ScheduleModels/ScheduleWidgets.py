@@ -32,17 +32,17 @@ from Generation import Gen
 from Exceptions import RewardMapError
 
 # import for type hinting
-from ..scheduleMain import MainApp
+# TODO: type hinting parentUI as MainApp. Circular import issue occured.
 from types import NoneType
 
 # TODO: Describe attributes of all class in docstring?
 
 class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
     """Widget for configuring the schedule and trials parameters."""
-    def __init__(self, parentUi : MainApp = None):
+    def __init__(self, parentUi = None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
-        self.parentUi : MainApp = parentUi
+        self.parentUi = parentUi
         self.valence_map : NoneType = None # not used
         self.nValveSpin.valueChanged.connect(self.change_reward_map)
 

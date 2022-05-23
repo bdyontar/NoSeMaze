@@ -47,8 +47,111 @@ import HelperFunctions.Email as email
 
 # import for type hinting
 from Models.Experiment import Mouse
-from .ExperimentControl import ExperimentController
-from ..main import MainApp
+
+# TODO: Type hinting MainApp as parent of ExperimentController.
+
+class ExperimentController:
+    """
+    Thread controller. Controls if thread should be started or stopped.
+
+    Attributes
+    ----------
+    parent : MainApp
+        Parent of ExperimentController.
+    
+    thread : QtCore.QThread
+        Thread of the experiment controller where worker should work.
+    
+    trial_job : ExperimentWorker
+        Instance of ExperimentWorker that will be moved to thread.
+    
+    should_run : bool
+        True if experiment should run; else false.
+    
+    start_timestamp : datetime
+        Timestamp when experiment is started.
+    
+    count : float
+        Time from epoch in seconds as the experiment is started. Obsolete.
+    """
+    def __init__(self, parent):
+        """
+        Parameters
+        ----------
+        parent : obj
+            Parent of this class. It should be MainApp
+        """
+
+        self.parent = parent
+
+        # initialise thread
+        self.thread : QtCore.QThread = QtCore.QThread()
+
+        # initialise job then move it to thread
+        self.trial_job : ExperimentWorker = ExperimentWorker(self)
+        self.trial_job.moveToThread(self.thread)
+
+        # connecting signals and slots
+        self.thread.finished.connect(self.thread.quit)
+        self.thread.started.connect(self.trial_job.trial)
+
+        # attributes
+        self.should_run : bool = False
+
+    def update_pref(self, new_pref: dict[str, object]):
+        """Slot for updating hardware preferences while the experiment is 
+        running
+        
+        Parameters
+        ----------
+        new_pref : dict
+            The new hardware preferences should be used.
+        """
+
+        self.trial_job.hardware_prefs = new_pref
+
+    def start(self):
+        """Slot for starting the experiment."""
+
+        # checking if any animal does not have a schedule
+        check = []
+
+        for animal in self.parent.experiment.animal_list:
+            if len(self.parent.experiment.animal_list[animal].schedule_list) > 0:
+                check.append(1)
+            else:
+                check.append(0)
+
+        check = np.nonzero(np.array(check))[0]
+
+        if len(self.parent.experiment.animal_list) > len(check):
+            QtWidgets.QMessageBox.about(self.parent,
+                                        "Error",
+                                        "An animal does not have a schedule! " +
+                                        "Please update the Animal List")
+        elif self.parent.experiment.save_path is not None:
+            # Only start experiment if experiment is not started.
+            if not self.should_run:
+                self.should_run = True
+                self.start_timestamp : datetime.datetime = datetime.datetime.now()
+                self.count : float = time()
+                self.thread.start()
+                print('thread started')
+        else:
+            QtWidgets.QMessageBox.about(self.parent,
+                                        "Error",
+                                        "Experiment not saved! " +
+                                        "Please save before starting")
+
+    def stop(self):
+        """Slot for stopping experiment"""
+
+        # Only stop if experiment was started.
+        if self.should_run:
+            self.should_run = False
+            self.thread.terminate()
+            self.thread.wait()
+            print('thread ended')
 
 
 class ExperimentWorker(QtCore.QObject):
@@ -100,7 +203,7 @@ class ExperimentWorker(QtCore.QObject):
         super(self.__class__, self).__init__(None)
 
         # set parent of worker
-        self.parent = parent
+        self.parent : ExperimentController = parent
 
         # set lock
         self.lock_llog : QReadWriteLock = QReadWriteLock()
@@ -812,107 +915,3 @@ class ExperimentWorker(QtCore.QObject):
                                           current_trial[0:4])
 
         return trial_daq
-
-
-class ExperimentController:
-    """
-    Thread controller. Controls if thread should be started or stopped.
-
-    Attributes
-    ----------
-    parent : MainApp
-        Parent of ExperimentController.
-    
-    thread : QtCore.QThread
-        Thread of the experiment controller where worker should work.
-    
-    trial_job : ExperimentWorker
-        Instance of ExperimentWorker that will be moved to thread.
-    
-    should_run : bool
-        True if experiment should run; else false.
-    
-    start_timestamp : datetime
-        Timestamp when experiment is started.
-    
-    count : float
-        Time from epoch in seconds as the experiment is started. Obsolete.
-    """
-    def __init__(self, parent: MainApp):
-        """
-        Parameters
-        ----------
-        parent : obj
-            Parent of this class. It should be MainApp
-        """
-
-        self.parent : MainApp = parent
-
-        # initialise thread
-        self.thread : QtCore.QThread = QtCore.QThread()
-
-        # initialise job then move it to thread
-        self.trial_job : ExperimentWorker = ExperimentWorker(self)
-        self.trial_job.moveToThread(self.thread)
-
-        # connecting signals and slots
-        self.thread.finished.connect(self.thread.quit)
-        self.thread.started.connect(self.trial_job.trial)
-
-        # attributes
-        self.should_run : bool = False
-
-    def update_pref(self, new_pref: dict[str, object]):
-        """Slot for updating hardware preferences while the experiment is 
-        running
-        
-        Parameters
-        ----------
-        new_pref : dict
-            The new hardware preferences should be used.
-        """
-
-        self.trial_job.hardware_prefs = new_pref
-
-    def start(self):
-        """Slot for starting the experiment."""
-
-        # checking if any animal does not have a schedule
-        check = []
-
-        for animal in self.parent.experiment.animal_list:
-            if len(self.parent.experiment.animal_list[animal].schedule_list) > 0:
-                check.append(1)
-            else:
-                check.append(0)
-
-        check = np.nonzero(np.array(check))[0]
-
-        if len(self.parent.experiment.animal_list) > len(check):
-            QtWidgets.QMessageBox.about(self.parent,
-                                        "Error",
-                                        "An animal does not have a schedule! " +
-                                        "Please update the Animal List")
-        elif self.parent.experiment.save_path is not None:
-            # Only start experiment if experiment is not started.
-            if not self.should_run:
-                self.should_run = True
-                self.start_timestamp : datetime.datetime = datetime.datetime.now()
-                self.count : float = time()
-                self.thread.start()
-                print('thread started')
-        else:
-            QtWidgets.QMessageBox.about(self.parent,
-                                        "Error",
-                                        "Experiment not saved! " +
-                                        "Please save before starting")
-
-    def stop(self):
-        """Slot for stopping experiment"""
-
-        # Only stop if experiment was started.
-        if self.should_run:
-            self.should_run = False
-            self.thread.terminate()
-            self.thread.wait()
-            print('thread ended')
