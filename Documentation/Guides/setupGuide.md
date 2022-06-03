@@ -5,10 +5,10 @@ This documentation is intended to help user have an overview of the setup and ho
 ## Automatic Olfactometer System
 
 ![Overview of Automatic Olfactometer](/Documentation/_images/automaticOlfactometerOverview.PNG)
-    *Overview of Automatic Olfactometer*
+*__Fig. 1:__ Overview of Automatic Olfactometer*
 
 ## Tube Test System
 
 ## Environment Sensor Module
 
-## Video Cameras
+## Video Cameras for Analysis with Video Tracking
