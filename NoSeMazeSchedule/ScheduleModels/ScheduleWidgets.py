@@ -1,6 +1,10 @@
 """
 This module contains the implementation of the schedule widgets. If a new trial
-sequence is needed, then a new schedule widget is also needed.
+sequence is needed, then a new schedule widget is also needed. The new schedule
+must be also implemented in DAQ.py and ExperimentControl.py in NoSeMazeControl.
+
+All classes defined here will be shown in the schedule widget combo box in the main
+window.
 
 Methods needed in a class implementation of a schedule widget is:
 generate_schedule() and pulse_parameters().
@@ -29,11 +33,11 @@ import numpy as np
 
 from ScheduleDesigns import NoSeMazeScheduleDesign
 from Generation import Gen
-from Exceptions import RewardMapError
+import Exceptions as e
 
 # import for type hinting
 # TODO: type hinting parentUI as MainApp. Circular import issue occured.
-from types import NoneType
+import types as t
 
 # TODO: Describe attributes of all class in docstring?
 
@@ -43,7 +47,7 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parentUi = parentUi
-        self.valence_map : NoneType = None # not used
+        self.valence_map : t.NoneType = None # not used
         self.nValveSpin.valueChanged.connect(self.change_reward_map)
 
     def flatten_value(self, value : int) -> int:
@@ -113,7 +117,7 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
             if odour_choice.shape[0] == 0:
                 QtWidgets.QMessageBox.about(
                     self.parentUi, "Error", "The odour selected in valve valence map does not exist in reward map.")
-                raise RewardMapError
+                raise e.RewardMapError
             else:
                 # generate random sequence
                 odour_sequence = Gen.odor_sequence(odour_choice, n_trials)
