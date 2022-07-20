@@ -323,11 +323,244 @@ The parameters in this widget are:
     The _**amount of reward**_ defines the duration that the water vent will opened. Input is a floating number in seconds.
     The _**delay**_ defines the duration of a delay between an odour presentation to a lick window. Setting this to 0 means that the odour duration is the lick window. Else the lick window is equal to `[odour duration] - [delay]`. For most purposes, it can be left as 0.
 
-#### Reward Map Examples
+#### Schedule Examples
 
-##### 1. Creating Schedule for one port
+Some examples of the parameters for some schedules are provided below.
 
-##### 2. Creating Schedule for two ports
+##### [Example 1] GNG-trial with 2 odours and 1 reward output with odour index 1 is rewarded
+
+- _**Outcome:**_
+Trials for two odours with odour index 1 is certainly rewarded and odour index 2 is certainly not rewarded. Reward output is left port.
+</br>
+
+- _**Lick Sensor:**_
+Lick sensor should be connected to the lick nozzle that is controlled by the water vent assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+</br>
+
+- _**Number of odours parameters**_
+Set the number of odours to 2.
+</br>
+
+- _**Reward map parameters**_
+
+    _**Table 1**: Parameters for which reward from left port is given to animal if odour index 1 is presented._
+
+    |                                 |   1   |   2   |
+    | ------------------------------- | :---: | :---: |
+    | Reward Probability Left Port    |  1.0  |  0.0  |
+    | Reward Probability Right Port   |  0.0  |  0.0  |
+    | Amount of Reward Left Port [s]  |  0.2  |  0.2  |
+    | Amount of Reward Right Port [s] |  0.0  |  0.0  |
+    | Delay                           |  0.0  |  0.0  |
+
+>:memo: **Tip:**
+Notice that although the amount of reward left port of odour index 2 is set to 0.2, no reward will be given because the reward probability on left port for odour is set to 0.
+
+</br>
+
+- _**Trial cases:**_
+
+    ```mermaid
+    graph LR
+    A[Odour 1 is presented]
+    B[Odour 2 is presented]
+    A1[Animal licks]
+    A2[Animal does not lick]
+    A3[Animal licks]
+    A4[Animal does not lick]
+    R1[Reward]
+    R2[No Reward]
+    R3[Timeout]
+    R4[No Reward]
+
+    A --> A1 --> R1
+    A --> A2 --> R2
+    B --> A3 --> R3
+    B --> A4 --> R4
+    ```
+
+    _**Fig. 8:** Trial cases of the schedule in [Example 1]._
+</br>
+
+- _**Pretraining and Odour Training Parameters**_
+  - Checking the pretraining mode will generate a pretraining schedule and the parameters in reward map will not be used.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the vent of odour index 1 then give the reward directly afterward. A trial with odour index 2 will then present the odour assigned to the vent of odour index 2 and not reward will be given.
+</br>
+
+##### [Example 2] GNG trial with 2 odours and 1 reward output with odour index 2 is rewarded
+
+- _**Outcome:**_
+Two odours with odour index 2 is certainly rewarded and odour index 1 is certainly not rewarded. Reward output is left port.
+</br>
+
+- _**Lick Sensor:**_
+Lick sensor should be connected to the lick nozzle that is controlled by the water vent assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+</br>
+
+- _**Number of odours parameters**_
+Set the number of odours to 2.
+</br>
+
+- _**Reward map parameters**_
+
+    _**Table 2**: Parameters for which reward from left port is given to animal if odour index 2 is presented, whereas odour index 1 is not rewarded._
+
+    |                                 |   1   |   2   |
+    | ------------------------------- | :---: | :---: |
+    | Reward Probability Left Port    |  0.0  |  1.0  |
+    | Reward Probability Right Port   |  0.0  |  0.0  |
+    | Amount of Reward Left Port [s]  |  0.2  |  0.2  |
+    | Amount of Reward Right Port [s] |  0.0  |  0.0  |
+    | Delay                           |  0.0  |  0.0  |
+
+>:memo: **Tip:**
+This is basically the same parameter as the parameter from example 1 with the only different in the reward probability.
+
+</br>
+
+- _**Trial cases:**_
+
+    ```mermaid
+    graph LR
+    A[Odour 1 is presented]
+    B[Odour 2 is presented]
+    A1[Animal licks]
+    A2[Animal does not lick]
+    A3[Animal licks]
+    A4[Animal does not lick]
+    R1[Timeout]
+    R2[No Reward]
+    R3[Reward]
+    R4[No Reward]
+
+    A --> A1 --> R1
+    A --> A2 --> R2
+    B --> A3 --> R3
+    B --> A4 --> R4
+    ```
+
+    _**Fig. 9:** Trial cases of the schedule in [Example 1]._
+</br>
+
+- _**Pretraining and Odour Training Parameters**_
+  - Checking the pretraining mode will generate a pretraining schedule and the parameters in reward map will not be used.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the vent of odour index 1 and no reward will be given. A trial with odour index 2 will then present the odour assigned to the vent of odour index 2 and the reward will be given directly afterward.
+</br>
+
+##### [Example 3] GNG trial with 1 odour and 2 reward outputs
+
+In this example, we will set the parameter of two schedules which will be used in a GNG trial with 1 odour and 2 reward outputs.
+
+- _**Outcome:**_
+One odour will be rewarded with different reward according to the animal.
+
+> :memo: **Tip:**
+> To achieve this outcome, two schedules will be used.
+>
+> - Schedule 1 is a schedule with the left port as reward output, which is attached e.g. with water.
+>
+> - Schedule 2 is a schedule with the right port as reward output with the right port attached to e.g. sugar water.
+>
+> Then we can assign the animal that should be rewarded with water with schedule 1 and the animal that should be rewarded with sugar water with schedule 2.
+
+</br>
+
+- _**Lick Sensor:**_
+Lick sensor should be connected to both lick nozzle that is controlled by the water vent assigned as "left port" and "right port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+</br>
+
+    > :exclamation: Make sure that both lick nozzle is connected together to a lick sensor :exclamation:
+
+</br>
+
+- _**Number of odours parameters**_
+Set the number of odours to 1.
+</br>
+
+- _**Reward map parameters**_
+    </br>_**Table 3**: Parameters for which the reward attached to left port should be given (schedule 1)._
+
+    |                                 |   1   |
+    | ------------------------------- | :---: |
+    | Reward Probability Left Port    |  1.0  |
+    | Reward Probability Right Port   |  0.0  |
+    | Amount of Reward Left Port [s]  |  0.4  |
+    | Amount of Reward Right Port [s] |  0.2  |
+    | Delay                           |  0.0  |
+
+    </br>_**Table 4**: Parameters for which the reward attached to right port should be given (schedule 2)._
+
+    |                                 |   1   |
+    | ------------------------------- | :---: |
+    | Reward Probability Left Port    |  0.0  |
+    | Reward Probability Right Port   |  1.0  |
+    | Amount of Reward Left Port [s]  |  0.4  |
+    | Amount of Reward Right Port [s] |  0.2  |
+    | Delay                           |  0.0  |
+
+</br>
+
+- _**Trial cases:**_
+
+    ```mermaid
+    graph LR
+    A[Odour 1 is presented]
+    A1[Animal licks]
+    A2[Animal does not lick]
+    R1[Reward from left nozzle]
+    R2[No Reward]
+
+    A --> A1 --> R1
+    A --> A2 --> R2
+    ```
+
+    _**Fig. 10:** Trial cases of the schedule 1 in [Example 3]._
+
+    ```mermaid
+    graph LR
+    A[Odour 1 is presented]
+    A1[Animal licks]
+    A2[Animal does not lick]
+    R1[Reward from right nozzle]
+    R2[No Reward]
+
+    A --> A1 --> R1
+    A --> A2 --> R2
+    ```
+
+    _**Fig. 11:** Trial cases of the schedule 2 in [Example 3]._
+</br>
+
+- _**Pretraining and Odour Training Parameters**_
+  - Checking the pretraining mode will generate a pretraining schedule and only the reward probability in reward map will be used to determine where reward should be given.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 with left port as reward output will present the odour assigned to the vent of odour index 1 and directly give the reward from left port. A trial with odour index 2 will present the odour assigned to the vent of odour index 2 and the reward will be given directly afterward from right port.
+</br>
+
+##### [Example 4] Risk-reward trial with 1 odour and 2 reward outputs
+
+This example 
+
+- _**Outcome:**_
+One odour will be rewarded with different reward according to which lick nozzle is licked and with a probability defined in reward map.
+</br>
+
+- _**Number of odours parameters**_
+Set the number of odours to 1.
+</br>
+
+- _**Reward map parameters**_
+    </br>_**Table 5**: Parameters for which the reward is given with a probability less than zero._
+
+    |                                 |   1   |
+    | ------------------------------- | :---: |
+    | Reward Probability Left Port    |  0.7  |
+    | Reward Probability Right Port   |  0.5  |
+    | Amount of Reward Left Port [s]  |  0.1  |
+    | Amount of Reward Right Port [s] |  0.8  |
+    | Delay                           |  0.0  |
+
+    > :memo: **Tip:**
+    In the current version, the animal must only licked one nozzle
 
 ### UI Descriptions {#ui-nss}
 
@@ -353,4 +586,4 @@ _**Fig. 9:** Main window of schedule generator UI._
 
 ### Known Issues {#nss}
 
-1. 
+1. Though many inputs are checked before further processing, not all inputs are checked against false input or out-of-range input, which might caused the software to crash.
