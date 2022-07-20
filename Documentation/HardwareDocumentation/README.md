@@ -2,6 +2,8 @@
 
 This reference contains informations regarding the hardware or subsystem used in NoSeMaze setup and is part of NoSeMaze documentation. For instruction or help on building the setup, refer to the [setup guide](../Guides/setupGuide.md).
 
+> :exclamation: An step file of NoSeMaze setup is provided in this folder.
+
 Following are the subsystems with each hardware used in the setup.
 
 ## Automatic Olfactometer System
