@@ -28,21 +28,21 @@ A box designed to deliver water. Water is delivered via a nozzle which is connec
 
 ### 5. RFID Antenna
 
-RFID antenna used are RFID antenna from DorsetID. For more information of which antenna is used, please contact Wolfgang Kelsch (wolfgang.kelsch@zi-mannheim.de).
+RFID antenna used are RFID antenna from DorsetID. For more information of which antenna is used, please contact Wolfgang Kelsch (wokelsch@uni-mainz.de).
 
 ### 6. RFID Decoder
 
-RFID decoder user are RFID decoder from DorsetID. For more information of which decoder is used, please contact Wolfgang Kelsch (wolfgang.kelsch@zi-mannheim.de).
+RFID decoder user are RFID decoder from DorsetID. For more information of which decoder is used, please contact Wolfgang Kelsch (wokelsch@uni-mainz.de).
 
 ## Tube Test System
 
 ### 1. RFID Antennae
 
-Four antenna are used to detect animal activities by two tubes. Antenna used are from DorsetID. For which antenna is used, please contact Wolfgang Kelsch (wolfgang.kelsch@zi-mannheim.de).
+Four antenna are used to detect animal activities by two tubes. Antenna used are from DorsetID. For which antenna is used, please contact Wolfgang Kelsch (wokelsch@uni-mainz.de).
 
 ### 2. RFID Decoders
 
-Four decoder are connected using RS485 protocoll in a chain. The first decoder in the chain is connected via a RS485-to-USB adapter to the computer.
+Four decoder are connected using RS485 protocol in a chain. The first decoder in the chain is connected via a RS485-to-USB adapter to the computer.
 
 ## Environment Sensor Module
 
