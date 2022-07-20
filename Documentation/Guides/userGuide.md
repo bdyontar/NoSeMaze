@@ -538,7 +538,7 @@ Set the number of odours to 1.
 
 ##### [Example 4] Risk-reward trial with 1 odour and 2 reward outputs
 
-This example 
+This example could be used e.g. for testing risk-taking behaviour of the animal.
 
 - _**Outcome:**_
 One odour will be rewarded with different reward according to which lick nozzle is licked and with a probability defined in reward map.
