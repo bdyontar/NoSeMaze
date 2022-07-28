@@ -28,7 +28,19 @@ The trials/trainings executed during the experiment are determined by the schedu
 
 ### Starting The UI {#starting-nsc}
 
-To start the UI, run [_main.py_](../../NoSeMazeControl/main.py) from the [_NoSeMazeControl_](../../NoSeMazeControl/) folder using python version 3.10 or above.
+To start the UI, run [_main.py_](../../NoSeMazeControl/main.py) **from** the [_NoSeMazeControl_](../../NoSeMazeControl/) folder using python version 3.10 or above.
+
+There are some possible ways to start the UI:
+
+1. Starting the UI using python console
+    1. Start a python console.
+    2. Change the folder to NoSeMazeControl.
+    3. Run main.py.
+2. Starting the UI using python IDE
+    1. Start a python IDE (e.g. VSCode, Spyder etc.).
+    2. Open the NoSeMazeControl folder from the IDE as active directory/folder.
+    3. Open main.py file.
+    4. Run main.py file.
 
 > :exclamation: **Important** :  
 > The UI is dependent on niDAQmx as it communicates with the NI Board using niDAQmx library. Make sure to install it before starting the UI.
@@ -43,7 +55,7 @@ To start an experiment, there are several things that must be done first. If the
 
 2. **Populating animal List**
     The animal list must be populated with the RFID tag of the animals before starting the experiment. Populating animal list is done in the animal window.
-
+    </br>
     > :exclamation: **Important** : There will be a _'default'_ animal available in the animal list. The _'default'_ animal will be used as a fallback dummy animal, if the rfid tag of an animal can not be read successfully.
     >
     > Assign a schedule also for the _'default'_ animal e.g. a simple water reward to ensure that the animal still get water as the lick port is designed as the only water source in the experiment setup. For more details about the setup, see the [setup guide](setupGuide.md).
@@ -53,6 +65,7 @@ To start an experiment, there are several things that must be done first. If the
     1. Click _animal list_ in _Animals_ menu in the menu bar to open the animal window.
     2. There will be a _'default'_ animal available in the animal list (Number 1 on [Fig. 3](#animals-window-nsc-animals-window)). To add an animal, click the _add_ button (plus button in number 2 on [Fig. 3](#animals-window-nsc-animals-window)). A new row will be added in the table.
     3. Double click the cell of the new row and write the RFID tag of the animal. After that click outside of the cell to exit cell editing.
+    </br>
        > :memo: **Hint** : the written RFID will not yet be registered in the table before the cursor exit cell editing.
     4. Update the animal table by clicking _update list_ &rarr; _confirm_. Only saved animal RFID in the table can be assigned schedules.
     </br>
@@ -110,25 +123,49 @@ _**Fig. 1:** Main Window of NoSeMazeControl UI._
 
 ##### File {#mw}
 
+Menu for saving and loading experiments.
+
 ##### Hardware
+
+Menu for opening hardware preference window.
 
 ##### Animals
 
+Menu for opeing animal list window.
+
 ##### Analysis
+
+Menu for opening analysis window.
 
 ##### Notification
 
+Menu for editing mailing list and message folder.
+
 ##### Video
+
+Menu for opening video control window.
 
 ##### Help {#nsc}
 
+Menu for opening user guide in a browser and for opening about window.
+
 ##### Control Panel (1)
+
+Control panel for the exeperimentator to start or stop the experiment.
 
 ##### Experiment Info (2)
 
+Information about the experiment which are the name of the experiment file, the path where the file is saved and the creation time of the file.
+
+> :memo: **Hint:** The save path shown in the experiment info indicates also the path where intrisic data such as licks log should be saved. In case that the experiment file should be moved to another path or an experiment is using an old experiment file from another save path, the experiment should be saved first using "save experiment" action from "file" menu. It is recommended to save an experiment first before starting the experiment.
+
 ##### Results Table (3)
 
+The table shows the results of the trials of every animals in animal list.
+
 ##### Odor Data and Licks Data/Analog Inputs (4)
+
+The plots shows analog data of lick sensors and signals that is used to control the odor vents. This plot can be used to quickly view when the nozzle are licked compared to the odor presentation.
 
 #### Hardware Preference Window {#nsc-hardware-preference-window}
 
@@ -137,11 +174,70 @@ _**Fig. 2:** Hardware Preference Window of NoSeMazeControl UI._
 
 ##### File {#hpw}
 
+Menu for saving the hardware preferences.
+
 ##### Hardware Preferences Parameters [1]
+
+The parameters used in the experiment.
+
+1. Analog input device
+    : NI device used for analog input. NI use a path-like description to describe the devices and the channels. Fig. 2 shows that the device name is "Dev1" and channels 0 to 3 from "ai" or analog input is used.
+
+2. Odor output device
+    : NI device used for controlling odor valves. Fig. 2 shows that the device name is "Dev1" and channels 0 to 7 from digital output in "port0" is used.
+
+3. Final valve output device
+    : NI device used for controlling final valve. Fig. 2 shows that channel 0 from digital output in "port2" from "Dev1" is used.
+
+4. Reward output device 1
+    : NI device used for controlling water valve 1. Fig. 2 shows that channel 1 from digital output in "port2" from "Dev1" is used.
+
+5. Reward output device 1
+    : NI device used for controlling water valve 1. Fig. 2 shows that channel 2 from digital output in "port2" from "Dev1" is used.
+
+6. Synchronisation Clock
+    : Source clock for digital outputs. Not used in static implementation in NI USB 6216 BNC.
+
+7. Sampling rate
+    : Input sampling rate in samples/seconds.
+
+8. RFID port
+    : Com port used for RFID decoder.
+
+9. Final valve delay
+    : Delay in second before final valve is switched. Should be set as 0.
+
+10. Thorax monitor delay
+    : Obsolete.
+
+11. Lick monitor delay
+    : Delay in second after odor presentation in which the analog input should be still recorded to check licks after odor presentation.
+
+12. Lick rate limit
+    : Threshold in number of licks to consider if a trial is responded or not. Fig. 2 shows that the threshold is set to 3 licks.
+
+13. Beam channel
+    : Channel number in analog input used as beam sensor input.
+
+14. Lick channel left
+    : Channel number in analog input used as lick sensor input considered from the left nozzle.
+
+15. Lick channel right
+    : Channel number in analog input used as lick sensor input consideed from the right nozzle.
+
+16. Analog input 3
+    : Currently not in used.
+
+17. Timeout
+    : Delay in seconds after a trial before a new trial begins if the trial beforehand was resulted in a miss (animal licked to not rewarded odor).
 
 ##### Number of Channels [2]
 
+Number of channels used. This parameter will be used to prepare the data container.
+
 ##### NI USB 6216 Check Box [3]
+
+Checkbox parameter which indicate that if NI USB 6216 BNC is used or not. In the current version, only NI USB 6216 is supported. The checkbox should be checked.
 
 #### Animals Window {#nsc-animals-window}
 
@@ -150,13 +246,23 @@ _**Fig. 3:** Animals Window of NoSeMazeControl UI._
 
 ##### Update List
 
+Menu to save the updated list. The list that has been made in animal list should alway be saved first before populating the animal list with schedule.
+
 ##### Animal List [1] {#aniw-animal-list}
+
+The animal list in the experiment. 'default' animal must alway be available and populated with a schedule which the animal should follow to in case that the RFID from the animal could not be read properly.
 
 ##### Add and Remove Button [2]
 
+Add button and remove button to add a row in the animal list or to remove selected rows in the animal list.
+
 ##### Schedule Table [3]
 
+The table which shows the schedule assigned to an animal. The assigned schedules will be shown in the table if the animal in the animal list is selected.
+
 ##### Trial Parameter Table [4]
+
+The table which shows the trials planned in the selected schedule. If a schedule in schedule table is selected, this table shows the trials planned in the schedule.
 
 #### Analysis Window {#nsc-analysis-window}
 
@@ -165,9 +271,15 @@ _**Fig. 4:** Analysis Window of NoSeMazeControl UI._
 
 ##### Animal List [1] {#anaw-animal-list}
 
+The animal list as inputed in animal list window.
+
 ##### Bin Size [2]
 
+Bin size used to smooth the curve.
+
 ##### Performance Curve [3]
+
+Performance curve of the animal. Two curves are shown, an individual performance curve and the group mean perfomance curve.
 
 #### Video Control Window {#nsc-video-control-window}
 
@@ -176,13 +288,32 @@ _**Fig. 5:** Hardware Preference Window of NoSeMazeControl UI._
 
 ##### Setting
 
+Menu to set up to two usb cameras used for video control. Coupled with remote desktop, an experimentator can controlled the experiment also via the video feed from this window.
+
+1. Set cameras
+    : Choose usb cameras to be used for camera 1 and camera 2.
+
+2. Set resolution
+    : Choose resolution to be used for camera 1 and camera 2.
+
+3. Set adjustment
+    : Set brightness adjustment to be used for camera 1 and camera 2.
+
 ##### Animal List [1] {#vcw-animal-list}
+
+In this window, a group mean performance curve can also be viewed. Animal list show the list of animals as inputted in the animal list window.
 
 ##### Performance Curve [2]
 
+Group mean performance curve of the animals.
+
 ##### Camera 1 Feedback [3]
 
+Video feedback from camera 1.
+
 ##### Camera 2 Feedback [4]
+
+Video feedback from camera 2.
 
 ### Experiment Process
 
@@ -259,6 +390,18 @@ The NoSeMazeSchedule serves as a tool to build schedules which are used in NoSeM
 
 To start the UI, run [scheduleMain.py](../../NoSeMazeSchedule/scheduleMain.py) from the [_NoSeMazeSchedule_](../../NoSeMazeSchedule/) folder using python version 3.10 or above.
 
+There are some possible ways to start the UI:
+
+1. Starting the UI using python console
+    1. Start a python console.
+    2. Change the folder to NoSeMazeSchedule.
+    3. Run scheduleMain.py.
+2. Starting the UI using python IDE
+    1. Start a python IDE (e.g. VSCode, Spyder etc.).
+    2. Open the NoSeMazeSchedule folder from the IDE as active directory/folder.
+    3. Open scheduleMain.py file.
+    4. Run scheduleMain.py file.
+
 ### Creating A Schedule
 
 Steps to create a schedule:
@@ -320,7 +463,7 @@ The parameters in this widget are:
     : A table that maps which odour index is rewarded with which amount.
     The _**columns of the table**_ represent the odour index (column 1 is odour index 1, column 2 is odour index 2, etc.).
     The _**reward probability**_ defines the probability that the odour will be rewarded. Input is a floating number between 0 to 1.
-    The _**amount of reward**_ defines the duration that the water vent will opened. Input is a floating number in seconds.
+    The _**amount of reward**_ defines the duration that the water valve will opened. Input is a floating number in seconds.
     The _**delay**_ defines the duration of a delay between an odour presentation to a lick window. Setting this to 0 means that the odour duration is the lick window. Else the lick window is equal to `[odour duration] - [delay]`. For most purposes, it can be left as 0.
 
 #### Schedule Examples
@@ -334,7 +477,7 @@ Trials for two odours with odour index 1 is certainly rewarded and odour index 2
 </br>
 
 - _**Lick Sensor:**_
-Lick sensor should be connected to the lick nozzle that is controlled by the water vent assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+Lick sensor should be connected to the lick nozzle that is controlled by the water valve assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
 </br>
 
 - _**Number of odours parameters**_
@@ -384,7 +527,7 @@ Notice that although the amount of reward left port of odour index 2 is set to 0
 
 - _**Pretraining and Odour Training Parameters**_
   - Checking the pretraining mode will generate a pretraining schedule and the parameters in reward map will not be used.
-  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the vent of odour index 1 then give the reward directly afterward. A trial with odour index 2 will then present the odour assigned to the vent of odour index 2 and not reward will be given.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the valve of odour index 1 then give the reward directly afterward. A trial with odour index 2 will then present the odour assigned to the valve of odour index 2 and not reward will be given.
 </br>
 
 ##### [Example 2] GNG trial with 2 odours and 1 reward output with odour index 2 is rewarded
@@ -394,7 +537,7 @@ Two odours with odour index 2 is certainly rewarded and odour index 1 is certain
 </br>
 
 - _**Lick Sensor:**_
-Lick sensor should be connected to the lick nozzle that is controlled by the water vent assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+Lick sensor should be connected to the lick nozzle that is controlled by the water valve assigned as "left port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
 </br>
 
 - _**Number of odours parameters**_
@@ -444,7 +587,7 @@ This is basically the same parameter as the parameter from example 1 with the on
 
 - _**Pretraining and Odour Training Parameters**_
   - Checking the pretraining mode will generate a pretraining schedule and the parameters in reward map will not be used.
-  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the vent of odour index 1 and no reward will be given. A trial with odour index 2 will then present the odour assigned to the vent of odour index 2 and the reward will be given directly afterward.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the valve of odour index 1 and no reward will be given. A trial with odour index 2 will then present the odour assigned to the valve of odour index 2 and the reward will be given directly afterward.
 </br>
 
 ##### [Example 3] GNG trial with 1 odour and 2 reward outputs
@@ -466,7 +609,7 @@ One odour will be rewarded with different reward according to the animal.
 </br>
 
 - _**Lick Sensor:**_
-Lick sensor should be connected to both lick nozzle that is controlled by the water vent assigned as "left port" and "right port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
+Lick sensor should be connected to both lick nozzle that is controlled by the water valve assigned as "left port" and "right port" in the hardware preference. See [setup guide](./setupGuide.md) and [hardware preference parameters](#hardware-preferences-parameters-1) for more information.
 </br>
 
     > :exclamation: Make sure that both lick nozzle is connected together to a lick sensor :exclamation:
@@ -533,7 +676,7 @@ Set the number of odours to 1.
 
 - _**Pretraining and Odour Training Parameters**_
   - Checking the pretraining mode will generate a pretraining schedule and only the reward probability in reward map will be used to determine where reward should be given.
-  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 with left port as reward output will present the odour assigned to the vent of odour index 1 and directly give the reward from left port. A trial with odour index 2 will present the odour assigned to the vent of odour index 2 and the reward will be given directly afterward from right port.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 with left port as reward output will present the odour assigned to the valve of odour index 1 and directly give the reward from left port. A trial with odour index 2 will present the odour assigned to the valve of odour index 2 and the reward will be given directly afterward from right port.
 </br>
 
 ##### [Example 4] Risk-reward trial with 1 odour and 2 reward outputs
@@ -572,17 +715,35 @@ _**Fig. 9:** Main window of schedule generator UI._
 
 ##### File {#nss}
 
+Menu for saving the generated schedule.
+
 ##### Help {#nss}
+
+Menu for opening user guide in a browser and for opening about window.
 
 ##### Valve Valence Map [1]
 
+The map of the odor index assigned to which valve index. Valve index is indicated by the column number and the odor index is indicated by the cell value in the table.
+
 ##### Schedule Widget Combo Box [2]
+
+A drop down list of available schedule generator. Schedule generator is the schedule widget classes defined in ScheduleWidgets.py.
 
 ##### Schedule Widget [3]
 
+A widget to define parameters in generating a schedule.
+
+##### Generate Button
+
+The button to generate the schedule.
+
 ##### Trials Table [4]
 
+The generated schedule is shown in the table. The table shows all the trials is planned in the schedule.
+
 ##### Odour Port Data [5]
+
+A graph to indicate how the odor valves will be controlled.
 
 ### Known Issues {#nss}
 
