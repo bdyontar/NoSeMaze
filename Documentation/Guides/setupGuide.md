@@ -5,6 +5,7 @@ This documentation is intended to help user have an overview of the setup and ho
 > :exclamation: A step file for example to view a detailed 3D model of NoSeMaze is provided in [HardwareDocumentaion](../HardwareDocumentation/)
 
 ![Step file preview](/Documentation/_images/NoSeMaze3DIndexed.png)
+
 *__Fig. 1:__ NoSeMaze 3D model from step file*
 
 Figure 1 shows a preview of the 3D model of a NoSeMaze from the step file provided in HardawareDocumentation folder, indexed with where the system could be placed.
@@ -20,6 +21,7 @@ The lower cabinet is used to place the computer system in exception of the monit
 ## Automatic Olfactometer System
 
 ![Overview of Automatic Olfactometer](/Documentation/_images/automaticOlfactometerOverview.PNG)
+
 *__Fig. 2:__ Overview of Automatic Olfactometer*
 
 The automatic olfactometer system consists of:
@@ -41,11 +43,13 @@ The NoSeMazeControl UI receives sensor signals from NI board and sends instructi
 The olfactometer is a group of valves which are controlled using digital outputs from NI Board.
 
 ![Olfactometer Air Flow](/Documentation/_images/olfactometerAirFlow.PNG)
+
 *__Fig. 3:__ Air Flow of Olfactometer*
 
 As shown in figure 3, pairs of normally closed flush valves (V0, V1, V2) are connected through their "flush" air way connection. A pair of normally opened flush valves are also connected at the end through their "flush" air way, but thereafter one of the "flush" air way vent is closed and the other is connected to the final valve. Air flow 1 is 1 L/min and air flow 2 is 0.1 L/min.
 
 ![Olfactometer Wiring](/Documentation/_images/olfactometerWiring.PNG)
+
 *__Fig. 4:__ Wiring of Olfactometer*
 
 Figure 4 shows how the wiring is connected. Each valves needs a driver board which read the TTL signal and drive the valves. The drivers D0 until D7 are driving the valve pairs V0, V1, V2 and V7. These drivers are connected to digital output channel 0, 1, 2, and 7 at port 0 of NI board. The final valve driver D8 is connected to digital output channel 0 at port 2 of NI board.
@@ -53,11 +57,13 @@ Figure 4 shows how the wiring is connected. Each valves needs a driver board whi
 ### Lick Port
 
 ![Lick Port Overview](/Documentation/_images/LickPortSimple.PNG)
+
 *__Fig. 5:__ Overview of Lick Port*
 
-Figure 5 shows a schematic of a lick port. __a__ indicates where the tube from olfactometer goes in. __b__ indicates where the RFID antenna is. __c__ indicates where the light barrier sensor is. __d__ indicates a box where the nozzle for reward system would be placed. The animal would be presented the odor from the olfactometer as the light barrier is triggered and given the odor according to its RFID tag. Then, the animal would be rewarded through the nozzle according to the planned schedule.
+Figure 5 shows a schematic of a lick port. __a__ indicates where the tube from olfactometer goes in. __b__ indicates where the RFID antenna is. __c__ indicates where the light barrier sensor is. __d__ indicates a box where the nozzle for reward system would be placed. The animal would be presented the odor from the olfactometer as the light barrier is triggered and given the odor according to its RFID tag. Then, the animal would be rewarded through the nozzle according to the planned schedule. The light barrier sensor is connected to analog input 0 of the NI board.
 
 ![Lick Port Water Container Wiring](/Documentation/_images/LickPortAndWaterWiringAndFlow.PNG)
+
 *__Fig. 6:__ Wiring of Lick Sensors and Water Valves*
 
 In figure 6 is shown the wiring of the lick sensors. The lick sensor is a darlington sensor. The plus electrode is connected to the nozzle and the negative electrode is connected to the ground plate where the animal would be sitting on while doing the trial. Both the ground plate and the nozzle must be an inductor. The sensors then sends a signal back to analog input of the NI board via BNC cable.
@@ -70,6 +76,7 @@ the flow. If a trial should be rewarded, WV1 and WV2 open for a duration accordi
 ## Tube Test System
 
 ![Tube Test System](/Documentation/_images/tubeTestWiringSimple.PNG)
+
 *__Fig. 7:__ Overview of Tube Test System*
 
 The tube test consists of:
