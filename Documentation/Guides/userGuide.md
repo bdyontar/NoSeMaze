@@ -466,7 +466,7 @@ The parameters in this widget are:
     : A table that maps which odour index is rewarded with which amount.
     The _**columns of the table**_ represent the odour index (column 1 is odour index 1, column 2 is odour index 2, etc.).
     The _**reward probability**_ defines the probability that the odour will be rewarded. Input is a floating number between 0 to 1.
-    The _**amount of reward**_ defines the duration that the water valve will opened. Input is a floating number in seconds.
+    The _**amount of reward**_ defines the duration that the water valve will opened. Input is a floating number in seconds. 0.22 microliter is given, if water vent opened for 0.4 seconds.
     The _**delay**_ defines the duration of a delay between an odour presentation to a lick window. Setting this to 0 means that the odour duration is the lick window. Else the lick window is equal to `[odour duration] - [delay]`. For most purposes, it can be left as 0.
 
 #### Schedule Examples
