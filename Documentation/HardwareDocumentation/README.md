@@ -89,18 +89,23 @@ Environment sensor module is provided by Fraunhofer-Institute for Manufacturing 
 FLIR USB2.0 camera are used for video tracking. Video are recorded using FlyCap2Viewer from Teledyne FLIR.
 
 ![FlyCap2Viewer](../_images/FlyCap2Viewer01.PNG)
+
 *__Fig. 7__ : camera options shown after opening FlyCap2Viewer*
 
 Following are the camera settings and the recording settings used to record the video (frame rate = 30 fps)
 
 ![FlyCap2CameraConfiguration](../_images/FlyCap2Viewer02.PNG)
+
 *__Fig. 8__: Camera Settings*
 
 ![FlyCap2CameraConfiguration](../_images/FlyCap2Viewer03.PNG)
+
 *__Fig. 9__: Standard Video Modes*
 
 ![FlyCap2CameraConfiguration](../_images/FlyCap2Viewer04.PNG)
+
 *__Fig. 10__: Custom Video Modes*
 
 ![FlyCap2CameraConfiguration](../_images/FlyCap2Viewer05.PNG)
+
 *__Fig. 11__: Recording Settings*
