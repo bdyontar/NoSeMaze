@@ -70,4 +70,4 @@ NoSeMaze is based on AutonoMouse from Andrew Erskine. Changes that is made to me
 4. Implementing more trials in `daqface` and `ExperimentControl`.
 5. Modifying `PyPulse` in `autonomouse-control` and `autonomouse-schedule`.
 
-For a more detailed change log, see [changelog](./Documentation/CHANGELOG.md)
+For a more detailed change log, see [changelog](./Documentation/CHANGELOG.md).
