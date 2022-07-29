@@ -24,7 +24,7 @@ The NoSeMazeControl serves as a central control for the user to:
 - view some performance result,
 - and also configure the hardware interface.
 
-The trials/trainings executed during the experiment are determined by the schedules assigned to each animal.
+The trials/trainings executed during the experiment are determined by the schedules assigned to each animal. More about trials and schedule will be discussed later.
 
 ### Starting The UI {#starting-nsc}
 
@@ -65,10 +65,8 @@ To start an experiment, there are several things that must be done first. If the
     1. Click _animal list_ in _Animals_ menu in the menu bar to open the animal window.
     2. There will be a _'default'_ animal available in the animal list (Number 1 on [Fig. 3](#animals-window-nsc-animals-window)). To add an animal, click the _add_ button (plus button in number 2 on [Fig. 3](#animals-window-nsc-animals-window)). A new row will be added in the table.
     3. Double click the cell of the new row and write the RFID tag of the animal. After that click outside of the cell to exit cell editing.
-    </br>
-       > :memo: **Hint** : the written RFID will not yet be registered in the table before the cursor exit cell editing.
+    > :memo: **Hint** : the written RFID will not yet be registered in the table before the cursor exit cell editing.
     4. Update the animal table by clicking _update list_ &rarr; _confirm_. Only saved animal RFID in the table can be assigned schedules.
-    </br>
 
 3. **Assigning Schedule**
     After populating the table, assign the schedule for each animal.
