@@ -24,17 +24,21 @@ For more information about how the NI-USB 6216 BNC can be programmed, please ref
 ### 3. Olfactometer and Reward System
 
 ![Olfactometer Air Flow](/Documentation/_images/olfactometerAirFlow.PNG)
+
 *__Fig. 1:__ Air Flow of Olfactometer*
 
 ![Olfactometer Wiring](/Documentation/_images/olfactometerWiring.PNG)
+
 *__Fig. 2:__ Wiring of Olfactometer*
 
 ![Lick Port Water Container Wiring](/Documentation/_images/LickPortAndWaterWiringAndFlow.PNG)
+
 *__Fig. 3:__ Wiring of Lick Sensors and Water Valves*
 
 A set of valves (V0, V1, V2, V7, FV, WV1, WV2) which are connected via flexible tube and controlled by NI board. Each of the valves are driven by a driving board. The valves used for the olfactometer are flush valves from NResearch. The driving board used for driving the valves is also from NResearch.
 
 ![flush valves](/Documentation/_images/flushValve.PNG)
+
 *__Fig. 4:__ Air Flow of Flush Valves*
 
 Figure 4 shows how flush valves function. The air flows through the chamber from one "flush" vent to another "flush" vent. A normally closed valve will close the third vent in the chamber if there is no signal and open it if there is a signal, letting some of the air flows through the third vent. A normally opened flush valves has a similiar build, but open the third vent instead of closing it if there is no signal and close the vent if there is a signal, instead of opening it.
@@ -46,6 +50,7 @@ For more information about the valves from NResearch and the driving board used,
 A box designed to deliver water. Water is delivered via a nozzle which is connected to a water container and controlled using a valve.
 
 ![Lick Port Overview](/Documentation/_images/LickPortSimple.PNG)
+
 *__Fig. 5:__ Overview of Lick Port. __a__: odor vent leading into d. __b__: RFID antenna. __c__: light barrier sensor. __d__: box where nozzle for reward is placed into.*
 
 Light barrier sensors used is a simple system using:
@@ -70,6 +75,7 @@ RFID decoder user are RFID decoder from DorsetID. For more information of which 
 ## Tube Test System
 
 ![Tube Test System](/Documentation/_images/tubeTestWiringSimple.PNG)
+
 *__Fig. 6:__ Overview of Tube Test System*
 
 ### 1. RFID Antennae
