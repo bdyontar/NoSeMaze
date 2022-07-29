@@ -53,6 +53,8 @@ Light barrier sensors used is a simple system using:
 1. an infrared LED and
 2. a photodiode which send TTL signal if it doesn't get enough infrared light.
 
+The sensor is connected to the analog input 0 of the NI Board.
+
 Lick sensors used are darlington sensors.
 
 For more information about lick port and the sensors, please contact Wolfgang Kelsch (wokelsch@uni-mainz.de).
