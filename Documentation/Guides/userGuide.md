@@ -117,6 +117,7 @@ To stop the experiment, click the **Stop** button in the **control panel** (numb
 #### Main Window {#nsc-main-window}
 
 ![main window](../_images/nscMainWindowIndexed.PNG)
+
 _**Fig. 1:** Main Window of NoSeMazeControl UI._
 
 ##### File {#mw}
@@ -168,6 +169,7 @@ The plots shows analog data of lick sensors and signals that is used to control 
 #### Hardware Preference Window {#nsc-hardware-preference-window}
 
 ![hardware preference window](../_images/nscHardwarePrefWindowIndexed.PNG)
+
 _**Fig. 2:** Hardware Preference Window of NoSeMazeControl UI._
 
 ##### File {#hpw}
@@ -240,6 +242,7 @@ Checkbox parameter which indicate that if NI USB 6216 BNC is used or not. In the
 #### Animals Window {#nsc-animals-window}
 
 ![animals window](../_images/nscAnimalsWindowIndexed.PNG)
+
 _**Fig. 3:** Animals Window of NoSeMazeControl UI._
 
 ##### Update List
@@ -265,6 +268,7 @@ The table which shows the trials planned in the selected schedule. If a schedule
 #### Analysis Window {#nsc-analysis-window}
 
 ![analysis window](../_images/nscAnalysisWindowIndexed.PNG)
+
 _**Fig. 4:** Analysis Window of NoSeMazeControl UI._
 
 ##### Animal List [1] {#anaw-animal-list}
@@ -282,6 +286,7 @@ Performance curve of the animal. Two curves are shown, an individual performance
 #### Video Control Window {#nsc-video-control-window}
 
 ![video control window](../_images/nscVideoControlWindowIndexed.PNG)
+
 _**Fig. 5:** Hardware Preference Window of NoSeMazeControl UI._
 
 ##### Setting
@@ -525,7 +530,7 @@ Notice that although the amount of reward left port of odour index 2 is set to 0
 
 - _**Pretraining and Odour Training Parameters**_
   - Checking the pretraining mode will generate a pretraining schedule and the parameters in reward map will not be used.
-  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is a trial with odour index 1 will present the odour assigned to the valve of odour index 1 then give the reward directly afterward. A trial with odour index 2 will then present the odour assigned to the valve of odour index 2 and not reward will be given.
+  - Checking the odour training mode will generate an odour training schedule and the reward map will be used. That is, a trial with odour index 1 will present the odour assigned to the valve of odour index 1 then give the reward directly afterward. A trial with odour index 2 will then present the odour assigned to the valve of odour index 2 and no reward will be given.
 </br>
 
 ##### [Example 2] GNG trial with 2 odours and 1 reward output with odour index 2 is rewarded
