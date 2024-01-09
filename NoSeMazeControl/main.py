@@ -110,14 +110,14 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
         # binding functions to the signals
         self.actionAnimal_List.triggered.connect(self.open_animal_window)
-        self.actionHardware_Preferences.triggered.connect(
-            self.open_hardware_window)
-        self.actionAnalyse_Experiment.triggered.connect(
-            self.open_analysis_window)
+        self.actionHardware_Preferences.triggered.connect(self.open_hardware_window)
+        self.actionAnalyse_Experiment.triggered.connect(self.open_analysis_window)
+        self.actionView_Data.triggered.connect(self.open_sensor_viewer)
+
         self.actionMailing_List.triggered.connect(self.open_mail_window)
         self.actionMessage_Folder.triggered.connect(self.set_message_folder_path)
         self.actionVideo_Control.triggered.connect(self.open_control_window)
-        self.actionOpenUserGuide.triggered.connect(self.open_user_guide)
+        self.actionOpen_User_Guide.triggered.connect(self.open_user_guide)
         self.actionAbout.triggered.connect(self.show_about)
         self.actionSave_Experiment.triggered.connect(self.save_experiment)
         self.actionLoad_Experiment.triggered.connect(self.load_experiment)
@@ -237,6 +237,11 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.experiment, parent=self)
         self.analysis_window.show()
 
+    def open_sensor_viewer(self):
+        """Open sensor viewer window."""
+        self.sensors_window = AppWindows.SensorsWindow(parent=self)
+        self.sensors_window.show()
+        
     def update_trial_view(self):
         """Update graph view of the trial if a trial is executed."""
         self.model.layoutChanged.emit()
