@@ -112,6 +112,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionAnimal_List.triggered.connect(self.open_animal_window)
         self.actionHardware_Preferences.triggered.connect(self.open_hardware_window)
         self.actionAnalyse_Experiment.triggered.connect(self.open_analysis_window)
+        self.actionSchedules.triggered.connect(self.open_schedules_window)
         self.actionView_Data.triggered.connect(self.open_sensor_viewer)
 
         self.actionMailing_List.triggered.connect(self.open_mail_window)
@@ -237,11 +238,16 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.experiment, parent=self)
         self.analysis_window.show()
 
+    def open_schedules_window(self):
+        """Open scheduling window."""
+        self.schedules_window = AppWindows.SchedulesWindow(parent=self)
+        self.schedules_window.show()
+
     def open_sensor_viewer(self):
         """Open sensor viewer window."""
         self.sensors_window = AppWindows.SensorsWindow(parent=self)
         self.sensors_window.show()
-        
+
     def update_trial_view(self):
         """Update graph view of the trial if a trial is executed."""
         self.model.layoutChanged.emit()

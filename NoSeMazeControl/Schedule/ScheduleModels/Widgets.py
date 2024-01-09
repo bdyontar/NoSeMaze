@@ -21,15 +21,15 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
 from PyQt5 import QtWidgets
-from ScheduleDesigns import valveMapDesign
+from Schedule.ScheduleDesigns import valveMapDesign
 
 # import for type hinting
-import scheduleMain
+import main
 
 
 class ValveMapWidget(QtWidgets.QWidget, valveMapDesign.Ui_Form):
     """Widget to configure valve map."""
-    def __init__(self, parentUi : scheduleMain.MainApp = None):
+    def __init__(self, parentUi : main.MainApp = None):
         super(self.__class__, self).__init__()
         self.setupUi(self)
         self.parentUi = parentUi
