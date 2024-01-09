@@ -111,6 +111,7 @@ class Ui_MainWindow(object):
         self.actionAnalyse_Experiment = QtWidgets.QAction(MainWindow)
         self.actionAnalyse_Experiment.setObjectName("actionAnalyse_Experiment")
         self.actionMailing_List = QtWidgets.QAction(MainWindow)
+        self.actionMailing_List.setEnabled(False)
         self.actionMailing_List.setObjectName("actionMailing_List")
         self.actionVideo_Control = QtWidgets.QAction(MainWindow)
         self.actionVideo_Control.setObjectName("actionVideo_Control")
@@ -150,7 +151,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Beast"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "NoSeMaze"))
         self.groupBox.setTitle(_translate("MainWindow", "Control Panel"))
         self.startButton.setText(_translate("MainWindow", "Start"))
         self.stopButton.setText(_translate("MainWindow", "Stop"))

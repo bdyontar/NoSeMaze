@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Beast</string>
+   <string>NoSeMaze</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -223,6 +223,9 @@
    </property>
   </action>
   <action name="actionMailing_List">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Mailing List</string>
    </property>
