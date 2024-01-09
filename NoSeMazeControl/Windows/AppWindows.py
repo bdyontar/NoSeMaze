@@ -1,6 +1,6 @@
 """
 This module contains all implementation of windows in UI. There are adjustment
-window, hardware window, control window, animal window, e-mail window and 
+window, hardware window, control window, animal window, e-mail window, sensors window and 
 analysis window.
 """
 """
@@ -29,7 +29,7 @@ import datetime
 
 from PyQt5 import QtWidgets, QtMultimedia, QtCore
 from PyQt5.QtCore import pyqtSignal, Qt
-from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow
+from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow
 from Models import GuiModels
 from Analysis import Analysis
 
@@ -938,3 +938,15 @@ class AnalysisWindow(QtWidgets.QMainWindow, analysisWindow.Ui_MainWindow):
             return animal
         except:
             return None
+        
+
+class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
+    """Window for showing sensor node data."""
+
+    def __init__(self, parent : MainApp = None):
+        QtWidgets.QMainWindow.__init__(self, parent)
+        self.setupUi(self)
+        self.parent = parent
+
+    def test():
+        pass

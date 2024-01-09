@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
-    <height>847</height>
+    <width>1052</width>
+    <height>838</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -126,7 +126,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1056</width>
+     <width>1052</width>
      <height>26</height>
     </rect>
    </property>
@@ -160,6 +160,7 @@
      <string>E-Mails</string>
     </property>
     <addaction name="actionMailing_List"/>
+    <addaction name="actionMessage_Folder"/>
    </widget>
    <widget class="QMenu" name="menuVideo">
     <property name="title">
@@ -167,12 +168,27 @@
     </property>
     <addaction name="actionVideo_Control"/>
    </widget>
+   <widget class="QMenu" name="menuSensors">
+    <property name="title">
+     <string>Sensors</string>
+    </property>
+    <addaction name="actionView_Data"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionOpen_User_Guide"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHardware"/>
    <addaction name="menuAnimals"/>
    <addaction name="menuAnalysis"/>
    <addaction name="menuE_Mails"/>
    <addaction name="menuVideo"/>
+   <addaction name="menuSensors"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionHardware_Preferences">
@@ -213,6 +229,26 @@
   <action name="actionVideo_Control">
    <property name="text">
     <string>Video Control</string>
+   </property>
+  </action>
+  <action name="actionView_Data">
+   <property name="text">
+    <string>View Data</string>
+   </property>
+  </action>
+  <action name="actionMessage_Folder">
+   <property name="text">
+    <string>Message Folder</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionOpen_User_Guide">
+   <property name="text">
+    <string>Open User Guide</string>
    </property>
   </action>
  </widget>
