@@ -71,6 +71,9 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     mail_window : instance of AppWindows.MailWindow class
         Mail window to input the mailing list.
 
+    sensors_window : instance of AppWindows.SensorsWindow class
+        Window to display sensornode data
+
     control_window : instance of AppWindows.ControlWindow class
         Control window which shows video feed of usb cameras connected. Currently not maintained.
 
