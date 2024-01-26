@@ -20,3 +20,6 @@ venv/
 
 # ignoring sphinx build files
 sphinxDoc/build/
+
+# ignoring csv files
+*.csv
