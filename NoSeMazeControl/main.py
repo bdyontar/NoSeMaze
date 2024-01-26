@@ -468,6 +468,9 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.mail_window.close()
         if self.control_window is not None:
             self.control_window.close()
+        if self.sensors_window is not None:
+            self.sensors_window.close()
+
 
     def closeEvent(self, event : QtCore.QEvent):
         """Things to be executed if closeEvent occured (x in main window is clicked).
