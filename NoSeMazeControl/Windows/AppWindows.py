@@ -27,7 +27,8 @@ import os
 import numpy as np
 import datetime
 import sys
-
+import pandas as pd
+import pyqtgraph as pg
 
 import webbrowser
 import inspect
@@ -35,15 +36,20 @@ from types import NoneType, TracebackType
 import traceback
 from typing import Type
 
-
 from PyQt5 import QtWidgets, QtMultimedia, QtCore
-from PyQt5.QtCore import pyqtSignal, Qt
-from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow, scheduleMainWindow
+from PyQt5.QtCore import pyqtSignal, Qt, QThread
+from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow, scheduleMainWindow, sensorsWindow
 from Models import GuiModels
 from Schedule.ScheduleModels import ScheduleWidgets, ScheduleView, Widgets
 from Schedule.ScheduleUI import ColorMap
 from Schedule.SchedulePyPulse import PulseInterface
 from Schedule.Exceptions import RewardMapError
+from queue import Queue
+
+
+from SensorViewer.MyWorker import MeasurementWorker, PlotWorker
+from SensorViewer.PlotControl import plotter
+from SensorViewer import constants
 
 from Analysis import Analysis
 
@@ -956,16 +962,7 @@ class AnalysisWindow(QtWidgets.QMainWindow, analysisWindow.Ui_MainWindow):
             return None
         
 
-class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
-    """Window for showing sensor node data."""
 
-    def __init__(self, parent : MainApp = None):
-        QtWidgets.QMainWindow.__init__(self, parent)
-        self.setupUi(self)
-        self.parent = parent
-
-    def test():
-        pass
 
 
 class SchedulesWindow(QtWidgets.QMainWindow, scheduleMainWindow.Ui_MainWindow):
@@ -1186,3 +1183,102 @@ def my_exception_hook(exctype: Type[BaseException], value: BaseException, traceb
 
 # Set the exception hook to our wrapping function
 sys.excepthook = my_exception_hook
+
+
+# Main Window of the application
+class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
+
+    # Signal to send to start worker
+    work_requested = pyqtSignal()
+
+    def __init__(self, parent : MainApp = None):
+        QtWidgets.QMainWindow.__init__(self, parent)
+
+        self.setWindowTitle("NoseMaze II")
+
+        self.parent = parent
+        self.setupUi(self)
+
+        self.initalize_workers()
+
+        # Connect buttons to start and stop the worker
+        self.bu_start.clicked.connect(self.start_worker)
+        self.bu_stop.clicked.connect(self.stop_worker)
+        self.bu_reset.clicked.connect(self.reset)
+
+        self.sensors_slider.valueChanged.connect(self.slider_value_changed)
+
+
+    def initalize_workers(self):
+        # Create a new worker == pseudo thread
+        self.worker = MeasurementWorker()
+        self.plot_worker = PlotWorker(self.graphicsView)
+
+        self.worker_thread = QThread()
+        self.plot_thread = QThread()
+
+        # Move worker to thread
+        self.worker.moveToThread(self.worker_thread)
+        self.plot_worker.moveToThread(self.plot_thread)
+
+        self.plot_thread.start()
+
+        # Connect signals
+        self.worker_thread.started.connect(self.worker.start)
+        self.worker.finished.connect(self.worker_thread.quit)
+
+        # Connect the worker's signal to the plot workers slot
+        self.worker.measurementsReady.connect(self.plot_worker.plotMeasurement)
+
+    
+    def start_worker(self):
+    
+        if self.worker_thread.isRunning():
+            self.worker.start()
+        else:
+            self.worker_thread.start()
+
+        self.bu_start.setEnabled(False)
+        self.bu_stop.setEnabled(True)
+        self.sensors_slider.setEnabled(False)
+
+
+    def stop_worker(self):
+        if self.worker_thread.isRunning():
+            self.worker.stop()   
+            self.bu_stop.setEnabled(False)
+            self.bu_start.setEnabled(True)
+            #self.bu_reset.setEnabled(True)
+  
+
+
+    def reset(self):
+        if self.worker_thread.isRunning():
+            
+            self.worker.reset()   
+    
+            self.graphicsView.clear()
+
+            self.bu_start.setEnabled(True)       
+            self.sensors_slider.setEnabled(True)
+
+            self.sensors_slider.setValue(1)
+            self.slider_value.setText("1")
+            constants.SNIds = [1]
+
+            self.plot_worker.setupPlots()
+            print("Resetted")
+
+
+    def slider_value_changed(self, value):
+        self.slider_value.setText(f"{value}") 
+        constants.SNIds = list(range(1, value+1))
+        print(constants.SNIds)
+
+        self.plot_worker.setupPlots()
+        self.worker.reset()
+
+
+    def closeEvent(self, event):
+        print("Shutting down")
+        self.stop_worker()

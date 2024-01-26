@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
-    <height>847</height>
+    <width>1052</width>
+    <height>838</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,19 +89,7 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QTableView" name="trialView">
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="2">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
        <string>Data View</string>
@@ -119,6 +107,25 @@
       </layout>
      </widget>
     </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QTableView" name="trialView">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -126,9 +133,20 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1056</width>
-     <height>21</height>
+     <width>1052</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 238, 205);</string>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -145,15 +163,10 @@
    </widget>
    <widget class="QMenu" name="menuAnimals">
     <property name="title">
-     <string>Trials</string>
+     <string>Experiment</string>
     </property>
     <addaction name="actionAnimal_List"/>
     <addaction name="actionSchedules"/>
-   </widget>
-   <widget class="QMenu" name="menuAnalysis">
-    <property name="title">
-     <string>Analysis</string>
-    </property>
     <addaction name="actionAnalyse_Experiment"/>
    </widget>
    <widget class="QMenu" name="menuE_Mails">
@@ -184,11 +197,10 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAnimals"/>
-   <addaction name="menuAnalysis"/>
    <addaction name="menuHardware"/>
-   <addaction name="menuE_Mails"/>
-   <addaction name="menuVideo"/>
    <addaction name="menuSensors"/>
+   <addaction name="menuVideo"/>
+   <addaction name="menuE_Mails"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
