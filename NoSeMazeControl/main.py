@@ -109,6 +109,8 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.analysis_window : AppWindows.AnalysisWindow = None
         self.mail_window : NoneType = None
         self.control_window : AppWindows.ControlWindow = None
+        self.sensors_window : AppWindows.SensorsWindow = None
+
         self.setup_experiment_bindings(Experiment.Experiment())
 
         # binding functions to the signals
