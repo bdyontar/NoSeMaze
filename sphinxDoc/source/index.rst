@@ -10,10 +10,17 @@ Welcome to NoSeMaze's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   NoSeMazeControl
-   NoSeMazeSchedule
+   NoSeMazeControl/Analysis
+   NoSeMazeControl/Controllers
+   NoSeMazeControl/Designs
+   NoSeMazeControl/HelperFunctions
+   NoSeMazeControl/PyPulse
+   NoSeMazeControl/Schedule
+   NoSeMazeControl/TrialLogic
+   NoSeMazeControl/Windows
+   NoSeMazeControl/daqface
 
-
+   
 Indices and tables
 ==================
 
