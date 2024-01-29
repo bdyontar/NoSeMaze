@@ -21,7 +21,7 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
 from PyQt5 import QtWidgets
-from Schedule.ScheduleDesigns import valveMapDesign
+from Schedule.Designs import valveMapDesign
 
 # import for type hinting
 import main

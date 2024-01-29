@@ -40,9 +40,9 @@ from PyQt5 import QtWidgets, QtMultimedia, QtCore
 from PyQt5.QtCore import pyqtSignal, Qt, QThread
 from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow, scheduleMainWindow, sensorsWindow
 from Models import GuiModels
-from Schedule.ScheduleModels import ScheduleWidgets, ScheduleView, Widgets
-from Schedule.ScheduleUI import ColorMap
-from Schedule.SchedulePyPulse import PulseInterface
+from Schedule.Models import ScheduleWidgets, ScheduleView, Widgets
+from Schedule.UI import ColorMap
+from Schedule.PyPulse import PulseInterface
 from Schedule.Exceptions import RewardMapError
 from queue import Queue
 

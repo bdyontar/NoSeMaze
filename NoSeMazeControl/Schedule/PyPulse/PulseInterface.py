@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public
 License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 """
 
-from Schedule.SchedulePyPulse import PulseGeneration
+from Schedule.PyPulse import PulseGeneration
 import numpy as np
 
 

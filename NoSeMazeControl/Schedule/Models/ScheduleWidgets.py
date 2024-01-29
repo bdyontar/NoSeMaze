@@ -31,7 +31,7 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 from PyQt5 import QtWidgets
 import numpy as np
 
-from Schedule.ScheduleDesigns import NoSeMazeScheduleDesign
+from Schedule.Designs import NoSeMazeScheduleDesign
 from Schedule.Generation import Gen
 import Schedule.Exceptions as e
 
