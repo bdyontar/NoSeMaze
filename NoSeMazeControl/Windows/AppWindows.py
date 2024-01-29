@@ -47,9 +47,9 @@ from Schedule.Exceptions import RewardMapError
 from queue import Queue
 
 
-from SensorViewer.MyWorker import MeasurementWorker, PlotWorker
-from SensorViewer.PlotControl import plotter
-from SensorViewer import constants
+from Sensors.MyWorker import MeasurementWorker, PlotWorker
+from Sensors.PlotControl import plotter
+from Sensors import constants
 
 from Analysis import Analysis
 

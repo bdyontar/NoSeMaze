@@ -1,8 +1,8 @@
 from PyQt5.QtCore import QObject, QThread, pyqtSignal as Signal, pyqtSlot as Slot
 import time
-from SensorViewer.Measurements import MeasObj
+from Sensors.Measurements import MeasObj
 from queue import Queue
-from SensorViewer.PlotControl import plotter
+from Sensors.PlotControl import plotter
 from debugpy import debug_this_thread
 
 class MeasurementWorker(QObject):

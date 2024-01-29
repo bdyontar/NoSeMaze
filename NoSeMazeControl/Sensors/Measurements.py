@@ -1,6 +1,10 @@
+"""
+This module contains a sensornode measurement object to recieve and save sensor data. 
+"""
+
 import csv
 import time
-from SensorViewer import constants
+from Sensors import constants
 import os
 import threading
 from queue import Queue
@@ -9,13 +13,25 @@ import random
 
 from pathlib import Path
 
-from SensorViewer.SensorNode import sensornode as SensorNode
+from Sensors.SensorNode import sensornode as SensorNode
 
 
 meas_samples = Queue(16)
 
 
 class MeasObj:
+    """
+    Thread controller. Controls if thread should be started or stopped.
+
+    Attributes
+    ----------
+    timestamp : str
+        Current local time as datetime string
+    
+    SensorNodes : list
+        List to hold sensornode objects
+    
+    """
     def __init__(self):
         t = time.localtime()
         self.timestamp = time.strftime("%y%m%d_%H%M", t)

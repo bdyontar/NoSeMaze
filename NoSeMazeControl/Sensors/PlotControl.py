@@ -1,5 +1,5 @@
 import pyqtgraph as pg
-from SensorViewer import constants
+from Sensors import constants
 import numpy as np
 from datetime import datetime
 
