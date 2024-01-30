@@ -30,35 +30,7 @@ class sensornode:
         self.start_ns = time.perf_counter_ns()
         self.start_ms = time.time()*1000 
         
-        ports = list(s_ports.comports())
-        esp_list = list()
-        self.id = -1
-        for p in ports:
-            if "Silicon Labs" in p.description:
-                esp_list.append(p)
-    
-        for esp in esp_list:
-            tmp_id = self.__getID(esp.device)
-            if(tmp_id == SNid):
-                working_port = esp.device
-                self.id = tmp_id
-                print("Sensor Node with ID 0x{:02X} found on {:s}".format(self.id, working_port))
-        
-        if(self.id == -1):
-            print("Sensor Node with ID 0x{:02X} not found! Check connections and make sure no other applications blocks the Sensor Node!".format(SNid))
-            self.InstanceExists = False
-            return
-        
-        print("Opening " + working_port)
-
-        self.ser = serial.Serial(working_port, 115200, timeout = 0.5)
-        time.sleep(3)
-        self.port = working_port
-        self.InstanceExists = True
-        self.calib_timeout = 60
-
-        self.retries = 5
-        self.pause = 0.1
+        self.open_serial(SNid)
         
     def __del__(self):
         """Close the serial connection
@@ -195,7 +167,7 @@ class sensornode:
         return res
         
         
-    def reset_node(self, SNid):
+    def open_serial(self, SNid):
         """Method to check for esp devices and opening of a serial port
         Used to reopen serial communication in case a node is disconnected and not found
 

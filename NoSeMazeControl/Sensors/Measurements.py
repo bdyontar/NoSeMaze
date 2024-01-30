@@ -107,7 +107,7 @@ class MeasObj:
             # If connection failed, reset sensornode
             except:
                 print("Port to SNId {:02X} not open".format(SN[0]))
-                SN[1].reset_node(SN[0])
+                SN[1].open_serial(SN[0])
                 continue
                     
             path_name = Path(constants.outputfolder) / f"SNID_{SN[0]:02X}"
