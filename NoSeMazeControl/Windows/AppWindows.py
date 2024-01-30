@@ -1188,13 +1188,7 @@ sys.excepthook = my_exception_hook
 # Main Window of the application
 class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
     """PyQt window to display sensor data
-
-    Args:
-        QtWidgets (QMainWindow): Main window parent
-        sensorsWindow (Ui_MainWindow): form implementation from .ui file
     """
-    # Signal to send to start worker
-    work_requested = pyqtSignal()
 
     def __init__(self, parent : MainApp = None):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -1258,8 +1252,6 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
             self.bu_stop.setEnabled(False)
             self.bu_start.setEnabled(True)
             #self.bu_reset.setEnabled(True)
-  
-
 
     def reset(self):
         if self.worker_thread.isRunning():
