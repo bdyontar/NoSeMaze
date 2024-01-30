@@ -2,6 +2,8 @@ import pyqtgraph as pg
 from Sensors import constants
 import numpy as np
 from datetime import datetime
+from queue import Queue
+
 
 class plotter:
     """Class that contains methods to setup a pyqt plot grid and plot measurement curves
@@ -66,11 +68,11 @@ class plotter:
             setattr(self, f'{data_list_name}_buffer', buffer)
             setattr(self, f'{data_list_name}_buffer_t', buffer_t)
 
-        self.all_buffer = [self.sound_buffer, self.rh_buffer, self.als_buffer, self.voc_index_buffer, self.voc_raw_buffer, 
-                            self.nh3_buffer, self.co2_buffer, self.temp_buffer]
+        self.all_buffer = [self.sound_buffer, self.rh_buffer, self.als_buffer, self.voc_index_buffer, self.voc_raw_buffer, # type: ignore
+                            self.nh3_buffer, self.co2_buffer, self.temp_buffer]# type: ignore
         
-        self.all_buffer_t = [self.sound_buffer_t, self.rh_buffer_t, self.als_buffer_t, self.voc_index_buffer_t, self.voc_raw_buffer_t, 
-                            self.nh3_buffer_t, self.co2_buffer_t, self.temp_buffer_t]
+        self.all_buffer_t = [self.sound_buffer_t, self.rh_buffer_t, self.als_buffer_t, self.voc_index_buffer_t, self.voc_raw_buffer_t,  # type: ignore
+                            self.nh3_buffer_t, self.co2_buffer_t, self.temp_buffer_t]# type: ignore
         
     def createCurves(self):
         """Method to create a plot curve for each sensor result and for each sensor node
@@ -108,7 +110,7 @@ class plotter:
                 plot_widget.setAxisItems({'bottom':axis})
 
         
-        self.graphicsView.addItem(legend, row=4, col=0)
+        self.graphicsView.addItem(legend, row=4, col=0) # type: ignore
 
 
 
@@ -125,12 +127,12 @@ class plotter:
             buffer.pop(0)
 
     # Plot any new sample of each measurement 
-    def plot(self,result_list : list):
+    def plot(self,result_list : Queue):
         """Iterates over the result list and adds the new data to the buffer and curves
         Afterwards, trims the buffers to the maximum length
 
         Args:
-            result_list (list): list of 
+            result_list (Queue): list of measurement results
         """
         # If list is not empty
         if result_list.empty() == False:
