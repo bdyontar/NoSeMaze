@@ -60,7 +60,7 @@ class MeasObj:
 
 
     @staticmethod
-    def write_csv_row_to_file(file_path: str, csv_row: str):
+    def write_csv_row_to_file(file_path: Path, csv_row: list):
         """
         Method to write one row into the csv files
 
