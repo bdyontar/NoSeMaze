@@ -21,7 +21,7 @@ meas_samples = Queue(16)
 
 class MeasObj:
     """
-    Thread controller. Controls if thread should be started or stopped.
+    Class to handle measurement reading and saving as csv
 
     Attributes
     ----------
@@ -33,16 +33,23 @@ class MeasObj:
     
     """
     def __init__(self):
+        """
+        Initializes the measurement object with the current time and creates a folder with measurements CSVs for each sensornodes in constants
+        Folders are not overwritten if they already exist
+        """
         t = time.localtime()
         self.timestamp = time.strftime("%y%m%d_%H%M", t)
 
         self.SensorNodes = []
+        # Loop over all sensor IDs
         for SNId in constants.SNIds:
+            # Create a sensornode object 
             self.SensorNodes.append((SNId, SensorNode(SNId)))
             path_name = Path.cwd() / constants.outputfolder / "SNID_{:02X}".format(SNId)
             if not path_name.exists():
                 path_name.mkdir(parents=True)
 
+                # Create the respective measurement csv files
                 for file in constants.files:
                     filename = path_name / f"{file[0]}.csv"
                     with open(filename, "w", newline="") as csvfile:
@@ -51,8 +58,20 @@ class MeasObj:
                         )
                         output.writerow(file[1])
 
+
     @staticmethod
-    def write_csv_row_to_file(file_path, csv_row):
+    def write_csv_row_to_file(file_path: str, csv_row: str):
+        """
+        Method to write one row into the csv files
+
+        Parameters
+        ----------
+        file_path : str
+            Path to csv files
+        
+        csv_row : str
+            String to write
+        """
         try:
             with open(file_path, "a", newline="") as csvfile:
                 output = csv.writer(
@@ -63,19 +82,29 @@ class MeasObj:
             print("csv not found")
 
     def meas_loop(self):
+        """
+        Method to recieve measurements and write them into their respective csv files
+
+        Attributes
+        ----------
+        results_list : list
+            List containing result dataframes
+
+
+        Returns
+        -------
+        meas_samples : Queue 
+            Queue containing result lists
+        
+        """
         results_list = list()
         for i, SN in enumerate(self.SensorNodes):
 
+            # If connection is successful, get measurements
             try:    
-                #res = SN[1].getMeasurement()
-                z = random.randint(1, 100)
-                z2 = random.randint(-1, 2)
-
-                res= {'timestamp': 2, 'apds': {'timestamp': 1705406821874.3547, 'als': z}, 
-                      'spg': {'timestamp': z2, 'voc_raw': z, 'voc_index': z}, 'microphone': {'timestamp': 2, 'sound': z}, 
-                      'mics': {'timestamp': z2, 'nh3': z}, 'scd41': {'timestamp': z2, 'co2': z, 'temp': z, 'rh': z}}              
-                               
-
+                res = SN[1].getMeasurement()
+            
+            # If connection failed, reset sensornode
             except:
                 print("Port to SNId {:02X} not open".format(SN[0]))
                 SN[1].reset_node(SN[0])

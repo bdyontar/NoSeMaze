@@ -3,12 +3,23 @@ from Sensors import constants
 import numpy as np
 from datetime import datetime
 
-# Plot design options
-pl_symbol =  None
-
-
 class plotter:
+    """Class that contains methods to setup a pyqt plot grid and plot measurement curves
 
+       Attributes
+        ----------
+        names : list
+            List containing measurement ids 
+
+        all_buffers : list
+            List containing x,y data buffers
+
+        buffer_size : int 
+            Maximum size of each buffer
+
+        curve_items : list
+            List to hold the individual curve items
+    """
     def __init__(self, graphicsView):
 
         self.graphicsView = graphicsView
@@ -23,6 +34,9 @@ class plotter:
 
 
     def setupGrid(self):
+        """Method to set up a grid layout for plotting.
+        Each plot item is added to the graphicView and a list for further handling
+        """
         self.graphicsView.clear()
         # Setup the grid layout
         self.plot_sound = self.graphicsView.addPlot(row=0, col=0, labels={'left': 'delta ADC' },title="Microphone")
@@ -37,10 +51,11 @@ class plotter:
                         self.plot_voc_raw, self.plot_nh3, self.plot_co2, self.plot_temp]
         
 
-    # Create a multidimensional buffer for each measurement variable
-    # Additional dimension for each sensornode
     def initalizeBuffers(self):
-
+        """Method to initalize multidimensional buffers(lists) to hold x,y values to plot.
+        One buffer per sensor datastream, and one buffer_t per sensor.
+        Additional dimension for each sensornode. 
+        """
         n_sensors = len(constants.SNIds)
 
         # Create a buffer for each measurement
@@ -58,7 +73,8 @@ class plotter:
                             self.nh3_buffer_t, self.co2_buffer_t, self.temp_buffer_t]
         
     def createCurves(self):
-
+        """Method to create a plot curve for each sensor result and for each sensor node
+        """
         colors = ["r","g","b","m","c"]
 
         # Create PlotCurveItems and add them to their respective plots
@@ -96,21 +112,32 @@ class plotter:
 
 
 
-    # Remove the first element if buffer is full
-    def _trimBuffer(self, buffer ,size):
+    def _trimBuffer(self, buffer : list ,size : int):
+        """Trim the buffer to the maximum size for increased plot performance
+        Remove the first element if buffer is full
+
+        Args:
+            buffer (list): buffer to trim
+            size (int): maximum buffer length
+        """
+        # Remove first element in buffer
         if len(buffer) > size:
             buffer.pop(0)
 
     # Plot any new sample of each measurement 
-    def plotDict(self,meas_samples):
+    def plot(self,result_list : list):
+        """Iterates over the result list and adds the new data to the buffer and curves
+        Afterwards, trims the buffers to the maximum length
 
+        Args:
+            result_list (list): list of 
+        """
         # If list is not empty
-        if meas_samples.empty() == False:
-            res_list = meas_samples.get()
+        if result_list.empty() == False:
+            res_list = result_list.get()
             
             # Iterate over the results per sensornode
             for i, meas_dict in enumerate(res_list):
-                #print("Plotting data from SNId {:02X}".format(constants.SNIds[i]))
 
                 self.data2curve(meas_dict, "curve_sound", "microphone", "sound", i)
 
@@ -136,8 +163,16 @@ class plotter:
                 for buffer_t in self.all_buffer_t:
                     self._trimBuffer(buffer_t[i], self.buffer_size)
 
-    # Add the latest measurements to the plot curves
-    def data2curve(self, dict, curve_name, sensor_name, variable_name, i):
+    def data2curve(self, dict : dict, curve_name : str, sensor_name : str, variable_name : str, i : int):
+        """Add the the buffer values to the plot curves
+
+        Args:
+            dict (dict): measurement dictonary
+            curve_name (str): name of the curve
+            sensor_name (str): name of the sensor
+            variable_name (str): variable of the sensor (for example temps)
+            i (int): node iterator
+        """
         # Get the name of the curve for this node i
         current_curve = getattr(self, f'{curve_name}_{i}')
         # Get the buffer for this parameter and node

@@ -17,8 +17,16 @@ if timing_dbg:
     winmm.timeBeginPeriod(1)
 
 class sensornode:
-    def __init__(self, SNid):
-        
+    """Class to represent a sensornode. 
+    Contains methods to communicate and request measurements from the node
+    """
+    def __init__(self, SNid : int):
+        """Search for esp devices connected to the COM port.
+        Check if their ID matches the saved ID and open a serial connection
+
+        Args:
+            SNid (int): _description_
+        """
         self.start_ns = time.perf_counter_ns()
         self.start_ms = time.time()*1000 
         
@@ -53,30 +61,48 @@ class sensornode:
         self.pause = 0.1
         
     def __del__(self):
+        """Close the serial connection
+        """
         try:
             self.ser.close() #close serial connection before instance is destroyed
         except:
             pass #nothing to do here. Either serial connection does not exist or is already closed
     
-    #%% private functions
-    def __sendCommand(self, send_buf):
+    def __sendCommand(self, send_buf : str):
+        """Send a command to the node via serial interface
+
+        Args:
+            send_buf (str): message to send
+        """
         self.ser.reset_input_buffer()
         self.ser.write(send_buf.encode())
         self.ser.flush()
-#        time.sleep(self.pause)
         
-    def __getValue(self):
+    def __getValue(self) -> str:
+        """Get the current serial message per line
+
+        Returns:
+            str: serial message
+        """
         tmp = self.ser.readline().decode()
 
         return tmp
 
-    def __getID(self, port):
+    def __getID(self, port : str) -> int:
+        """get the ID of the sensor node connected to the port
+
+        Args:
+            port (str): COM port 
+
+        Returns:
+            int: sensornode ID
+        """
         try:
             self.ser = serial.Serial(port, 115200, timeout = 5)
             time.sleep(3)
             if timing_dbg:
                 tic = time.perf_counter_ns()
-            self.__sendCommand("GetID\n");
+            self.__sendCommand("GetID\n")
 
             try:
                 tmp_id = int(self.__getValue(), 16)
@@ -97,7 +123,12 @@ class sensornode:
         return tmp_id
     
     #%% public functions
-    def getMeasurement(self):
+    def getMeasurement(self) -> dict:
+        """returns a measurement dictionary with the last measurement values
+
+        Returns:
+            dict: dictionary with sensor data and timestamps
+        """
         res = dict()
         self.__sendCommand("MO\n")
         tmp = self.__getValue()
@@ -165,7 +196,12 @@ class sensornode:
         
         
     def reset_node(self, SNid):
+        """Method to check for esp devices and opening of a serial port
+        Used to reopen serial communication in case a node is disconnected and not found
 
+        Args:
+            SNid (_type_): ID of sensornode
+        """
         ports = list(s_ports.comports())
         esp_list = list()
         self.id = -1
@@ -202,11 +238,5 @@ class sensornode:
         except:
             pass #nothing to do here. Either serial connection does not exist or is already closed
         
-if __name__ == "__main__":
-    test = sensornode(0x42)
 
-    while(True):
-        time.sleep(10)
-        print(test.getMeasurement())
-        
     

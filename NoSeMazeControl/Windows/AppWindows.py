@@ -1187,7 +1187,12 @@ sys.excepthook = my_exception_hook
 
 # Main Window of the application
 class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
+    """PyQt window to display sensor data
 
+    Args:
+        QtWidgets (QMainWindow): Main window parent
+        sensorsWindow (Ui_MainWindow): form implementation from .ui file
+    """
     # Signal to send to start worker
     work_requested = pyqtSignal()
 
@@ -1210,6 +1215,10 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
 
 
     def initalize_workers(self):
+        """Method to create two workers and their pyqt threads:
+        worker 1 recieves the measurement data from the sensornodes.
+        worker 2 plots the measurement data.
+        """
         # Create a new worker == pseudo thread
         self.worker = MeasurementWorker()
         self.plot_worker = PlotWorker(self.graphicsView)
@@ -1232,7 +1241,7 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
 
     
     def start_worker(self):
-    
+
         if self.worker_thread.isRunning():
             self.worker.start()
         else:
