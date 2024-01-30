@@ -114,11 +114,11 @@ class PlotWorker(QObject):
         self.plotter.createCurves()
 
     @Slot(Queue)
-    def plotMeasurement(self, results_list : list):
+    def plotMeasurement(self, results_list : Queue):
         """Slotted method that is called when the plot worker should plot measurement data
 
         Args:
-            results_list (list): List of dictonaries
+            results_list (Queue): List of dictonaries
         """
         self.plotter.plot(results_list)
                 
