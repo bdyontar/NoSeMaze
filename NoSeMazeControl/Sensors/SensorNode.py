@@ -74,6 +74,9 @@ class sensornode:
             time.sleep(3)
             if timing_dbg:
                 tic = time.perf_counter_ns()
+            else:
+                tic = 0
+                
             self.__sendCommand("GetID\n")
 
             try:
@@ -175,6 +178,7 @@ class sensornode:
             SNid (_type_): ID of sensornode
         """
         ports = list(s_ports.comports())
+        working_port = ""
         esp_list = list()
         self.id = -1
         for p in ports:
@@ -194,8 +198,11 @@ class sensornode:
             return
         
         print("Opening " + working_port)
+        try:
+            self.ser = serial.Serial(working_port, 115200, timeout = 0.5)
+        except:
+            print("Cant open port")
 
-        self.ser = serial.Serial(working_port, 115200, timeout = 0.5)
         time.sleep(3)
         self.port = working_port
         self.InstanceExists = True
