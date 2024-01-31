@@ -32,6 +32,7 @@ class MeasObj:
         List to hold sensornode objects
     
     """
+    
     def __init__(self):
         """
         Initializes the measurement object with the current time and creates a folder with measurements CSVs for each sensornodes in constants
@@ -52,15 +53,38 @@ class MeasObj:
                 # Create the respective measurement csv files
                 for file in constants.files:
                     filename = path_name / f"{file[0]}.csv"
-                    with open(filename, "w", newline="") as csvfile:
-                        output = csv.writer(
-                            csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_MINIMAL
-                        )
-                        output.writerow(file[1])
+                    try:
+                        with open(filename, "w", newline="") as csvfile:
+                            output = csv.writer(
+                                csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_MINIMAL
+                            )
+                            output.writerow(file[1])
+                    except:
+                        print("Could not create file")
+        
+    def recreate_files(self):
+        for SNId in constants.SNIds:
+
+                    path_name = Path.cwd() / constants.outputfolder / "SNID_{:02X}".format(SNId)
+                    if not path_name.exists():
+                        path_name.mkdir(parents=True)
+
+                        # Create the respective measurement csv files
+                        for file in constants.files:
+                            filename = path_name / f"{file[0]}.csv"
+                            try:
+                                with open(filename, "w", newline="") as csvfile:
+                                    output = csv.writer(
+                                        csvfile, delimiter=";", quotechar='"', quoting=csv.QUOTE_MINIMAL
+                                    )
+                                    output.writerow(file[1])
+                            except:
+                                print("Could not create file")            
+                        
+                        
 
 
-    @staticmethod
-    def write_csv_row_to_file(file_path: Path, csv_row: list):
+    def write_csv_row_to_file(self, file_path: Path, csv_row: list):
         """
         Method to write one row into the csv files
 
@@ -79,7 +103,9 @@ class MeasObj:
                 )
                 output.writerow(csv_row)
         except FileNotFoundError:
-            print("csv not found")
+            print("Files not found, recreating...")
+            self.recreate_files()
+
 
     def meas_loop(self):
         """
