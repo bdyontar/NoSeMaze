@@ -9,5 +9,9 @@ files = [scd41_file, apds_file, spg_file, mp_file, mics_file]
 
 outputfolder = 'csv'
 
+# IDs of the sensornodes
 SNIds = [1]
+
+# false if nodes is offline, true if online
+node_connected = dict()
 

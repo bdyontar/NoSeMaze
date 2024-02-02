@@ -11,6 +11,7 @@ from queue import Queue
 import pandas as pd
 import random
 
+
 from pathlib import Path
 
 from Sensors.SensorNode import sensornode as SensorNode
@@ -44,6 +45,11 @@ class MeasObj:
         self.SensorNodes = []
         # Loop over all sensor IDs
         for SNId in constants.SNIds:
+            
+            # Fill node connection status dict
+            constants.node_connected[SNId] = False
+            print(constants.node_connected)
+            
             # Create a sensornode object 
             self.SensorNodes.append((SNId, SensorNode(SNId)))
             path_name = Path.cwd() / constants.outputfolder / "SNID_{:02X}".format(SNId)
@@ -129,9 +135,11 @@ class MeasObj:
             # If connection is successful, get measurements
             try:    
                 res = SN[1].getMeasurement()
-            
+                constants.node_connected[SN[0]] = True
+
             # If connection failed, reset sensornode
             except:
+                constants.node_connected[SN[0]] = False
                 print("Port to SNId {:02X} not open".format(SN[0]))
                 SN[1].open_serial(SN[0])
                 continue
