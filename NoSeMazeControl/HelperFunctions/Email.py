@@ -34,6 +34,7 @@ License along with NoSeMaze. If not, see https://www.gnu.org/licenses.
 
 # Import custom module.
 from Analysis import Analysis
+from Sensors import constants
 
 # Import standard modules.
 import datetime
@@ -336,6 +337,19 @@ def deadmans_switch(experiment):
         else:
             attachment.append(
                 dict(log="The mouse hasn't licked...", name='licks_log_'+animal+'.txt'))
+
+    # Sensornode status
+    offline_nodes = []
+    node_info = "All nodes online"
+    
+    # Check if any nodes are offline == False
+    for key in constants.node_connected.keys():
+        if constants.node_connected[key] == False:
+            offline_nodes.append(key)
+    
+    # If offline nodes exist, write a message
+    if offline_nodes:
+        node_info = f"The following nodes are offline: {''.join(str(offline_nodes))}"
 
     table = '\n'.join(table)
     content = content.format(name='{name}', overview=table)
