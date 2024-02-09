@@ -48,7 +48,6 @@ class MeasObj:
             
             # Fill node connection status dict
             constants.node_connected[SNId] = False
-            print(constants.node_connected)
             
             # Create a sensornode object 
             self.SensorNodes.append((SNId, SensorNode(SNId)))
