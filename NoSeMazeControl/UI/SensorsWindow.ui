@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1202</width>
+    <width>1191</width>
     <height>858</height>
    </rect>
   </property>
@@ -212,6 +212,18 @@ border-radius: 5px;
           </property>
          </widget>
         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Sensors</string>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="1">
          <widget class="QSlider" name="sensors_slider">
           <property name="sizePolicy">
@@ -243,18 +255,6 @@ border-radius: 5px;
           </property>
           <property name="tickInterval">
            <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>13</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sensors</string>
           </property>
          </widget>
         </item>
