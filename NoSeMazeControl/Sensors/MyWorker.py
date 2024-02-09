@@ -8,22 +8,30 @@ from debugpy import debug_this_thread
 
 class MeasurementWorker(QObject):
     """
-    Custom worker class to retrieve measurement data
+    Custom worker class to retrieve measurement data.
+    Emits a signal when data is retrieved.
+    """
+    
+    measurementsReady = Signal(Queue) 
+    """
+    A pyqt signal indicating that measurements are ready.
 
-    Attributes:
-    -----------
-        progress : Signal(int)
+    :param measurementsReady: A queue object representing the measurements.
+    :type measurementsReady: Queue
 
-        finished : Signal
-
-        measurementsReady : Signal(Queue)
-            Signal to emit the measurement result queue
-
+    This signal is used to notify when measurements are available and can be plotted.
     """
     progress = Signal(int)
-    finished = Signal()
-    measurementsReady = Signal(Queue)
+    """
+    A pyqt signal representing the current count
 
+    :param progress: integer count
+    :type progress: int
+    """
+    finished = Signal()
+    """
+    A pyqt signal emitted when worker is finished
+    """
 
     def __init__(self):
         super().__init__()
@@ -61,7 +69,7 @@ class MeasurementWorker(QObject):
         return self._count
     
     def reset(self):
-        """_summary_
+        """Resets the worker
         """
         self._count = -1
         self._paused = True
