@@ -99,7 +99,7 @@ class plotter:
                 
                 legend.setLabelTextColor(colors[i])
 
-                legend.addItem(curve_item, f"SNID {i}")
+                legend.addItem(curve_item, f"SNID {i+1}")
 
                 self.curve_items.append(curve_item)
                 # Add item to respective plot_widget
@@ -182,20 +182,52 @@ class plotter:
         buffer_t = getattr(self, f'{variable_name}_buffer_t')
 
         current_time = datetime.now().timestamp()
-
         # If no new data and first point, append zero
-        if (dict[sensor_name]["timestamp"] == -1) & (len(buffer[i]) == 0):
+        if (dict[sensor_name]["timestamp"] == -1) & (len(buffer[i]) == 1):
             buffer[i].append(0)
             buffer_t[i].append(current_time)
         # If no new data, append last sample
-        elif (dict[sensor_name]["timestamp"] == -1) & (len(buffer[i]) != 0):
+        elif (dict[sensor_name]["timestamp"] == -1) & (len(buffer[i]) != 1):
             buffer[i].append(buffer[i][len(buffer[i])-1])
             buffer_t[i].append(current_time)
         # If new data, append values
         else:
+            self.check_thresholds(dict[sensor_name][variable_name], variable_name)
             buffer[i].append(dict[sensor_name][variable_name])
             buffer_t[i].append(((dict[sensor_name]["timestamp"]))/1000)
             
         current_curve.setData( buffer_t[i] , buffer[i])
+        
+        
+    def check_thresholds(self, value : int, variable_name : str):
+        """Method to check if values are outside defined thresholds
+
+        Args:
+            value (int): value of measurement
+            variable_name (str): name e.g."temp"
+        """
+        match variable_name:
+            case "temp":
+                if value > constants.temp_upper:
+                    print("Habitat temperature too high")
+                    constants.sensor_warnings[variable_name] = value
+                else:
+                    constants.sensor_warnings[variable_name] = 0
+                
+            case "nh3":
+                if value > constants.nh3_upper:
+                    print("Habitat amoniak levels too high")
+                    constants.sensor_warnings[variable_name] = value
+                else:
+                    constants.sensor_warnings[variable_name] = 0
+
+            case "co2":
+                if value > constants.co2_upper:
+                    print("Habitat CO2 levels too high")
+                    constants.sensor_warnings[variable_name] = value
+                else:
+                    constants.sensor_warnings[variable_name] = 0
+
+                
 
 
