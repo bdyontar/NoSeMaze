@@ -15,3 +15,10 @@ SNIds = [1]
 # false if nodes is offline, true if online
 node_connected = dict()
 
+# Fixed thresholds for user warning
+temp_upper = 19
+co2_upper = 100
+nh3_upper = 100
+
+sensor_warnings = dict()
+
