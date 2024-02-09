@@ -16,9 +16,12 @@ Welcome to NoSeMaze's documentation!
    NoSeMazeControl/HelperFunctions
    NoSeMazeControl/PyPulse
    NoSeMazeControl/Schedule
+   NoSeMazeControl/SensorViewer
    NoSeMazeControl/TrialLogic
    NoSeMazeControl/Windows
    NoSeMazeControl/daqface
+   NoSeMazeControl/main
+
 
    
 Indices and tables
