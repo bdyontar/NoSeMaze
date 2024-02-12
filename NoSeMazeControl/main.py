@@ -110,6 +110,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.mail_window : NoneType = None
         self.control_window : AppWindows.ControlWindow = None
         self.sensors_window : AppWindows.SensorsWindow = None
+        self.sensor_config_window : AppWindows.SensorConfigWindow = None
 
         self.setup_experiment_bindings(Experiment.Experiment())
 
@@ -119,6 +120,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.actionAnalyse_Experiment.triggered.connect(self.open_analysis_window)
         self.actionSchedules.triggered.connect(self.open_schedules_window)
         self.actionView_Data.triggered.connect(self.open_sensor_viewer)
+        self.actionConfigure_IDs.triggered.connect(self.open_sensor_config_viewer)
 
         self.actionMailing_List.triggered.connect(self.open_mail_window)
         self.actionMessage_Folder.triggered.connect(self.set_message_folder_path)
@@ -252,6 +254,11 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         """Open sensor viewer window."""
         self.sensors_window = AppWindows.SensorsWindow(parent=self)
         self.sensors_window.show()
+        
+    def open_sensor_config_viewer(self):
+        """Open sensor config window."""
+        self.sensor_config_window = AppWindows.SensorConfigWindow()
+        self.sensor_config_window.show()
 
     def update_trial_view(self):
         """Update graph view of the trial if a trial is executed."""

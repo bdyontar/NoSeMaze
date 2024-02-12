@@ -146,7 +146,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 238, 205);</string>
+    <string notr="true"/>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -186,6 +186,7 @@
     <property name="title">
      <string>Sensors</string>
     </property>
+    <addaction name="actionConfigure_IDs"/>
     <addaction name="actionView_Data"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -270,6 +271,11 @@
   <action name="actionSchedules">
    <property name="text">
     <string>Schedules</string>
+   </property>
+  </action>
+  <action name="actionConfigure_IDs">
+   <property name="text">
+    <string>Configure IDs</string>
    </property>
   </action>
  </widget>

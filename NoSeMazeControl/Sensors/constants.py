@@ -12,6 +12,10 @@ outputfolder = 'csv'
 # IDs of the sensornodes
 SNIds = [1]
 
+# IDs and COM ports of the sensors
+sensor_com_pairs = []
+
+
 # false if nodes is offline, true if online
 node_connected = dict()
 

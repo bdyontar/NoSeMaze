@@ -99,7 +99,7 @@ class plotter:
                 
                 legend.setLabelTextColor(colors[i])
 
-                legend.addItem(curve_item, f"SNID {i+1}")
+                legend.addItem(curve_item, f"SNID {constants.SNIds[i]}")
 
                 self.curve_items.append(curve_item)
                 # Add item to respective plot_widget

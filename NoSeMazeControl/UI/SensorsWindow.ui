@@ -90,6 +90,25 @@
       <property name="spacing">
        <number>15</number>
       </property>
+      <item row="1" column="0">
+       <widget class="GraphicsLayoutWidget" name="graphicsView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>-27008</height>
+         </size>
+        </property>
+        <property name="resizeAnchor">
+         <enum>QGraphicsView::NoAnchor</enum>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="0" alignment="Qt::AlignHCenter">
        <widget class="QPushButton" name="bu_stop">
         <property name="enabled">
@@ -183,121 +202,6 @@ border-radius: 5px;
         </property>
         <property name="text">
          <string>Sensornode Data Viewer</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" rowspan="2">
-       <layout class="QFormLayout" name="formLayout">
-        <property name="labelAlignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="horizontalSpacing">
-         <number>30</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>10</number>
-        </property>
-        <property name="leftMargin">
-         <number>40</number>
-        </property>
-        <item row="2" column="1">
-         <widget class="QLabel" name="slider_value">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>13</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sensors</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSlider" name="sensors_slider">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>5</number>
-          </property>
-          <property name="pageStep">
-           <number>1</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="tickPosition">
-           <enum>QSlider::TicksBelow</enum>
-          </property>
-          <property name="tickInterval">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="GraphicsLayoutWidget" name="graphicsView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>0</width>
-          <height>-27008</height>
-         </size>
-        </property>
-        <property name="resizeAnchor">
-         <enum>QGraphicsView::NoAnchor</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="bu_reset">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Reset</string>
         </property>
        </widget>
       </item>

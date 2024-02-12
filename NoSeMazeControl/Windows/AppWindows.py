@@ -38,7 +38,7 @@ from typing import Type
 
 from PyQt5 import QtWidgets, QtMultimedia, QtCore
 from PyQt5.QtCore import pyqtSignal, Qt, QThread
-from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow, scheduleMainWindow, sensorsWindow
+from Designs import adjustmentWidget, animalWindow, hardwareWindow, prefsWindow, analysisWindow, mailWindow, controlWindow, sensorsWindow, scheduleMainWindow
 from Models import GuiModels
 from Schedule.Models import ScheduleWidgets, ScheduleView, Widgets
 from Schedule.UI import ColorMap
@@ -50,6 +50,7 @@ from queue import Queue
 from Sensors.MyWorker import MeasurementWorker, PlotWorker
 from Sensors.PlotControl import plotter
 from Sensors import constants
+from Sensors.SerialConfiguration import configure_serial
 
 from Analysis import Analysis
 
@@ -1187,7 +1188,7 @@ sys.excepthook = my_exception_hook
 
 # Main Window of the application
 class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
-    """PyQt window to display sensor data
+    """PyQt window to display sensor node data
     """
 
     def __init__(self, parent : MainApp = None):
@@ -1203,9 +1204,6 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
         # Connect buttons to start and stop the worker
         self.bu_start.clicked.connect(self.start_worker)
         self.bu_stop.clicked.connect(self.stop_worker)
-        self.bu_reset.clicked.connect(self.reset)
-
-        self.sensors_slider.valueChanged.connect(self.slider_value_changed)
 
 
     def initalize_workers(self):
@@ -1243,7 +1241,6 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
 
         self.bu_start.setEnabled(False)
         self.bu_stop.setEnabled(True)
-        self.sensors_slider.setEnabled(False)
 
 
     def stop_worker(self):
@@ -1251,35 +1248,80 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
             self.worker.stop()   
             self.bu_stop.setEnabled(False)
             self.bu_start.setEnabled(True)
-            #self.bu_reset.setEnabled(True)
-
-    def reset(self):
-        if self.worker_thread.isRunning():
-            
-            self.worker.reset()   
-    
-            self.graphicsView.clear()
-
-            self.bu_start.setEnabled(True)       
-            self.sensors_slider.setEnabled(True)
-
-            self.sensors_slider.setValue(1)
-            self.slider_value.setText("1")
-            constants.SNIds = [1]
-
-            self.plot_worker.setupPlots()
-            print("Resetted")
-
-
-    def slider_value_changed(self, value):
-        self.slider_value.setText(f"{value}") 
-        constants.SNIds = list(range(1, value+1))
-        print(constants.SNIds)
-
-        self.plot_worker.setupPlots()
-        self.worker.reset()
-
 
     def closeEvent(self, event):
         print("Shutting down")
         self.stop_worker()
+        # Serial close required
+        
+        
+class SensorConfigWindow(QtWidgets.QWidget):
+    """PyQt window to configure the sensornode ids
+    """
+    def __init__(self):
+        super().__init__()
+
+
+        self.init_ui()
+
+    def init_ui(self):
+        main_layout = QtWidgets.QVBoxLayout()
+
+        # Window layout
+        input_layout = QtWidgets.QHBoxLayout()
+        self.sensor_input = QtWidgets.QLineEdit(self)
+        self.com_input = QtWidgets.QLineEdit(self)
+        self.add_pair_button = QtWidgets.QPushButton('Add Pair', self)
+        self.add_pair_button.clicked.connect(self.add_sensor_com_pair)
+        input_layout.addWidget(QtWidgets.QLabel('Sensor ID:'))
+        input_layout.addWidget(self.sensor_input)
+        input_layout.addWidget(QtWidgets.QLabel('COM Port:'))
+        input_layout.addWidget(self.com_input)
+        input_layout.addWidget(self.add_pair_button)
+
+        # List to display the ID/COM pairs
+        self.pair_list_widget = QtWidgets.QListWidget(self)
+
+        # Button to remove the pairs
+        self.clear_list_button = QtWidgets.QPushButton('Clear List', self)
+        self.clear_list_button.clicked.connect(self.clear_list)
+
+        # Button to configure the sensor IDs
+        self.configure_button = QtWidgets.QPushButton('Configure', self)
+        self.configure_button.clicked.connect(self.configure_sensors)
+
+        # Add the widgets to the layout
+        main_layout.addLayout(input_layout)
+        main_layout.addWidget(self.pair_list_widget)
+        main_layout.addWidget(self.clear_list_button)
+        main_layout.addWidget(self.configure_button)
+
+        self.setLayout(main_layout)
+        self.setWindowTitle('Sensor Serial Configuration')
+
+    def add_sensor_com_pair(self):
+        """Method to add a sensor/com port pair based on user input
+        Appends the input to a list and displays it in a list widget
+        """
+        sensor_id = self.sensor_input.text()
+        com_port = self.com_input.text()
+        # Iterate over the ID\COM, append them to a list and clear the input fields
+        if sensor_id and com_port:
+            pair = (sensor_id, com_port)
+            constants.sensor_com_pairs.append(pair)
+            self.pair_list_widget.addItem(f'Sensor ID: {sensor_id}, COM Port: {com_port}')
+            self.sensor_input.clear()
+            self.com_input.clear()
+        else:
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Please enter both a Sensor ID and a COM Port.')
+
+    def clear_list(self):
+        """Clear the list widget
+        """
+        constants.sensor_com_pairs.clear()  # Leere die interne Liste
+        self.pair_list_widget.clear()  # Leere das List-Widget
+
+    def configure_sensors(self):
+        """Use the input pairs to send the ID commands to the sensors via serial connection
+        """
+        configure_serial()
