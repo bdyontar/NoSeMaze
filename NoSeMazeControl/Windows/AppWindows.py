@@ -1287,7 +1287,7 @@ class SensorConfigWindow(QtWidgets.QWidget):
         self.clear_list_button.clicked.connect(self.clear_list)
 
         # Button to configure the sensor IDs
-        self.configure_button = QtWidgets.QPushButton('Configure', self)
+        self.configure_button = QtWidgets.QPushButton('Connect', self)
         self.configure_button.clicked.connect(self.configure_sensors)
 
         # Add the widgets to the layout
