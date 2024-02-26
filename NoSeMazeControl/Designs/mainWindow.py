@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI\MainWindowEdited.ui'
+# Form implementation generated from reading ui file 'UI\MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -98,8 +98,6 @@ class Ui_MainWindow(object):
         self.menuAnimals.setObjectName("menuAnimals")
         self.menuE_Mails = QtWidgets.QMenu(self.menubar)
         self.menuE_Mails.setObjectName("menuE_Mails")
-        self.menuVideo = QtWidgets.QMenu(self.menubar)
-        self.menuVideo.setObjectName("menuVideo")
         self.menuSensors = QtWidgets.QMenu(self.menubar)
         self.menuSensors.setObjectName("menuSensors")
         self.menuHelp = QtWidgets.QMenu(self.menubar)
@@ -121,7 +119,7 @@ class Ui_MainWindow(object):
         self.actionAnalyse_Experiment = QtWidgets.QAction(MainWindow)
         self.actionAnalyse_Experiment.setObjectName("actionAnalyse_Experiment")
         self.actionMailing_List = QtWidgets.QAction(MainWindow)
-        self.actionMailing_List.setEnabled(False)
+        self.actionMailing_List.setEnabled(True)
         self.actionMailing_List.setObjectName("actionMailing_List")
         self.actionVideo_Control = QtWidgets.QAction(MainWindow)
         self.actionVideo_Control.setObjectName("actionVideo_Control")
@@ -140,12 +138,12 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionSave_Experiment)
         self.menuFile.addAction(self.actionLoad_Experiment)
         self.menuHardware.addAction(self.actionHardware_Preferences)
-        self.menuAnimals.addAction(self.actionAnimal_List)
+        self.menuHardware.addAction(self.actionVideo_Control)
         self.menuAnimals.addAction(self.actionSchedules)
+        self.menuAnimals.addAction(self.actionAnimal_List)
         self.menuAnimals.addAction(self.actionAnalyse_Experiment)
         self.menuE_Mails.addAction(self.actionMailing_List)
         self.menuE_Mails.addAction(self.actionMessage_Folder)
-        self.menuVideo.addAction(self.actionVideo_Control)
         self.menuSensors.addAction(self.actionConfigure_IDs)
         self.menuSensors.addAction(self.actionView_Data)
         self.menuHelp.addAction(self.actionAbout)
@@ -154,7 +152,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAnimals.menuAction())
         self.menubar.addAction(self.menuHardware.menuAction())
         self.menubar.addAction(self.menuSensors.menuAction())
-        self.menubar.addAction(self.menuVideo.menuAction())
         self.menubar.addAction(self.menuE_Mails.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
@@ -179,18 +176,17 @@ class Ui_MainWindow(object):
         self.menuHardware.setTitle(_translate("MainWindow", "Hardware"))
         self.menuAnimals.setTitle(_translate("MainWindow", "Experiment"))
         self.menuE_Mails.setTitle(_translate("MainWindow", "Notifications"))
-        self.menuVideo.setTitle(_translate("MainWindow", "Video"))
-        self.menuSensors.setTitle(_translate("MainWindow", "Sensors"))
+        self.menuSensors.setTitle(_translate("MainWindow", "Sensornodes"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.actionHardware_Preferences.setText(_translate("MainWindow", "Hardware Preferences"))
         self.actionAnimal_List.setText(_translate("MainWindow", "Animal List"))
         self.actionSave_Experiment.setText(_translate("MainWindow", "Save Experiment"))
         self.actionLoad_Experiment.setText(_translate("MainWindow", "Load Experiment"))
         self.actionPreferences.setText(_translate("MainWindow", "Preferences"))
-        self.actionAnalyse_Experiment.setText(_translate("MainWindow", "Analyse Experiment"))
+        self.actionAnalyse_Experiment.setText(_translate("MainWindow", "Analysis"))
         self.actionMailing_List.setText(_translate("MainWindow", "Mailing List"))
         self.actionVideo_Control.setText(_translate("MainWindow", "Video Control"))
-        self.actionView_Data.setText(_translate("MainWindow", "View Data"))
+        self.actionView_Data.setText(_translate("MainWindow", "Data Viewer"))
         self.actionMessage_Folder.setText(_translate("MainWindow", "Message Folder"))
         self.actionAbout.setText(_translate("MainWindow", "About"))
         self.actionOpen_User_Guide.setText(_translate("MainWindow", "Open User Guide"))
