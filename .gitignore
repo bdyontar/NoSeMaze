@@ -23,3 +23,12 @@ sphinxDoc/build/
 
 # ignoring csv files
 *.csv
+
+
+# ignoring txt files
+*.txt
+
+*.nosemaze
+
+*.schedule
+
