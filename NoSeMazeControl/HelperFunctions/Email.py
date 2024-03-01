@@ -352,7 +352,7 @@ def deadmans_switch(experiment):
         node_info = f"The following nodes are offline: {''.join(str(offline_nodes))}"
 
     table = '\n'.join(table)
-    content = content.format(name='{name}', overview=table)
+    content = content.format(name='{name}', overview=table, node_overview=node_info)
 
     send(subject, content, attachment)
 
@@ -451,8 +451,7 @@ def send(subject, content, attachment):
         filename = dire + subject + ".txt"  # File in folder
 
         text = content.format(name="User")
-        print(repr(text))
-        print(filename)
+ 
         with open(filename, 'w', encoding='utf-8-sig') as f:
             f.write(text)
 

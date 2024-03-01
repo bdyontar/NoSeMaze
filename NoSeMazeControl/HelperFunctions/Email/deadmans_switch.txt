@@ -7,6 +7,8 @@ Here is the short overview:
 
 {overview}
 
+{node_overview}
+
 Catch you again later!
 
 Best regards,
