@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI\MainWindow.ui'
+# Form implementation generated from reading ui file 'UI/MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1052, 838)
+        MainWindow.resize(1044, 815)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -24,9 +24,20 @@ class Ui_MainWindow(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.startButton = QtWidgets.QPushButton(self.groupBox)
+        self.startButton.setMinimumSize(QtCore.QSize(0, 30))
+        self.startButton.setStyleSheet("\n"
+"border-radius: 4px;  /* half of the height to make it round */\n"
+"border-color: green;\n"
+"background-color: lightgreen;\n"
+"")
         self.startButton.setObjectName("startButton")
         self.gridLayout_3.addWidget(self.startButton, 0, 0, 1, 1)
         self.stopButton = QtWidgets.QPushButton(self.groupBox)
+        self.stopButton.setMinimumSize(QtCore.QSize(0, 30))
+        self.stopButton.setStyleSheet("\n"
+"border-radius: 4px;  /* half of the height to make it round */\n"
+"background-color: rgb(255, 168, 165);\n"
+"")
         self.stopButton.setObjectName("stopButton")
         self.gridLayout_3.addWidget(self.stopButton, 0, 1, 1, 1)
         self.gridLayout.addWidget(self.groupBox, 0, 0, 1, 1)
@@ -81,7 +92,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.line, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1052, 31))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1044, 26))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(False)

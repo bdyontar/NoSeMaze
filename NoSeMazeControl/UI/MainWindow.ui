@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1052</width>
-    <height>838</height>
+    <width>1044</width>
+    <height>815</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,19 @@
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QPushButton" name="startButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+border-radius: 4px;  /* half of the height to make it round */
+border-color: green;
+background-color: lightgreen;
+</string>
+         </property>
          <property name="text">
           <string>Start</string>
          </property>
@@ -30,6 +43,18 @@
        </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="stopButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+border-radius: 4px;  /* half of the height to make it round */
+background-color: rgb(255, 168, 165);
+</string>
+         </property>
          <property name="text">
           <string>Stop</string>
          </property>
@@ -133,8 +158,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1052</width>
-     <height>31</height>
+     <width>1044</width>
+     <height>26</height>
     </rect>
    </property>
    <property name="font">
