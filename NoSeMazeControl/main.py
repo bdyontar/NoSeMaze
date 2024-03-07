@@ -553,7 +553,7 @@ def main():
     """Main method to be called."""
     app = QtWidgets.QApplication(sys.argv)
     
-    # Set the global palette for a modern clean design
+        # Set the global palette for a modern clean design
     palette = QtGui.QPalette()
     palette.setColor(QtGui.QPalette.Window, QtGui.QColor("white"))  # Set the window background color to white
     palette.setColor(QtGui.QPalette.WindowText, QtGui.QColor("black"))  # Set the window text color to black
@@ -566,7 +566,7 @@ def main():
     palette.setColor(QtGui.QPalette.HighlightedText, QtGui.QColor("white"))  # Text color for selected items
     
     app.setPalette(palette)
-
+    
     form = MainApp()
     form.show()
     sys.exit(app.exec_())
