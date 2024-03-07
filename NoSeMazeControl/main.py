@@ -26,7 +26,7 @@ import webbrowser
 import pickle
 import datetime
 import numpy as np
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 from Designs import mainWindow
 from Windows import AppWindows
@@ -111,6 +111,7 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.control_window : AppWindows.ControlWindow = None
         self.sensors_window : AppWindows.SensorsWindow = None
         self.sensor_config_window : AppWindows.SensorConfigWindow = None
+        self.schedules_window : AppWindows.SensorConfigWindow = None
 
         self.setup_experiment_bindings(Experiment.Experiment())
 
@@ -228,8 +229,9 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         in current version. Open message box notifying about deprecation
         notice instead.
         """
-        QtWidgets.QMessageBox(self, "Deprecation Notice",
-                              "E-Mailing function is deprecated\nand not implemented in current version.")
+        #QtWidgets.QMessageBox(self, "Deprecation Notice",
+         #                     "E-Mailing function is deprecated\nand not implemented in current version.")
+         
         # Implementation of open_mail_window are commented out below
         # for archive purpose, in case there is a need to have
         # e-mailing implementation again
@@ -479,8 +481,11 @@ class MainApp(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
             self.control_window.close()
         if self.sensors_window is not None:
             self.sensors_window.close()
-
-
+        if self.sensor_config_window is not None:
+            self.sensor_config_window.close()
+        if self.schedules_window is not None:
+            self.schedules_window.close()
+            
     def closeEvent(self, event : QtCore.QEvent):
         """Things to be executed if closeEvent occured (x in main window is clicked).
         
@@ -547,6 +552,21 @@ sys.excepthook = my_exception_hook
 def main():
     """Main method to be called."""
     app = QtWidgets.QApplication(sys.argv)
+    
+    # Set the global palette for a modern clean design
+    palette = QtGui.QPalette()
+    palette.setColor(QtGui.QPalette.Window, QtGui.QColor("white"))  # Set the window background color to white
+    palette.setColor(QtGui.QPalette.WindowText, QtGui.QColor("black"))  # Set the window text color to black
+    # Set other palette colors as needed for a clean design
+    palette.setColor(QtGui.QPalette.Base, QtGui.QColor("white"))  # Background color for text entry widgets
+    palette.setColor(QtGui.QPalette.Text, QtGui.QColor("black"))  # Text color for text entry widgets
+    palette.setColor(QtGui.QPalette.Button, QtGui.QColor("white"))  # Button background color
+    palette.setColor(QtGui.QPalette.ButtonText, QtGui.QColor("black"))  # Button text color
+    palette.setColor(QtGui.QPalette.Highlight, QtGui.QColor("#0078d7"))  # Highlight color for selected items
+    palette.setColor(QtGui.QPalette.HighlightedText, QtGui.QColor("white"))  # Text color for selected items
+    
+    app.setPalette(palette)
+
     form = MainApp()
     form.show()
     sys.exit(app.exec_())
