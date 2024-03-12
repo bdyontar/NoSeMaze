@@ -34,79 +34,6 @@ from HelperFunctions import Reward as reward
 # TODO: describe attributes in classes as well? All classes?
 
 #region [DigitalTasks]
-class NiUsbDigitalOutTwoDevicesC:
-    """Send digital signal out to two channels simultaneously 
-    for concatenated training. It is currently not used"""
-
-    def __init__(self, device1: str, device2: str, secs: float, on1: int, on2: int) -> None:
-        """
-        Parameters
-        ----------
-        device1 : str
-            Name of 1st device
-
-        device2 : str
-            Name of 2nd device
-
-        sec : float
-            Duration of the ventile should be opened. It is the water amount 
-            defined in the schedule.
-
-        on1 : int
-            On-signal for device 1 (Left port).
-
-        on2 : int
-            On-signal for device 2 (Right port).
-        """
-
-        self.do1_handle = TaskHandle(0)
-        self.do2_handle = TaskHandle(1)
-
-        DAQmxCreateTask("", byref(self.do1_handle))
-        DAQmxCreateTask("", byref(self.do2_handle))
-
-        DAQmxCreateDOChan(self.do1_handle, device1, '', DAQmx_Val_ChanPerLine)
-        DAQmxCreateDOChan(self.do2_handle, device2, '', DAQmx_Val_ChanPerLine)
-        self.secs1 = secs
-        self.secs2 = secs
-        self.sampsPerChanWritten = int32()
-        self.on1 = numpy.uint32([on1])
-        self.on2 = numpy.uint32([on2])
-        self.off = numpy.uint32([0])
-        self.SampsPerChan = 1
-
-    def DoTask(self):
-        """Start task and execute sequences"""
-
-        # Start task
-        DAQmxStartTask(self.do1_handle)
-        DAQmxStartTask(self.do2_handle)
-
-        # Switch digital signals on
-        DAQmxWriteDigitalU32(self.do1_handle, self.SampsPerChan, False, -1, DAQmx_Val_GroupByChannel, self.on1,
-                             byref(self.sampsPerChanWritten), None)
-        DAQmxWriteDigitalU32(self.do2_handle, self.SampsPerChan, False, -1, DAQmx_Val_GroupByChannel, self.on2,
-                             byref(self.sampsPerChanWritten), None)
-        time.sleep(self.secs1)
-
-        # Switches digital signal off
-        DAQmxWriteDigitalU32(self.do1_handle, self.SampsPerChan, False, -1, DAQmx_Val_GroupByChannel, self.off,
-                             byref(self.sampsPerChanWritten), None)
-        DAQmxWriteDigitalU32(self.do2_handle, self.SampsPerChan, False, -1, DAQmx_Val_GroupByChannel, self.off,
-                             byref(self.sampsPerChanWritten), None)
-        time.sleep(float(self.secs1/100))
-
-        self.ClearTask()
-
-    def ClearTask(self):
-        """Stop and clear all tasks."""
-
-        time.sleep(0.005)
-        DAQmxStopTask(self.do1_handle)
-        DAQmxStopTask(self.do2_handle)
-
-        DAQmxClearTask(self.do1_handle)
-        DAQmxClearTask(self.do2_handle)
 
 
 class NiUsbDigitalOutTwoDevices:
@@ -354,6 +281,71 @@ class ThreadSafeDigitalOut:
 
         DAQmxClearTask(self.do_handle)
         DAQmxClearTask(self.ai_handle)
+
+class ThreadSafeDigitalInput:
+    """Read thread safe digital input."""
+
+    def __init__(self, di_device: str, lines: int, samp_rate: int, secs: float, clock: str = '') -> None:
+        """
+        Parameters
+        ----------
+        di_device : str
+            Name of digital input device
+
+        lines : int
+            Number of digital input lines to read.
+
+        samp_rate : int
+            Sample rate defined in hardware configuration.
+
+        secs : float
+            Duration of reading data in seconds.
+
+        clock : str
+            Clock preferred to be used.
+        """
+
+        self.di_handle = TaskHandle(0)
+
+        DAQmxCreateTask("", byref(self.di_handle))
+
+        DAQmxCreateDIChan(
+            self.di_handle, di_device, "", DAQmx_Val_ChanPerLine)
+
+        self.di_read = int32()
+        self.di_lines = lines
+        self.totalLength = numpy.uint64(samp_rate * secs)
+        self.digitalData = numpy.zeros(
+            (self.di_lines, self.totalLength), dtype=numpy.uint8)
+
+        DAQmxCfgSampClkTiming(self.di_handle, clock, samp_rate, DAQmx_Val_Rising, DAQmx_Val_FiniteSamps,
+                              numpy.uint64(self.totalLength))
+
+    def DoTask(self):
+        """
+        Start task and read input.
+
+        Return
+        ------
+        digitalData : ndarray
+            Data measured.
+        """
+
+        DAQmxStartTask(self.di_handle)
+        DAQmxReadDigitalLines(self.di_handle, self.totalLength, -1, DAQmx_Val_GroupByChannel, self.digitalData,
+                              numpy.uint32(self.di_lines*self.totalLength), byref(self.di_read), None)
+        self.ClearTasks()
+
+        return self.digitalData
+
+    def ClearTasks(self):
+        """Stop task and clear it"""
+
+        time.sleep(0.05)
+        DAQmxStopTask(self.di_handle)
+        DAQmxClearTask(self.di_handle)
+
+
 # endregion
 
 #region [AnalogTasks]
