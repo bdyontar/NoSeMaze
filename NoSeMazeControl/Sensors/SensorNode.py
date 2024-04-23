@@ -118,7 +118,7 @@ class sensornode:
                 time.sleep(3)
                 break
             i += 1
-            print("Retry {:d}".format(i))
+            #print("Retry {:d}".format(i))
             self.__sendCommand('MO\n')
             tmp = self.__getValue()
             

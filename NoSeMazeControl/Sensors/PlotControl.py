@@ -46,7 +46,7 @@ class plotter:
         self.plot_als = self.graphicsView.addPlot(row=1, col=0, labels={'left': 'ALS (lm)' },title="Ambient Light")
         self.plot_voc = self.graphicsView.addPlot(row=1, col=1, labels={'left': 'VoC (ppm)' },title="VoC")
         self.plot_voc_raw = self.graphicsView.addPlot(row=2, col=0, labels={'left': 'VoC Raw (digits)' },title="VoC Raw")
-        self.plot_nh3 = self.graphicsView.addPlot(row=2, col=1,labels={'left': 'NH3 (ppm)' },title="NH3")
+        self.plot_nh3 = self.graphicsView.addPlot(row=2, col=1,labels={'left': 'NH3 Trend' },title="NH3")
         self.plot_co2 = self.graphicsView.addPlot(row=3, col=0, labels={'left': 'CO2 (ppm)' },title="CO2")
         self.plot_temp = self.graphicsView.addPlot(row=3, col=1, labels={'left': 'Temp (°C)' },title="Temperature")
         self.plot_widgets = [self.plot_sound, self.plot_rh, self.plot_als, self.plot_voc, 

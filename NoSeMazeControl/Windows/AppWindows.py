@@ -1213,7 +1213,7 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
         """
         # Create a new worker == pseudo thread
         self.worker = MeasurementWorker()
-        self.plot_worker = PlotWorker(self.graphicsView)
+        self.plot_worker = PlotWorker(self.graphicsView, self.label_NH3)
 
         self.worker_thread = QThread()
         self.plot_thread = QThread()
@@ -1230,7 +1230,7 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
 
         # Connect the worker's signal to the plot workers slot
         self.worker.measurementsReady.connect(self.plot_worker.plotMeasurement)
-
+        self.worker.gravityReady.connect(self.plot_worker.displayNH3)
     
     def start_worker(self):
 

@@ -4,6 +4,7 @@ apds_file = ["Light", ["Timestamp", "ALS [digits]"]]
 spg_file = ["VOC", ["Timestamp", "VOC Raw [digits]", "VOC Index [digits]"]]
 mp_file = ["Microphone", ["Timestamp", "Microphone Amplitude [digits]"]]
 mics_file = ["NH3", ["Timestamp", "NH3 Sensor resistance [Ohm]"]]
+gravity_file = ["NH3", ["Timestamp", "NH3[ppm]"]]
 
 files = [scd41_file, apds_file, spg_file, mp_file, mics_file]
 
@@ -15,6 +16,8 @@ SNIds = [1]
 # IDs and COM ports of the sensors
 sensor_com_pairs = []
 
+# Port of gravity sensor
+gravity_port = []
 
 # false if nodes is offline, true if online
 node_connected = dict()
