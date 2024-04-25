@@ -292,21 +292,6 @@ class ExperimentWorker(QtCore.QObject):
 
                         odor_pulses = [odor_pulses, onset, duration, offset]
                         fv_pulse = np.array([self.hardware_prefs['fv_delay']])
-                else:
-                    odor_pulses, t = PulseInterface.make_pulse(
-                        self.hardware_prefs['samp_rate'],
-                        0.0,
-                        0.0,
-                        current_trial_pulse)
-
-                    length = len(t)/self.hardware_prefs['samp_rate'] - self.hardware_prefs['fv_delay'] - \
-                        current_trial_pulse[0]['offset'] - \
-                        current_trial_pulse[0]['offset']
-
-                    fv_pulse = PulseGeneration.fv_pulse(
-                        self.hardware_prefs['samp_rate'],
-                        current_trial_pulse, length,
-                        self.hardware_prefs['fv_delay'])
 
                 # Check if schedule is defined as pretraining schedule.
                 if not ('pretraining' in current_trial_pulse[0]):
@@ -654,10 +639,10 @@ class ExperimentWorker(QtCore.QObject):
         between NoSeMaze 1 and NoSeMaze 2."""
 
         # DEBUG : just chooses a random animal
-        # animals = list(self.experiment.animal_list.keys())
-        # animal = np.random.choice(animals)
+        animals = list(self.experiment.animal_list.keys())
+        animal = np.random.choice(animals)
 
-        animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
+        #animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
         try:
             if animal in self.experiment.animal_list.keys():
                 return self.experiment.animal_list[animal]
@@ -797,9 +782,8 @@ class ExperimentWorker(QtCore.QObject):
     def get_trial_daq(self, t: list = None, odor_pulses: object | list[float] = None,
                       current_trial: list | float = None, fv_pulse: float = None,
                       pretraining: bool = False, odour_training: bool = False,
-                      concatenate: bool = False) -> daq.ThreadSafeAnalogInput | \
-                      daq.DoAiMultiTaskOdourTraining |  daq.DoAiConcatenatedWaitTrainingMultiTask | \
-                      daq.DoAiConcatenatedPretrainingMultiTask |  daq.DoAiMultiTask:
+                      concatenate: bool = False) -> daq.ThreadSafeDigitalInput | \
+                      daq.DoAiMultiTaskOdourTraining  |  daq.DoAiMultiTask:
         """
         Initialise daq instance then returns it. Daq instance is responsible 
         for data acquisition and the sequences of the actual trial. E.g. 
@@ -837,8 +821,8 @@ class ExperimentWorker(QtCore.QObject):
         """
 
         if pretraining and not concatenate:
-            trial_daq = daq.ThreadSafeAnalogInput(
-                self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'], self.hardware_prefs['samp_rate'], 2)
+            trial_daq = daq.ThreadSafeDigitalInput(
+                self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'])
         elif odour_training:
             trial_daq = daq.DoAiMultiTaskOdourTraining(self.hardware_prefs['analog_input'],
                                                        self.hardware_prefs['analog_channels'],
@@ -859,40 +843,7 @@ class ExperimentWorker(QtCore.QObject):
                                                        self.hardware_prefs['lick_channel_r'],
                                                        self.hardware_prefs['beam_channel'],
                                                        current_trial[0:4])
-        elif concatenate and not pretraining:
-            trial_daq = daq.DoAiConcatenatedWaitTrainingMultiTask(self.hardware_prefs['analog_input'],
-                                                                  self.hardware_prefs['analog_channels'],
-                                                                  self.hardware_prefs['odour_output'],
-                                                                  self.hardware_prefs['finalvalve_output'],
-                                                                  self.hardware_prefs['reward_output1'],
-                                                                  self.hardware_prefs['reward_output2'],
-                                                                  self.hardware_prefs['samp_rate'],
-                                                                  np.sum(
-                                                                      odor_pulses),
-                                                                  odor_pulses, fv_pulse,
-                                                                  self.hardware_prefs['sync_clock'],
-                                                                  self.hardware_prefs['static'],
-                                                                  self.hardware_prefs['lick_channel_l'],
-                                                                  self.hardware_prefs['lick_channel_r'],
-                                                                  self.hardware_prefs['beam_channel'],
-                                                                  current_trial[0:4])
-        elif concatenate and pretraining:
-            trial_daq = daq.DoAiConcatenatedPretrainingMultiTask(self.hardware_prefs['analog_input'],
-                                                                 self.hardware_prefs['analog_channels'],
-                                                                 self.hardware_prefs['odour_output'],
-                                                                 self.hardware_prefs['finalvalve_output'],
-                                                                 self.hardware_prefs['reward_output1'],
-                                                                 self.hardware_prefs['reward_output2'],
-                                                                 self.hardware_prefs['samp_rate'],
-                                                                 np.sum(
-                                                                     odor_pulses),
-                                                                 odor_pulses, fv_pulse,
-                                                                 self.hardware_prefs['sync_clock'],
-                                                                 self.hardware_prefs['static'],
-                                                                 self.hardware_prefs['lick_channel_l'],
-                                                                 self.hardware_prefs['lick_channel_r'],
-                                                                 self.hardware_prefs['beam_channel'],
-                                                                 current_trial[0:4])
+
         else:
             trial_daq = daq.DoAiMultiTask(self.hardware_prefs['analog_input'],
                                           self.hardware_prefs['analog_channels'],
