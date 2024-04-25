@@ -29,16 +29,15 @@ def check_beam(device, channels, beam_channel):
     """
     Check if beam is broken. If beam is broken, TTL is high and data is 
     measured at 5 V. If beam is not broken, TTL is low and data is measured at
-    0 V. If mean of data > 1, means that in 0.1 s there is a TTL high, ergo
-    beam was broken.
-
+    0 V. 
+    
     Parameters
     ----------
     device : str
         Name of device in NI-board where beam sensor is connected.
 
     channels : int
-        Number of analog input channels read.
+        Number of digital input channels read.
 
     beam_channel : int
         Index of beam channel.
@@ -50,10 +49,12 @@ def check_beam(device, channels, beam_channel):
     """
 
     try:
-        check = daq.ThreadSafeAnalogInput(device, channels, 1000, 0.1)
-        analog_data = check.DoTask()
-        check_mean = np.mean(analog_data[beam_channel])
+        check = daq.ThreadSafeDigitalInput(device, channels)
+        digital_data = check.DoTask()
+        
+        # Check if any logic highs are contained
+        contains_ones = np.any(digital_data == 1)
 
-        return check_mean > 1
+        return contains_ones
     except:
         return False
