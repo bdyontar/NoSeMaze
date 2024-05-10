@@ -699,7 +699,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.samplingRateEdit.textEdited.connect(self.change)
         self.lickChannelSpin.valueChanged.connect(self.change)
         self.timeoutEdit.textEdited.connect(self.change)
-        self.beamChannelSpin.valueChanged.connect(self.change)
+        self.beamChannelEdit.textEdited.connect(self.change)
         self.lickChannel2Spin.valueChanged.connect(self.change)
         self.usbBox.stateChanged.connect(self.change)
         self.fvDelayEdit.textEdited.connect(self.change)
@@ -719,7 +719,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.samplingRateEdit.setText(str(prefs['samp_rate']))
         self.lickChannelSpin.setValue(prefs['lick_channel_l'])
         self.timeoutEdit.setText(str(prefs['timeout']))
-        self.beamChannelSpin.setValue(prefs['beam_channel'])
+        self.beamChannelEdit.setText(prefs['beam_channel'])
         self.lickChannel2Spin.setValue(prefs['lick_channel_r'])
         self.usbBox.setChecked(prefs['static'])
         self.fvDelayEdit.setText(str(prefs['fv_delay']))
@@ -749,7 +749,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                      'rfid_port': self.rfidPortEdit.text(),
                      'samp_rate': int(self.samplingRateEdit.text()),
                      'timeout': int(self.timeoutEdit.text()),
-                     'beam_channel': int(self.beamChannelSpin.value()),
+                     'beam_channel': self.beamChannelEdit.text(),
                      'lick_channel_l': int(self.lickChannelSpin.value()),
                      'lick_channel_r': int(self.lickChannel2Spin.value()),
                      'static': bool(self.usbBox.isChecked()),

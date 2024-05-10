@@ -57,16 +57,6 @@
       </property>
      </widget>
     </item>
-    <item row="14" column="1">
-     <widget class="QSpinBox" name="beamChannelSpin">
-      <property name="maximum">
-       <number>31</number>
-      </property>
-      <property name="value">
-       <number>0</number>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_11">
       <property name="text">
@@ -321,6 +311,13 @@
      <widget class="QLineEdit" name="digitalInputEdit">
       <property name="text">
        <string>Dev1/port0/line0:1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="1">
+     <widget class="QLineEdit" name="beamChannelEdit">
+      <property name="text">
+       <string>Dev1/port0/line0</string>
       </property>
      </widget>
     </item>
