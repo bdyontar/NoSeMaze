@@ -15,93 +15,159 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="9" column="1">
-     <widget class="QSpinBox" name="rewardChannelSpin">
-      <property name="maximum">
-       <number>3</number>
+    <item row="11" column="1">
+     <widget class="QLineEdit" name="lickMonitorDelayEdit">
+      <property name="text">
+       <string>1.5</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="4">
-     <widget class="QSpinBox" name="analogOutChannelsSpin">
-      <property name="minimum">
-       <number>1</number>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="analogInputEdit">
+      <property name="text">
+       <string>Dev1/ai0:3</string>
       </property>
-      <property name="maximum">
-       <number>4</number>
+     </widget>
+    </item>
+    <item row="18" column="1">
+     <widget class="QSpinBox" name="lickChannel2Spin">
+      <property name="value">
+       <number>2</number>
       </property>
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QLabel" name="label_12">
+     <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Analog Output Channels</string>
+       <string>Odour Output Channels</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_13">
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>Reward Channel</string>
+       <string>Final Valve Output Device</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Analog Input Channels</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="1">
      <widget class="QSpinBox" name="beamChannelSpin">
       <property name="maximum">
        <number>31</number>
       </property>
       <property name="value">
-       <number>1</number>
+       <number>0</number>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="analogOutputEdit">
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_11">
       <property name="text">
-       <string>Dev1/ao0</string>
+       <string>Reward Output Device 1</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="7" column="1">
      <widget class="QLineEdit" name="syncClockEdit">
       <property name="text">
        <string>/Dev1/ai/SampleClock</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_7">
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_6">
       <property name="text">
-       <string>Sampling Rate</string>
+       <string>RFID Port</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>Lick Channel Right</string>
       </property>
      </widget>
     </item>
     <item row="7" column="0">
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>Lick Channel</string>
+       <string>Synchronisation Clock</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Digital Output Device</string>
+    <item row="2" column="4">
+     <widget class="QSpinBox" name="odourChannelsSpin">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>32</number>
+      </property>
+      <property name="value">
+       <number>8</number>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="rfidPortEdit">
-      <property name="text">
-       <string>COM2</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
+    <item row="8" column="1">
      <widget class="QLineEdit" name="samplingRateEdit">
       <property name="text">
-       <string>20000</string>
+       <string>1000</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Lick Channel Left</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0" colspan="5">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="0">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Timeout (s)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>Lick Rate Limit</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Odour Output Device</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Beam Channel </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Analog Input Device</string>
       </property>
      </widget>
     </item>
@@ -118,40 +184,58 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_5">
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;delay before final valve is activated&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
-       <string>Synchronisation Clock</string>
+       <string>Final Valve Delay (s)</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
-     <widget class="QSpinBox" name="lickChannelSpin">
-      <property name="maximum">
-       <number>31</number>
-      </property>
-      <property name="value">
-       <number>3</number>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QSpinBox" name="digitalChannelsSpin">
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>32</number>
-      </property>
-      <property name="value">
-       <number>8</number>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="label_2">
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="rewardOutput2Edit">
       <property name="text">
-       <string>Analog Input Channels</string>
+       <string>Dev1/port2/line2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="fvOutputEdit">
+      <property name="text">
+       <string>Dev1/port2/line0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="1">
+     <widget class="QLineEdit" name="timeoutEdit">
+      <property name="text">
+       <string>6</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="odourOutputEdit">
+      <property name="text">
+       <string>Dev1/port0/line2:7</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QLineEdit" name="lickrateEdit">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the lick growrate is less than the limit, an e-mail warning will be sent. Lick growrate = 1 - (MEAN_OF_TOTAL_LICKS_LAST_HOUR / LAST_TOTAL_LICKS)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>0.1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>Reward Output Device 2</string>
       </property>
      </widget>
     </item>
@@ -168,73 +252,75 @@
       </property>
      </spacer>
     </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_6">
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_17">
       <property name="text">
-       <string>RFID Port</string>
+       <string>Lick Monitor Delay (s)</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="rfidPortEdit">
       <property name="text">
-       <string>Analog Input Device</string>
+       <string>COM1</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="analogInputEdit">
-      <property name="text">
-       <string>Dev1/ai0:3</string>
+    <item row="3" column="3" colspan="2">
+     <widget class="QCheckBox" name="usbBox">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set to check if using NI USB 6216 (BNC)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="digitalOutputEdit">
       <property name="text">
-       <string>Dev1/port0/line0:7</string>
+       <string>NI USB 6216 (BNC)</string>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Digital Output Channels</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>Timeout (s)</string>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="10" column="1">
-     <widget class="QLineEdit" name="timeoutEdit">
+     <widget class="QLineEdit" name="fvDelayEdit">
       <property name="text">
-       <string>6</string>
+       <string>1.5</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="1">
+     <widget class="QSpinBox" name="lickChannelSpin">
+      <property name="maximum">
+       <number>31</number>
+      </property>
+      <property name="value">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="rewardOutput1Edit">
+      <property name="text">
+       <string>Dev1/port2/line1</string>
       </property>
      </widget>
     </item>
     <item row="8" column="0">
-     <widget class="QLabel" name="label_10">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Beam Channel</string>
+       <string>Sampling Rate</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_11">
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_13">
       <property name="text">
-       <string>Analog Output Device</string>
+       <string>Digital Input Channels</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="0" colspan="5">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="digitalInputEdit">
+      <property name="text">
+       <string>Dev1/port0/line0:1</string>
       </property>
      </widget>
     </item>
@@ -246,7 +332,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
