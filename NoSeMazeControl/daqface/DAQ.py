@@ -34,7 +34,6 @@ from HelperFunctions import Reward as reward
 # TODO: describe attributes in classes as well? All classes?
 
 
-
 class NiUsbDigitalOutTwoDevices:
     """Send digital signals out to two devices simultaneously. For giving 
     reward."""
@@ -200,6 +199,69 @@ class NiUsbDigitalOut:
         DAQmxStopTask(self.do_handle)
         DAQmxClearTask(self.do_handle)
 
+class ThreadSafeAnalogInput:
+    """Read thread safe analog input."""
+
+    def __init__(self, ai_device: str, channels: int, samp_rate: int, secs: float, clock: str = '') -> None:
+        """
+        Parameters
+        ----------
+        ai_device : str
+            Name of analog input device
+
+        channels : int
+            Number of analog input read.
+
+        samp_rate : int
+            Sample rate defined in hardware configuration.
+
+        secs : float
+            Duration of reading data in seconds.
+
+        clock : str
+            Clock preferred to be used.
+        """
+
+        self.ai_handle = TaskHandle(0)
+
+        DAQmxCreateTask("", byref(self.ai_handle))
+
+        DAQmxCreateAIVoltageChan(
+            self.ai_handle, ai_device, "", DAQmx_Val_Diff, -10.0, 10.0, DAQmx_Val_Volts, None)
+
+        self.ai_read = int32()
+        self.ai_channels = channels
+        self.totalLength = numpy.uint64(samp_rate * secs)
+        self.analogData = numpy.zeros(
+            (self.ai_channels, self.totalLength), dtype=numpy.float64)
+
+        DAQmxCfgSampClkTiming(self.ai_handle, '', samp_rate, DAQmx_Val_Rising, DAQmx_Val_FiniteSamps,
+                              numpy.uint64(self.totalLength))
+
+    def DoTask(self):
+        """
+        Start task and read input.
+
+        Return
+        ------
+        analogData : ndarray
+            Data measured.
+        """
+
+        DAQmxStartTask(self.ai_handle)
+        DAQmxReadAnalogF64(self.ai_handle, self.totalLength, -1, DAQmx_Val_GroupByChannel, self.analogData,
+                           numpy.uint32(self.ai_channels*self.totalLength), byref(self.ai_read), None)
+        self.ClearTasks()
+
+        return self.analogData
+
+    def ClearTasks(self):
+        """Stop task and clear it"""
+
+        time.sleep(0.05)
+        DAQmxStopTask(self.ai_handle)
+        DAQmxClearTask(self.ai_handle)
+
 class ThreadSafeDigitalOut:
     """Send thread safe digital signal out to a device."""
 
@@ -282,23 +344,20 @@ class ThreadSafeDigitalOut:
 class ThreadSafeDigitalInput:
     """Read thread safe digital input. Used for checking the light beam"""
 
-    def __init__(self, di_device: str, lines: int) -> None:
+    def __init__(self, beam_channel : str) -> None:
         """
         Parameters
         ----------
-        di_device : str
-            Name of digital input device
+        beam_channel : str
+            String of digital input channel for beam input
 
-        lines : int
-            Number of digital input lines to read.
-
-        secs : float
-            Duration of reading data in seconds.
         """
         
         self.task = Task()
-
-        self.task.CreateDIChan("Dev1/port0/line0", "", DAQmx_Val_ChanPerLine)
+        lines = 10
+        
+        #TODO: Get port from hardware pref UI
+        self.task.CreateDIChan(beam_channel, "", DAQmx_Val_ChanPerLine)
 
         # Array to read samples into
         self.data = numpy.zeros((lines,), dtype=numpy.uint8)
@@ -338,6 +397,7 @@ class ThreadSafeDigitalInput:
 
 class DoAiMultiTask:
     """DAQ for normal GNG or risk trial"""
+    #TODO: Change analog data to digital data
 
     def __init__(self, ai_device: str, ai_channels: int, do_device: str, fv_device: str,
                  reward_device_l: str, reward_device_r: str, samp_rate: int, secs: float, odor_write: list[object],
@@ -719,7 +779,8 @@ class DoAiMultiTask:
 class DoAiMultiTaskOdourTraining:
     """DAQ for normal GNG odor association training. That is reward is always given after 
     odor presentation regardless of performance."""
-
+    
+    #TODO: Change analog data to digital data
     def __init__(self, ai_device, ai_channels, do_device, fv_device,
                  reward_device_l, reward_device_r, samp_rate, secs,
                  odor_write, fv_write, sync_clock, static, thorax_delay,
