@@ -25,7 +25,7 @@ from daqface import DAQ as daq
 import numpy as np
 
 
-def check_beam(device, channels, beam_channel):
+def check_beam(beam_channel):
     """
     Check if beam is broken. If beam is broken, TTL is high and data is 
     measured at 5 V. If beam is not broken, TTL is low and data is measured at
@@ -33,14 +33,9 @@ def check_beam(device, channels, beam_channel):
     
     Parameters
     ----------
-    device : str
-        Name of device in NI-board where beam sensor is connected.
 
-    channels : int
-        Number of digital input channels read.
-
-    beam_channel : int
-        Index of beam channel.
+    beam_channel : str
+        String of beam channel.
 
     Return
     ------
@@ -49,7 +44,7 @@ def check_beam(device, channels, beam_channel):
     """
 
     try:
-        check = daq.ThreadSafeDigitalInput(device, channels)
+        check = daq.ThreadSafeDigitalInput(beam_channel)
         digital_data = check.DoTask()
         
         # Check if any logic highs are contained

@@ -253,6 +253,9 @@ class ExperimentWorker(QtCore.QObject):
                 # the 'static' option always on.
 
                 # Parse parameter in trial pulse to be given to DAQ.
+                
+                #TODO: Change all analog channels to digital channels 
+                
                 if self.hardware_prefs['static']:
                     if concatenate:
                         odor_pulses : list = current_trial[9]
@@ -260,6 +263,7 @@ class ExperimentWorker(QtCore.QObject):
                         offset : float = current_trial_pulse[0]['offset']
                         total_length : float= np.sum(odor_pulses) + onset + offset
 
+                        #TODO: Understand t without analog input
                         t = np.linspace(0,
                                         total_length,
                                         int(total_length*self.hardware_prefs['samp_rate']))
@@ -325,6 +329,7 @@ class ExperimentWorker(QtCore.QObject):
                     start_time = datetime.datetime.now()
 
                     # Get data from DAQ
+                    #TODO: Change analog data to digital data
                     analog_data = trial_daq.DoTask()
 
                     # Get time of licked and number of licks
@@ -379,6 +384,7 @@ class ExperimentWorker(QtCore.QObject):
                             fv_pulse=fv_pulse,
                             odour_training=odour_training)
 
+                        #TODO: Change analog data to digital data
                         # Get data to be processed.
                         analog_data, wait_data, should_lick_data, start_time, water_given, wait_response, wait_time, start_time_2 = trial_daq.DoTask()
 
@@ -437,6 +443,7 @@ class ExperimentWorker(QtCore.QObject):
                                 fv_pulse=fv_pulse)
 
                         # Get data from DAQ
+                        #TODO: Change analog data to digital data
                         analog_data, wait_data, should_lick_data, start_time1, start_time2, water_given = trial_daq.DoTask()
 
                         # Set last data to be shown in UI
@@ -630,9 +637,7 @@ class ExperimentWorker(QtCore.QObject):
         # DEBUG : for debugging purpose
         # return np.random.rand() > 0.5
 
-        return beam.check_beam(self.hardware_prefs['analog_input'],
-                               self.hardware_prefs['analog_channels'],
-                               self.hardware_prefs['beam_channel'])
+        return beam.check_beam(self.hardware_prefs['beam_channel'])
 
     def get_present_animal(self):
         """Returns the animal in the port. 'Rfid.check_rfid' method differs 
@@ -782,7 +787,7 @@ class ExperimentWorker(QtCore.QObject):
     def get_trial_daq(self, t: list = None, odor_pulses: object | list[float] = None,
                       current_trial: list | float = None, fv_pulse: float = None,
                       pretraining: bool = False, odour_training: bool = False,
-                      concatenate: bool = False) -> daq.ThreadSafeDigitalInput | \
+                      concatenate: bool = False) -> daq.ThreadSafeAnalogInput | \
                       daq.DoAiMultiTaskOdourTraining  |  daq.DoAiMultiTask:
         """
         Initialise daq instance then returns it. Daq instance is responsible 
@@ -821,8 +826,8 @@ class ExperimentWorker(QtCore.QObject):
         """
 
         if pretraining and not concatenate:
-            trial_daq = daq.ThreadSafeDigitalInput(
-                self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'])
+            trial_daq = daq.ThreadSafeAnalogInput(
+                self.hardware_prefs['analog_input'], self.hardware_prefs['analog_channels'], self.hardware_prefs['samp_rate'], 2)
         elif odour_training:
             trial_daq = daq.DoAiMultiTaskOdourTraining(self.hardware_prefs['analog_input'],
                                                        self.hardware_prefs['analog_channels'],
