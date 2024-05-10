@@ -688,6 +688,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.saved.connect(self.saved_status)
 
         self.analogInputEdit.textEdited.connect(self.change)
+        self.digitalInputEdit.textEdited.connect(self.change)
         self.analogChannelsSpin.valueChanged.connect(self.change)
         self.odourOutputEdit.textEdited.connect(self.change)
         self.syncClockEdit.textEdited.connect(self.change)
@@ -700,15 +701,14 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.timeoutEdit.textEdited.connect(self.change)
         self.beamChannelSpin.valueChanged.connect(self.change)
         self.lickChannel2Spin.valueChanged.connect(self.change)
-        self.analogInput3Spin.valueChanged.connect(self.change)
         self.usbBox.stateChanged.connect(self.change)
         self.fvDelayEdit.textEdited.connect(self.change)
-        self.thoraxMonitorDelayEdit.textEdited.connect(self.change)
         self.lickMonitorDelayEdit.textEdited.connect(self.change)
         self.lickrateEdit.textEdited.connect(self.change)
 
     def set_preferences(self, prefs):
         self.analogInputEdit.setText(prefs['analog_input'])
+        self.digitalInputEdit.setText(prefs['digital_input'])
         self.analogChannelsSpin.setValue(prefs['analog_channels'])
         self.odourOutputEdit.setText(prefs['odour_output'])
         self.syncClockEdit.setText(prefs['sync_clock'])
@@ -721,11 +721,8 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.timeoutEdit.setText(str(prefs['timeout']))
         self.beamChannelSpin.setValue(prefs['beam_channel'])
         self.lickChannel2Spin.setValue(prefs['lick_channel_r'])
-        self.analogInput3Spin.setValue(prefs['analog_input_3'])
         self.usbBox.setChecked(prefs['static'])
         self.fvDelayEdit.setText(str(prefs['fv_delay']))
-        self.thoraxMonitorDelayEdit.setText(
-            str(prefs['thorax_delay']))  # TODO Namen ändern
         self.lickMonitorDelayEdit.setText(
             str(prefs['lick_delay']))  # TODO Namen ändern
         self.lickrateEdit.setText(str(prefs['low_lickrate']))
@@ -742,6 +739,7 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
 
         try:
             prefs = {'analog_input': self.analogInputEdit.text(),
+                     'digital_input': self.digitalInputEdit.text(),
                      'analog_channels': int(self.analogChannelsSpin.value()),
                      'odour_output': self.odourOutputEdit.text(),
                      'reward_output1': self.rewardOutput1Edit.text(),
@@ -750,15 +748,12 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                      'finalvalve_output': self.fvOutputEdit.text(),
                      'rfid_port': self.rfidPortEdit.text(),
                      'samp_rate': int(self.samplingRateEdit.text()),
-                     'lick_channel': int(self.lickChannelSpin.value()),
                      'timeout': int(self.timeoutEdit.text()),
                      'beam_channel': int(self.beamChannelSpin.value()),
                      'lick_channel_l': int(self.lickChannelSpin.value()),
                      'lick_channel_r': int(self.lickChannel2Spin.value()),
-                     'analog_input_3': int(self.analogInput3Spin.value()),
                      'static': bool(self.usbBox.isChecked()),
                      'fv_delay': float(self.fvDelayEdit.text()),
-                     'thorax_delay': float(self.thoraxMonitorDelayEdit.text()),
                      'lick_delay': float(self.lickMonitorDelayEdit.text()),
                      'low_lickrate': float(self.lickrateEdit.text())}
         except ValueError:
