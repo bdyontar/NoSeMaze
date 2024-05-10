@@ -59,6 +59,7 @@ def licks_number(lick_data, threshold, samp_rate, start_time):
         Number of licks.
     """
 
+    #TODO: Make the code work with digital data, obtain timestamps without sampling rate
     lick_response = np.zeros(len(lick_data))
     lick_response[np.where(lick_data > threshold)] = 1
 
@@ -84,6 +85,8 @@ def licks_number(lick_data, threshold, samp_rate, start_time):
 
 
 def lick_detect(lick_data, threshold, percent_accepted):
+    #TODO: Make the code work with digital dataS
+
     """
     Detect lick and analyse it if it is considered licked or not.
 
@@ -168,39 +171,3 @@ def trial_result(_rewarded, _response_l, _response_r):
         return TrialResult.false_alarm, False, True
     elif not _rewarded and not _response:
         return TrialResult.correct_rejection, True, False
-
-    # if _response_l and _response_r:
-    #     return TrialResult.false_alarm, False, True
-    # elif _response_l and not _response_r:
-    #     if prob_l == 0 and prob_r == 0:
-    #         return TrialResult.false_alarm, False, True
-    #     elif prob_l == 0 and prob_r != 0:
-    #         return TrialResult.miss, False, False
-    #     elif prob_l != 0:
-    #         return TrialResult.correct_response, True, False
-    # elif not _response_l and _response_r:
-    #     if prob_l == 0 and prob_r == 0:
-    #         return TrialResult.false_alarm, False, True
-    #     elif prob_l != 0 and prob_r == 0:
-    #         return TrialResult.miss, False, False
-    #     elif prob_r != 0:
-    #         return TrialResult.correct_response, True, False
-    # elif not _response_l and not _response_r:
-    #     if prob_l == 0 and prob_r == 0:
-    #         return TrialResult.correct_rejection, True, False
-    #     else:
-    #         return TrialResult.miss, False, False
-
-    # returns trial result enum, correct bool, timeout bool
-#    rewarded = _rewarded == 1
-#    if rewarded == 1 and _response_l:
-#        return TrialResult.correct_response, True, False
-#    elif rewarded == 1 and not _response_l:
-#        return TrialResult.miss, False, False
-#    elif not rewarded and not _response_l:
-#        return TrialResult.correct_rejection, True, False
-#    elif not rewarded and _response_l:
-#        return TrialResult.false_alarm, False, True
-#    else:
-#        print('unknown trial condition')
-#        return TrialResult.miss, False, False
