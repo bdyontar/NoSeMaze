@@ -120,14 +120,14 @@ background-color: rgb(255, 168, 165);
        <string>Data View</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="2" column="1">
-        <widget class="PlotWidget" name="thoraxView"/>
-       </item>
        <item row="0" column="1">
         <widget class="PlotWidget" name="graphicsView"/>
        </item>
        <item row="1" column="1">
-        <widget class="PlotWidget" name="dataView"/>
+        <widget class="PlotWidget" name="dataLView"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="PlotWidget" name="dataRView"/>
        </item>
       </layout>
      </widget>
@@ -159,7 +159,7 @@ background-color: rgb(255, 168, 165);
      <x>0</x>
      <y>0</y>
      <width>1044</width>
-     <height>26</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
