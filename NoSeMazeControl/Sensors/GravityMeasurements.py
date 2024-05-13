@@ -1,5 +1,5 @@
 """
-This module contains a sensornode measurement object to recieve and save sensor data. 
+This module contains a gravity sensor class to recieve and save sensor data. 
 """
 
 import csv
@@ -19,7 +19,7 @@ from pathlib import Path
 
 class GravitySensor:
     """
-    Class to handle measurement reading and saving as csv
+    Class to handle measurement reading and saving as csv from gravity nh3 sensor
 
     Attributes
     ----------
@@ -29,7 +29,7 @@ class GravitySensor:
     
     def __init__(self):
         """
-        Initializes the measurement object with the current time and creates a folder with measurements CSVs for each sensornodes in constants
+        Initializes the measurement object with the current time and creates a folder with measurements CSVs
         Folders are not overwritten if they already exist
         """
         t = time.localtime()
@@ -55,7 +55,7 @@ class GravitySensor:
         
     def recreate_files(self):
         """
-        Method the recreate the csv files in case the are deleted
+        Method the recreate the csv files in case they are deleted
         """
         file = constants.gravity_file
 

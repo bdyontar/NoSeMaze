@@ -1,4 +1,4 @@
-
+# File names and column IDs
 scd41_file = ["Temp_RH_CO2", ["Timestamp", "Temp[°C]", "RH[%]", "CO2 [ppm]"]]
 apds_file = ["Light", ["Timestamp", "ALS [digits]"]]
 spg_file = ["VOC", ["Timestamp", "VOC Raw [digits]", "VOC Index [digits]"]]

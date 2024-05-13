@@ -1,3 +1,6 @@
+"""module to plot sensornode measurements using pyqtgraph 
+"""
+
 import pyqtgraph as pg
 from Sensors import constants
 import numpy as np
@@ -11,13 +14,13 @@ class plotter:
        Attributes
         ----------
         names : list
-            List containing measurement ids 
+            List containing measurement identifiers 
 
         all_buffers : list
             List containing x,y data buffers
 
         buffer_size : int 
-            Maximum size of each buffer
+            Maximum size of each buffer, x-axis range of plots
 
         curve_items : list
             List to hold the individual curve items

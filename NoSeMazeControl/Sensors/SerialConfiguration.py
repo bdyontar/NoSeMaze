@@ -13,6 +13,7 @@ def configure_serial():
     # Iterate over ID\COM pairs and send a serial command to the port
     for sensor_id, com_port in constants.sensor_com_pairs:
         
+        # Special case: Gravity Add-On sensor
         if sensor_id == "gravity":
             try:
                 ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
