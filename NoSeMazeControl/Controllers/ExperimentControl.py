@@ -841,12 +841,10 @@ class ExperimentWorker(QtCore.QObject):
                                                        odor_pulses, fv_pulse,
                                                        self.hardware_prefs['sync_clock'],
                                                        self.hardware_prefs['static'],
-                                                       # self.hardware_prefs['thorax_delay'],
                                                        current_trial[4],
                                                        self.hardware_prefs['lick_delay'],
                                                        self.hardware_prefs['lick_channel_l'],
                                                        self.hardware_prefs['lick_channel_r'],
-                                                       self.hardware_prefs['beam_channel'],
                                                        current_trial[0:4])
 
         else:
@@ -862,12 +860,10 @@ class ExperimentWorker(QtCore.QObject):
                                           odor_pulses, fv_pulse,
                                           self.hardware_prefs['sync_clock'],
                                           self.hardware_prefs['static'],
-                                          # self.hardware_prefs['thorax_delay'],
                                           current_trial[4],
                                           self.hardware_prefs["lick_delay"],
                                           self.hardware_prefs['lick_channel_l'],
                                           self.hardware_prefs['lick_channel_r'],
-                                          self.hardware_prefs['beam_channel'],
                                           current_trial[0:4])
 
         return trial_daq

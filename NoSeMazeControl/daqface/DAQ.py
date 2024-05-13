@@ -402,7 +402,7 @@ class DoAiMultiTask:
     def __init__(self, ai_device: str, ai_channels: int, do_device: str, fv_device: str,
                  reward_device_l: str, reward_device_r: str, samp_rate: int, secs: float, odor_write: list[object],
                  fv_write: numpy.ndarray, sync_clock: str, static: bool, wait_delay: float, lick_delay: float,
-                 lick_channel_l: int, lick_channel_r: int, beam_channel: int, rewarded: list[float]):
+                 lick_channel_l: int, lick_channel_r: int, rewarded: list[float]):
         """
         Parameters
         ----------
@@ -455,9 +455,6 @@ class DoAiMultiTask:
         lick_channel_r : int
             Index of channel of analog input of right port.
 
-        beam_channel : int
-            Index of channel of analog input of beam (Lichtschranke).
-
         rewarded : list
             List of reward parameters (reward probability and amount of 
             reward.)
@@ -473,7 +470,6 @@ class DoAiMultiTask:
         self.reward_prob = rewarded[0:2]
         self.water = rewarded[2:4]
         self.lick_channel = [lick_channel_l, lick_channel_r]
-        self.beam_channel = beam_channel
 
         DAQmxCreateTask('', byref(self.ai_handle))
         DAQmxCreateTask('', byref(self.do_handle))
@@ -523,31 +519,11 @@ class DoAiMultiTask:
         check_r = numpy.hstack(
             (self.analogDataOdorOn[self.lick_channel[1]], self.analogDataLickWindow[self.lick_channel[1]]))
 
-        check_beam = numpy.hstack(
-            (self.analogDataFvOnset[self.beam_channel], self.analogDataOdorOn[self.beam_channel], self.analogDataLickWindow[self.beam_channel]))
 
         lick_response_l = numpy.zeros(len(check_l))
         lick_response_l[numpy.where(check_l > 2)] = 1
         lick_response_r = numpy.zeros(len(check_r))
         lick_response_r[numpy.where(check_r > 2)] = 1
-
-        beam_response = numpy.zeros(len(check_beam))
-        beam_response[numpy.where(check_beam > 1)] = 1
-
-        if numpy.sum(beam_response) == 0:
-            beam = 5
-        else:
-            beam_nz = numpy.nonzero(beam_response)[0]
-            beam = 0
-            for i, v in enumerate(beam_nz):
-                if i == 0:
-                    beam = beam
-                elif (v-beam_nz[i-1]) > 1:
-                    beam = beam + 1
-            if len(beam_response) - 1 > beam_nz[-1]:
-                beam = beam + 1
-
-        print('\nbeam : ', str(beam))
 
         if numpy.sum(lick_response_l) == 0:
             licks_l = 0
@@ -784,8 +760,7 @@ class DoAiMultiTaskOdourTraining:
     def __init__(self, ai_device, ai_channels, do_device, fv_device,
                  reward_device_l, reward_device_r, samp_rate, secs,
                  odor_write, fv_write, sync_clock, static, thorax_delay,
-                 lick_delay, lick_channel_l, lick_channel_r, beam_channel,
-                 rewarded):
+                 lick_delay, lick_channel_l, lick_channel_r, rewarded):
         """
         Parameters
         ----------
@@ -832,9 +807,6 @@ class DoAiMultiTaskOdourTraining:
         lick_channel_r : int
             Index of channel of analog input of right port.
 
-        beam_channel : int
-            Index of channel of analog input of beam (Lichtschranke).
-
         rewarded : list
             List of reward parameters (reward probability and amount of 
             reward.)
@@ -850,7 +822,6 @@ class DoAiMultiTaskOdourTraining:
         self.reward_prob = rewarded[0:2]
         self.water = rewarded[2:4]
         self.lick_channel = [lick_channel_l, lick_channel_r]
-        self.beam_channel = beam_channel
 
         DAQmxCreateTask('', byref(self.ai_handle))
         DAQmxCreateTask('', byref(self.do_handle))
@@ -914,8 +885,6 @@ class DoAiMultiTaskOdourTraining:
         check_wait_r = self.analogDataOdorOn[self.lick_channel[1]]
         check_l = self.analogDataLickWindow[self.lick_channel[0]]
         check_r = self.analogDataLickWindow[self.lick_channel[1]]
-        check_beam = numpy.hstack(
-            (self.analogDataFvOnset[self.beam_channel], self.analogDataOdorOn[self.beam_channel], self.analogDataLickWindow[self.beam_channel]))
 
         lick_response_l = numpy.zeros(len(check_l))
         lick_response_r = numpy.zeros(len(check_r))
@@ -926,24 +895,6 @@ class DoAiMultiTaskOdourTraining:
         wait_lick_response_r = numpy.zeros(len(check_wait_r))
         wait_lick_response_l[numpy.where(check_wait_l > 2)] = 1
         wait_lick_response_r[numpy.where(check_wait_r > 2)] = 1
-
-        beam_response = numpy.zeros(len(check_beam))
-        beam_response[numpy.where(check_beam > 1)] = 1
-
-        if numpy.sum(beam_response) == 0:
-            beam = 5
-        else:
-            beam_nz = numpy.nonzero(beam_response)[0]
-            beam = 0
-            for i, v in enumerate(beam_nz):
-                if i == 0:
-                    beam = beam
-                elif (v-beam_nz[i-1]) > 1:
-                    beam = beam + 1
-            if len(beam_response) - 1 > beam_nz[-1]:
-                beam = beam + 1
-
-        print('\nbeam : ', str(beam))
 
         if numpy.sum(wait_lick_response_l) == 0:
             wait_licks_l = 0
