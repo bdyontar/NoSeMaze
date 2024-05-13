@@ -27,9 +27,8 @@ import numpy as np
 
 def check_beam(beam_channel):
     """
-    Check if beam is broken. If beam is broken, TTL is high and data is 
-    measured at 5 V. If beam is not broken, TTL is low and data is measured at
-    0 V. 
+    Check if beam is broken. If beam is broken, TTL is high. 
+    If beam is not broken, TTL is low.
     
     Parameters
     ----------
@@ -47,7 +46,7 @@ def check_beam(beam_channel):
         check = daq.ThreadSafeDigitalInput(beam_channel)
         digital_data = check.DoTask()
         
-        # Check if any logic highs are contained
+        # Check if any logical highs are contained
         contains_ones = np.any(digital_data == 1)
 
         return contains_ones
