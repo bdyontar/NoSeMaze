@@ -194,8 +194,12 @@ class plotter:
         else:
             self.check_thresholds(dict[sensor_name][variable_name], variable_name)
             buffer[i].append(dict[sensor_name][variable_name])
-            buffer_t[i].append(((dict[sensor_name]["timestamp"]))/1000)
             
+            if (((dict[sensor_name]["timestamp"]))/1000) > current_time:
+                buffer_t[i].append(current_time)
+            else:
+                buffer_t[i].append(((dict[sensor_name]["timestamp"]))/1000)
+                
         current_curve.setData( buffer_t[i] , buffer[i])
         
         
