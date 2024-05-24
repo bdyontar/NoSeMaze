@@ -123,7 +123,7 @@ class sensornode:
             tmp = self.__getValue()
             
         timestamp_os = self.start_ms + (time.perf_counter_ns() - self.start_ns)/1000000
-        
+
         #0x003b236a;0x003b204a;0x00d3;0x00000000;0x0000;0x0000;0x00000000;0x00000000;0x00000000;0x0000;0x00000000;0x0000;0x0000;0x0000
         split_str = tmp.split(';')
         

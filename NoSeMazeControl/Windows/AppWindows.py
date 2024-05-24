@@ -701,7 +701,6 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.timeoutEdit.textEdited.connect(self.change)
         self.beamChannelEdit.textEdited.connect(self.change)
         self.lickChannel2Spin.valueChanged.connect(self.change)
-        self.usbBox.stateChanged.connect(self.change)
         self.fvDelayEdit.textEdited.connect(self.change)
         self.lickMonitorDelayEdit.textEdited.connect(self.change)
         self.lickrateEdit.textEdited.connect(self.change)
@@ -721,7 +720,6 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
         self.timeoutEdit.setText(str(prefs['timeout']))
         self.beamChannelEdit.setText(prefs['beam_channel'])
         self.lickChannel2Spin.setValue(prefs['lick_channel_r'])
-        self.usbBox.setChecked(prefs['static'])
         self.fvDelayEdit.setText(str(prefs['fv_delay']))
         self.lickMonitorDelayEdit.setText(
             str(prefs['lick_delay']))  # TODO Namen ändern
@@ -752,7 +750,6 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                      'beam_channel': self.beamChannelEdit.text(),
                      'lick_channel_l': int(self.lickChannelSpin.value()),
                      'lick_channel_r': int(self.lickChannel2Spin.value()),
-                     'static': bool(self.usbBox.isChecked()),
                      'fv_delay': float(self.fvDelayEdit.text()),
                      'lick_delay': float(self.lickMonitorDelayEdit.text()),
                      'low_lickrate': float(self.lickrateEdit.text())}

@@ -256,19 +256,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="3" colspan="2">
-     <widget class="QCheckBox" name="usbBox">
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set to check if using NI USB 6216 (BNC)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string>NI USB 6216 (BNC)</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="10" column="1">
      <widget class="QLineEdit" name="fvDelayEdit">
       <property name="text">
