@@ -11,7 +11,6 @@ from queue import Queue
 import pandas as pd
 import random
 
-
 from pathlib import Path
 
 from Sensors.SensorNode import sensornode as SensorNode
@@ -36,11 +35,10 @@ class MeasObj:
     
     def __init__(self):
         """
-        Initializes the measurement object with the current time and creates a folder with measurements CSVs for each sensornodes in constants
+        Initializes the measurement object and creates a folder with measurements CSVs for each sensornodes in constants
         Folders are not overwritten if they already exist
         """
-        t = time.localtime()
-        self.timestamp = time.strftime("%y%m%d_%H%M", t)
+
 
         self.SensorNodes = []
         # Loop over all sensor IDs
