@@ -1244,7 +1244,9 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
     def closeEvent(self, event):
         print("Shutting down")
         self.stop_worker()
-        # Serial close required
+
+        constants.SNIds = [1]
+        constants.sensor_com_pairs = []
         
         
 class SensorConfigWindow(QtWidgets.QWidget):
@@ -1302,8 +1304,8 @@ class SensorConfigWindow(QtWidgets.QWidget):
             pair = (sensor_id, com_port)
             constants.sensor_com_pairs.append(pair)
             self.pair_list_widget.addItem(f'Sensor ID: {sensor_id}, COM Port: {com_port}')
-            self.sensor_input.clear()
-            self.com_input.clear()
+            #self.sensor_input.clear()
+            #self.com_input.clear()
         else:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Please enter both a Sensor ID and a COM Port.')
 
