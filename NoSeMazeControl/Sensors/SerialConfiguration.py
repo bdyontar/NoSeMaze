@@ -26,9 +26,16 @@ def configure_serial():
                 ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
                 ser.reset_input_buffer()
                 ser.write(send_buf.encode())
-                print(ser.readline().decode())
-                ser.flush()
+                response = ser.readline().decode()
                 
+                if response == "ESP-ROM:esp32s2-rc4-20191025":
+                    print("Repeating")
+                    ser.reset_input_buffer()
+                    ser.write(send_buf.encode())
+                else:
+                    print("Opened without repeating")
+                ser.flush()
                 constants.SNIds.append(int(sensor_id))
+                
             except:
                 print(f"COM Port {com_port} not open")
