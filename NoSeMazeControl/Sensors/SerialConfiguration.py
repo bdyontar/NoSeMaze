@@ -39,3 +39,14 @@ def configure_serial():
                 
             except:
                 print(f"COM Port {com_port} not open")
+
+def close_serial():
+    
+    # Iterate over ID\COM pairs and close the port
+    for sensor_id, com_port in constants.sensor_com_pairs:
+        try:
+            ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
+            ser.close()
+            print("Closed node connection")
+        except:
+            pass

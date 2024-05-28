@@ -50,7 +50,7 @@ from queue import Queue
 from Sensors.MyWorker import MeasurementWorker, PlotWorker
 from Sensors.PlotControl import plotter
 from Sensors import constants
-from Sensors.SerialConfiguration import configure_serial
+from Sensors.SerialConfiguration import configure_serial, close_serial
 
 from Analysis import Analysis
 
@@ -1292,6 +1292,10 @@ class SensorConfigWindow(QtWidgets.QWidget):
 
         self.setLayout(main_layout)
         self.setWindowTitle('Sensor Serial Configuration')
+        
+        for sensor_id, com_port in constants.sensor_com_pairs:
+            self.pair_list_widget.addItem(f'Sensor ID: {sensor_id}, COM Port: {com_port}')
+
 
     def add_sensor_com_pair(self):
         """Method to add a sensor/com port pair based on user input
@@ -1304,15 +1308,19 @@ class SensorConfigWindow(QtWidgets.QWidget):
             pair = (sensor_id, com_port)
             constants.sensor_com_pairs.append(pair)
             self.pair_list_widget.addItem(f'Sensor ID: {sensor_id}, COM Port: {com_port}')
-            #self.sensor_input.clear()
-            #self.com_input.clear()
+            self.sensor_input.clear()
+            self.com_input.clear()
         else:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Please enter both a Sensor ID and a COM Port.')
 
     def clear_list(self):
         """Clear the list widget
         """
+        close_serial()
+        
         constants.sensor_com_pairs.clear()  # Leere die interne Liste
+        constants.SNIds = [1]
+
         self.pair_list_widget.clear()  # Leere das List-Widget
 
     def configure_sensors(self):
