@@ -65,6 +65,12 @@ class MeasObj:
                     except:
                         print("Could not create file")
         
+    def __del__(self):
+        for i, SN in enumerate(self.SensorNodes):
+            del SN
+        print("Deleted all nodes")
+     
+        
     def recreate_files(self):
         for SNId in constants.SNIds:
 

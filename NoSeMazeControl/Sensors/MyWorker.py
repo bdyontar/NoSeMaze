@@ -42,6 +42,8 @@ class MeasurementWorker(QObject):
         super().__init__()
         self._paused = True
         self._count = -1
+        self.abandon = False
+        
 
     def start(self):
         """
@@ -54,13 +56,14 @@ class MeasurementWorker(QObject):
         else:
             print('Continue')
 
-    def stop(self, *, abort=False):
+    def stop(self, abandon):
         """
         Stops the worker
 
         Args:
             abort (bool, optional): Aborts thread. Defaults to False.
         """
+        self.abandon = abandon
         self._paused = True
         print('Stopping...')
 
@@ -104,8 +107,14 @@ class MeasurementWorker(QObject):
                 if constants.gravity_port:
                     res = self.GravObj.meas_loop()
                     self.gravityReady.emit(res)
-                    
+                
                 QThread.msleep(1000)
+    
+            elif self.abandon == True:
+                try:
+                    del self.MeasureObj
+                except:
+                    pass
 
             QThread.msleep(100)
 

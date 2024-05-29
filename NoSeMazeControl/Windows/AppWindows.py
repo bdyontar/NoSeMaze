@@ -29,7 +29,6 @@ import datetime
 import sys
 import pandas as pd
 import pyqtgraph as pg
-
 import webbrowser
 import inspect
 from types import NoneType, TracebackType
@@ -1235,15 +1234,15 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
         self.bu_stop.setEnabled(True)
 
 
-    def stop_worker(self):
+    def stop_worker(self, abandon):
         if self.worker_thread.isRunning():
-            self.worker.stop()   
+            self.worker.stop(abandon)   
             self.bu_stop.setEnabled(False)
             self.bu_start.setEnabled(True)
 
     def closeEvent(self, event):
         print("Shutting down")
-        self.stop_worker()
+        self.stop_worker(abandon=True)
 
         
         
@@ -1275,7 +1274,7 @@ class SensorConfigWindow(QtWidgets.QWidget):
         self.pair_list_widget = QtWidgets.QListWidget(self)
 
         # Button to remove the pairs
-        self.clear_list_button = QtWidgets.QPushButton('Clear and Disconnect', self)
+        self.clear_list_button = QtWidgets.QPushButton('Clear List', self)
         self.clear_list_button.clicked.connect(self.clear_list)
 
         # Button to configure the sensor IDs
