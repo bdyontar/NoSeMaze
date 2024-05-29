@@ -1245,8 +1245,6 @@ class SensorsWindow(QtWidgets.QMainWindow, sensorsWindow.Ui_MainWindow):
         print("Shutting down")
         self.stop_worker()
 
-        constants.SNIds = [1]
-        constants.sensor_com_pairs = []
         
         
 class SensorConfigWindow(QtWidgets.QWidget):
@@ -1277,7 +1275,7 @@ class SensorConfigWindow(QtWidgets.QWidget):
         self.pair_list_widget = QtWidgets.QListWidget(self)
 
         # Button to remove the pairs
-        self.clear_list_button = QtWidgets.QPushButton('Clear List', self)
+        self.clear_list_button = QtWidgets.QPushButton('Clear and Disconnect', self)
         self.clear_list_button.clicked.connect(self.clear_list)
 
         # Button to configure the sensor IDs
