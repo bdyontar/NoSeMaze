@@ -32,3 +32,5 @@ sphinxDoc/build/
 
 *.schedule
 
+NoSeMazeControl/build/
+NoSeMazeControl/dist/
