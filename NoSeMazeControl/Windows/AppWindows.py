@@ -751,7 +751,9 @@ class HardwareWindow(QtWidgets.QMainWindow, hardwareWindow.Ui_MainWindow):
                      'lick_channel_r': int(self.lickChannel2Spin.value()),
                      'fv_delay': float(self.fvDelayEdit.text()),
                      'lick_delay': float(self.lickMonitorDelayEdit.text()),
-                     'low_lickrate': float(self.lickrateEdit.text())}
+                     'low_lickrate': float(self.lickrateEdit.text()),
+                     'static': True}
+
         except ValueError:
             QtWidgets.QMessageBox.about(self.parent, "Error",
                                         "A value error has occured")
