@@ -230,6 +230,8 @@ class ExperimentWorker(QtCore.QObject):
             start = time()
 
             if self.animal_present():
+                print("Animal present - Beam broken")
+                
                 animal : Mouse = self.get_present_animal()
                 current_trial = animal.current_trial()
                 current_trial_pulse = animal.current_trial_pulse()

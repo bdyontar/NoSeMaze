@@ -384,7 +384,6 @@ class ThreadSafeDigitalInput:
         self.ClearTasks()
 
         values = self.data.tolist()
-        print("Digital input values:", values)
 
         return self.data
 
