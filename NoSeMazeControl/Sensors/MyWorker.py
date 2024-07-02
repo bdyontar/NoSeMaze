@@ -105,14 +105,22 @@ class MeasurementWorker(QObject):
                     pass
                 
                 if constants.gravity_port:
-                    res = self.GravObj.meas_loop()
-                    self.gravityReady.emit(res)
+                    try:
+                        res = self.GravObj.meas_loop()
+                        self.gravityReady.emit(res)
+                    except TypeError:
+                        pass
                 
                 QThread.msleep(1000)
     
             elif self.abandon == True:
                 try:
                     del self.MeasureObj
+                except:
+                    pass
+                
+                try:
+                    del self.GravObj
                 except:
                     pass
 
