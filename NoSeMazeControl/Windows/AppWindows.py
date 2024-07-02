@@ -213,44 +213,52 @@ class ControlWindow(QtWidgets.QMainWindow, controlWindow.Ui_MainWindow):
                 if settings['cam1']['pos'] is not None:
                     key = settings['cam1']['pos']
                     self.settings['cam1']['pos'] = key
-                    self.set_cam1(self.cameras_pos[key])
-                    self.settings['cam1']['saturation'] = settings['cam1']['saturation']
-                    self.settings['cam1']['brightness'] = settings['cam1']['brightness']
-                    self.settings['cam1']['contrast'] = settings['cam1']['contrast']
-                    self.camOne.imageProcessing().setBrightness(
-                        settings['cam1']['brightness'])
-                    self.camOne.imageProcessing().setSaturation(
-                        settings['cam1']['saturation'])
-                    self.camOne.imageProcessing().setContrast(
-                        settings['cam1']['contrast'])
                     try:
-                        self.settings['cam1']['res_x'] = settings['cam1']['res_x']
-                        self.settings['cam1']['res_y'] = settings['cam1']['res_y']
-                        self.set_res_cam1(
-                            settings['cam1']['res_x'], settings['cam1']['res_y'])
-                    except:
+                        self.set_cam1(self.cameras_pos[key])
+                    except KeyError:
                         pass
+                    else:
+                        self.settings['cam1']['saturation'] = settings['cam1']['saturation']
+                        self.settings['cam1']['brightness'] = settings['cam1']['brightness']
+                        self.settings['cam1']['contrast'] = settings['cam1']['contrast']
+                        self.camOne.imageProcessing().setBrightness(
+                            settings['cam1']['brightness'])
+                        self.camOne.imageProcessing().setSaturation(
+                            settings['cam1']['saturation'])
+                        self.camOne.imageProcessing().setContrast(
+                            settings['cam1']['contrast'])
+                        try:
+                            self.settings['cam1']['res_x'] = settings['cam1']['res_x']
+                            self.settings['cam1']['res_y'] = settings['cam1']['res_y']
+                            self.set_res_cam1(
+                                settings['cam1']['res_x'], settings['cam1']['res_y'])
+                        except:
+                            pass
             if cam == 'cam2':
                 if settings['cam2']['pos'] is not None:
                     key = settings['cam2']['pos']
                     self.settings['cam2']['pos'] = key
-                    self.set_cam2(self.cameras_pos[key])
-                    self.settings['cam2']['saturation'] = settings['cam2']['saturation']
-                    self.settings['cam2']['brightness'] = settings['cam2']['brightness']
-                    self.settings['cam2']['contrast'] = settings['cam2']['contrast']
-                    self.camTwo.imageProcessing().setBrightness(
-                        settings['cam2']['brightness'])
-                    self.camTwo.imageProcessing().setSaturation(
-                        settings['cam2']['saturation'])
-                    self.camTwo.imageProcessing().setContrast(
-                        settings['cam2']['contrast'])
                     try:
-                        self.settings['cam2']['res_x'] = settings['cam2']['res_x']
-                        self.settings['cam2']['res_y'] = settings['cam2']['res_y']
-                        self.set_res_cam2(
-                            settings['cam2']['res_x'], settings['cam2']['res_y'])
-                    except:
+                        self.set_cam2(self.cameras_pos[key])
+                    except KeyError:
                         pass
+                    else:                    
+                        self.settings['cam2']['saturation'] = settings['cam2']['saturation']
+                        self.settings['cam2']['brightness'] = settings['cam2']['brightness']
+                        self.settings['cam2']['contrast'] = settings['cam2']['contrast']
+                        self.camTwo.imageProcessing().setBrightness(
+                            settings['cam2']['brightness'])
+                        self.camTwo.imageProcessing().setSaturation(
+                            settings['cam2']['saturation'])
+                        self.camTwo.imageProcessing().setContrast(
+                            settings['cam2']['contrast'])
+                        try:
+                            self.settings['cam2']['res_x'] = settings['cam2']['res_x']
+                            self.settings['cam2']['res_y'] = settings['cam2']['res_y']
+                            self.set_res_cam2(
+                                settings['cam2']['res_x'], settings['cam2']['res_y'])
+                        except:
+                            pass
 
     def get_cam1(self):
         key, okPressed = QtWidgets.QInputDialog.getItem(
