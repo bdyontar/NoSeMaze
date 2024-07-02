@@ -17,6 +17,7 @@ def configure_serial():
             try:
                 ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
                 constants.gravity_port = com_port
+                print("Opened serial to gravity board")
             except:
                 print(f"COM Port {com_port} not open")
         else:
