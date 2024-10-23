@@ -646,10 +646,10 @@ class ExperimentWorker(QtCore.QObject):
         between NoSeMaze 1 and NoSeMaze 2."""
 
         # DEBUG : just chooses a random animal
-        animals = list(self.experiment.animal_list.keys())
-        animal = np.random.choice(animals)
+        #animals = list(self.experiment.animal_list.keys())
+        #animal = np.random.choice(animals)
 
-        #animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
+        animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
         try:
             if animal in self.experiment.animal_list.keys():
                 return self.experiment.animal_list[animal]
