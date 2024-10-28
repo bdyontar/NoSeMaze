@@ -8,7 +8,6 @@ from Sensors import constants
 import os
 import threading
 from queue import Queue
-import pandas as pd
 import serial
 from datetime import datetime
 

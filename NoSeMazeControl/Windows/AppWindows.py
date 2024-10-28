@@ -27,7 +27,6 @@ import os
 import numpy as np
 import datetime
 import sys
-import pandas as pd
 import pyqtgraph as pg
 import webbrowser
 import inspect
