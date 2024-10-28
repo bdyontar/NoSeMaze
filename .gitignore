@@ -21,3 +21,6 @@ venv/
 
 # ignoring sphinx build files
 sphinxDoc/build/
+
+**/csv
+messages/
