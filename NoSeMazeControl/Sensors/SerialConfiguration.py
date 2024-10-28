@@ -16,30 +16,33 @@ def configure_serial():
         if sensor_id == "gravity":
             try:
                 ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
-                constants.gravity_port = com_port
-                print("Opened serial to gravity board")
             except:
                 print(f"COM Port {com_port} not open")
+            else:
+                constants.gravity_port = com_port
+                print("Opened serial to gravity board")
         else:
             # This command sets the ID in the nodes NVS memory
             send_buf = f"SetID 0x{sensor_id}\n"
             try:
-                ser = serial.Serial(f"COM{com_port}", 115200, timeout = 0.5)
-                ser.reset_input_buffer()
-                ser.write(send_buf.encode())
-                response = ser.readline().decode()
-                
-                if response == "ESP-ROM:esp32s2-rc4-20191025":
-                    print("Repeating")
+                with serial.Serial(f"COM{com_port}", 115200, timeout=0.5) as ser:
                     ser.reset_input_buffer()
                     ser.write(send_buf.encode())
-                else:
-                    print("Opened without repeating")
-                ser.flush()
-                constants.SNIds.append(int(sensor_id))
-                
-            except:
+                    response = ser.readline().decode()
+
+                    if response == "ESP-ROM:esp32s2-rc4-20191025":
+                        print("Repeating")
+                        ser.reset_input_buffer()
+                        ser.write(send_buf.encode())
+                    else:
+                        print("Opened without repeating")
+                    ser.flush()
+                    constants.SNIds.append(int(sensor_id))
+
+            except serial.SerialException:
                 print(f"COM Port {com_port} not open")
+            except Exception as e:
+                print(f"An unexpected error occurred: {e}")
 
 def close_serial():
     
