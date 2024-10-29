@@ -88,7 +88,7 @@ The RFID antennae are placed like shown in figure 7. Then, the anntennae are con
 
 ## Environment Sensor Module
 
-The environment sensor module is placed above on a side wall feeding and nesting area (name of areas as indicated in figure 7). The module is connected via USB to a laptop which runs the UI provided from Fraunhofer Institute to records the data.
+The environment sensor module is placed above on a side wall feeding and nesting area (name of areas as indicated in figure 7). The module is connected via USB to a laptop which runs the NoSeMaze Controller. Threads in the software request measurement data from the ESP32 microcontrollers. 
 
 ```mermaid
 flowchart LR
