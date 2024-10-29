@@ -192,7 +192,7 @@ class plotter:
             buffer_t[i].append(current_time)
         # If new data, append values
         else:
-            self.check_thresholds(dict[sensor_name][variable_name], variable_name)
+            #self.check_thresholds(dict[sensor_name][variable_name], variable_name)
             buffer[i].append(dict[sensor_name][variable_name])
             
             if (((dict[sensor_name]["timestamp"]))/1000) > current_time:
