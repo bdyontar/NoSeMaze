@@ -614,7 +614,6 @@ class DoAiMultiTask:
 
         if self.static:
             """onset"""
-            # print('onset')
             self.totalLength = numpy.uint64(self.samp_rate*self.onset)
             self.analogDataOnset = numpy.zeros(
                 (self.ai_channels, self.totalLength), dtype=numpy.float64)
@@ -810,7 +809,6 @@ class DoAiMultiTaskOdourTraining:
             List of reward parameters (reward probability and amount of 
             reward.)
         """
-        print(odor_write)
         self.ai_handle = TaskHandle(0)
         self.do_handle = TaskHandle(1)
         self.fv_handle = TaskHandle(2)
@@ -828,11 +826,9 @@ class DoAiMultiTaskOdourTraining:
 
         DAQmxCreateAIVoltageChan(
             self.ai_handle, ai_device, '', DAQmx_Val_Diff, -5.0, 5.0, DAQmx_Val_Volts, None)
-        print("DI Handle: "+do_device)
         DAQmxCreateDOChan(self.do_handle, do_device,
                           '', DAQmx_Val_ChanForAllLines)
         DAQmxCreateDOChan(self.fv_handle, fv_device, '', DAQmx_Val_ChanPerLine)
-        print("FV Device: " + fv_device)
 
         self.ai_read = int32()
         self.ai_channels = ai_channels
@@ -852,12 +848,9 @@ class DoAiMultiTaskOdourTraining:
                 self.odor_length = 0.01
             self.thorax_delay = odor_write[2] - self.thorax_delay
             self.offset = odor_write[3]
-            print(odor_write[0])
             self.odor_pulse = Util.binary_to_digital_map(odor_write[0])
-            print("Odor Pulse: " + str(self.odor_pulse))
             self.odorSampsPerChan = self.odor_pulse.shape[1]
             self.odor_pulse = numpy.sum(self.odor_pulse, axis=0)
-            print("Odor Pulse: " + str(bin(int(self.odor_pulse))))
 
             self.fv_onset_pulse = fv_write[0]
             self.fvSampsPerChan = fv_write.shape[0]
@@ -1044,7 +1037,6 @@ class DoAiMultiTaskOdourTraining:
             valve8write = numpy.sum([self.odor_pulse, self.valve8on], axis=0)
             DAQmxWriteDigitalU32(self.do_handle, self.odorSampsPerChan, False, -1, DAQmx_Val_GroupByChannel, valve8write,
                                  byref(self.odorSampsPerChanWritten), None)
-            print(bin(int(valve8write)))
 
             DAQmxStopTask(self.do_handle)
 
@@ -1069,7 +1061,6 @@ class DoAiMultiTaskOdourTraining:
             DAQmxStartTask(self.fv_handle)
             DAQmxWriteDigitalU32(self.fv_handle, self.fvSampsPerChan, False, -1, DAQmx_Val_GroupByChannel, self.on,
                                  byref(self.fvSampsPerChanWritten), None)
-            print(bin(int(self.on)))
             DAQmxStopTask(self.fv_handle)
             if self.odor_length > 0.01:
                 self.totalLength = numpy.uint64(

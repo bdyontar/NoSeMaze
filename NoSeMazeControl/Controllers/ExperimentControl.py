@@ -638,19 +638,19 @@ class ExperimentWorker(QtCore.QObject):
         """Checks whether animal is present in the port."""
 
         # DEBUG : for debugging purpose
-        return np.random.rand() > 0.5
+        #return np.random.rand() > 0.5
 
-        #return beam.check_beam(self.hardware_prefs['beam_channel'])
+        return beam.check_beam(self.hardware_prefs['beam_channel'])
 
     def get_present_animal(self):
         """Returns the animal in the port. 'Rfid.check_rfid' method differs 
         between NoSeMaze 1 and NoSeMaze 2."""
 
         # DEBUG : just chooses a random animal
-        animals = list(self.experiment.animal_list.keys())
-        animal = np.random.choice(animals)
+        # animals = list(self.experiment.animal_list.keys())
+        # animal = np.random.choice(animals)
 
-        #animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
+        animal = rfid.check_rfid(self.hardware_prefs['rfid_port'], 10)
         try:
             if animal in self.experiment.animal_list.keys():
                 return self.experiment.animal_list[animal]
