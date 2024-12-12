@@ -156,7 +156,7 @@ class NoSeMazeScheduleWidget(QtWidgets.QWidget, NoSeMazeScheduleDesign.Ui_Form):
                      'pulse_delay': 0.0,
                      'fromLength': False,
                      'fromRepeats': True,
-                     'repeats': 1,
+                     'repeats': 0,
                      'length': 0.0,
                      'isClean': True,
                      'onset': onset,
