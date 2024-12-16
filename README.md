@@ -1,5 +1,5 @@
 # NoSeMaze
-
+jcgfgh
 This is a repository containing the UIs for NoSeMaze and its documentation and guides for using and setting up the NoSeMaze. NoSeMaze was developed as an automatic olfactometer system based on AutonoMouse by Erskine et al.[^1] which allows laboratory mice to be trained with olfactory tasks in a semi-natural habitat. Since then NoSeMaze was further enriched with many sensors to gather data related to social behaviour of the mice, hence the name NoSeMaze (natural-habitat oriented sensor-enriched maze).
 
 > Contact person for more information:
