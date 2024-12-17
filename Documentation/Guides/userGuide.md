@@ -1,6 +1,6 @@
 # User Guide
 
-This documentation is meant to help user navigate the [_NoSeMazeControl_](#nosemazecontrol) UI and [_NoSeMazeSchedule_](#nosemazeschedule) UI and part of NoSemaze documentation.
+This documentation is meant to help user navigate the [_NoSeMazeControl_](#nosemazecontrol) UI and part of NoSemaze documentation.
 
 ## NoSeMazeControl
 
@@ -50,8 +50,9 @@ There are some possible ways to start the UI:
 To start an experiment, there are several things that must be done first. If there is already a saved experiment (a file with _.nosemaze_ suffix), this section can be skipped (continue to **[Starting&nbsp;The&nbsp;Experiment](#starting-the-experiment)**).
 
 1. **Create Schedule**
-    Before starting the experiment, create the trials/training schedule necessary for the experiment using the NoSeMazeSchedule UI. For more details on how to create a schedule, see [NoSeMazeSchedule guide](#nosemazeschedule).
+    Before starting the experiment, create the trials/training schedule necessary for the experiment using the Schedule Generator window. For more details on how to create a schedule, see [NoSeMazeSchedule guide](#nosemazeschedule).
     </br>
+    > :exclamation: **Important** : The Schdule Generator used to be seperate from the NoSeMazeControl UI and was the NoSeMazeSchedule UI. However in the new NoSeMaze Setup the Schedule Generator is built in to the NoSeMazeControl UI. It is found inthe animals dropdown menu under Schedule ([Fig. 1](#main-window-nsc-main-window)).
 
 2. **Populating animal List**
     The animal list must be populated with the RFID tag of the animals before starting the experiment. Populating animal list is done in the animal window.
@@ -116,7 +117,7 @@ To stop the experiment, click the **Stop** button in the **control panel** (numb
 
 #### Main Window {#nsc-main-window}
 
-![main window](../_images/nscMainWindowIndexed.PNG)
+![main window](../_images/Main Window_Autonomouse_new.PNG)
 
 _**Fig. 1:** Main Window of NoSeMazeControl UI._
 
@@ -168,7 +169,7 @@ The plots shows analog data of lick sensors and signals that is used to control 
 
 #### Hardware Preference Window {#nsc-hardware-preference-window}
 
-![hardware preference window](../_images/nscHardwarePrefWindowIndexed.PNG)
+![hardware preference window](../_images/Hardware Preferences_Autonomouse_new.PNG)
 
 _**Fig. 2:** Hardware Preference Window of NoSeMazeControl UI._
 
@@ -190,10 +191,10 @@ The parameters used in the experiment.
     : NI device used for controlling final valve. Fig. 2 shows that channel 0 from digital output in "port2" from "Dev1" is used.
 
 4. Reward output device 1
-    : NI device used for controlling water valve 1. Fig. 2 shows that channel 1 from digital output in "port2" from "Dev1" is used.
+    : NI device used for controlling water valve 1. Fig. 2 shows that channel 0 from digital output in "port1" from "Dev1" is used.
 
 5. Reward output device 1
-    : NI device used for controlling water valve 1. Fig. 2 shows that channel 2 from digital output in "port2" from "Dev1" is used.
+    : NI device used for controlling water valve 1. Fig. 2 shows that channel 1 from digital output in "port1" from "Dev1" is used.
 
 6. Synchronisation Clock
     : Source clock for digital outputs. Not used in static implementation in NI USB 6216 BNC.
@@ -207,37 +208,27 @@ The parameters used in the experiment.
 9. Final valve delay
     : Delay in second before final valve is switched. Should be set as 0.
 
-10. Thorax monitor delay
-    : Obsolete.
-
-11. Lick monitor delay
+10. Lick monitor delay
     : Delay in second after odor presentation in which the analog input should be still recorded to check licks after odor presentation.
 
-12. Lick rate limit
-    : Threshold in number of licks to consider if a trial is responded or not. Fig. 2 shows that the threshold is set to 3 licks.
+11. Lick rate limit
+    : Threshold in number of licks to consider if a trial is responded or not.
 
-13. Beam channel
+12. Beam channel
     : Channel number in analog input used as beam sensor input.
 
-14. Lick channel left
+13. Lick channel left
     : Channel number in analog input used as lick sensor input considered from the left nozzle.
 
-15. Lick channel right
+14. Lick channel right
     : Channel number in analog input used as lick sensor input consideed from the right nozzle.
 
-16. Analog input 3
-    : Currently not in used.
-
-17. Timeout
+15. Timeout
     : Delay in seconds after a trial before a new trial begins if the trial beforehand was resulted in a miss (animal licked to not rewarded odor).
 
 ##### Number of Channels [2]
 
 Number of channels used. This parameter will be used to prepare the data container.
-
-##### NI USB 6216 Check Box [3]
-
-Checkbox parameter which indicate that if NI USB 6216 BNC is used or not. In the current version, only NI USB 6216 is supported. The checkbox should be checked.
 
 #### Animals Window {#nsc-animals-window}
 
@@ -380,30 +371,13 @@ _**Fig. 7:** Experiment flow from before starting an experiment to the end of an
 ## NoSeMazeSchedule
 
 - [Introduction](#introduction-nss)
-- [Starting The UI](#starting-nss)
 - [Creating A Scheudule](#creating-a-schedule)
-- [UI Descriptions](#nss-ui-descriptions)
+- [Schedule Generator Window Descriptions](#nss-ui-descriptions)
   - [Main Window](#nss-main-window)
 
 ### Introduction {#introduction-nss}
 
-The NoSeMazeSchedule serves as a tool to build schedules which are used in NoSeMazeControl. The schedules are made from a custom made widget. Developer can also build their custom widget e.g. with custom parameters for a custom trial as the widget build has a specific trial/training in mind. Please make sure to implement the trial/training also in NoSeMazeControl [ExperimentControl.py](../../NoSeMazeControl/Controllers/ExperimentControl.py) and [DAQ.py](../../NoSeMazeControl/daqface/DAQ.py).
-
-### Starting The UI {#starting-nss}
-
-To start the UI, run [scheduleMain.py](../../NoSeMazeSchedule/scheduleMain.py) from the [_NoSeMazeSchedule_](../../NoSeMazeSchedule/) folder using python version 3.10 or above.
-
-There are some possible ways to start the UI:
-
-1. Starting the UI using python console
-    1. Start a python console.
-    2. Change the folder to NoSeMazeSchedule.
-    3. Run scheduleMain.py.
-2. Starting the UI using python IDE
-    1. Start a python IDE (e.g. VSCode, Spyder etc.).
-    2. Open the NoSeMazeSchedule folder from the IDE as active directory/folder.
-    3. Open scheduleMain.py file.
-    4. Run scheduleMain.py file.
+The NoSeMazeSchedule serves as a tool to build schedules within the NoSeMazeControl. Developer can also build their custom widget e.g. with custom parameters for a custom trial as the widget build has a specific trial/training in mind. Please make sure to implement the trial/training also in NoSeMazeControl [ExperimentControl.py](../../NoSeMazeControl/Controllers/ExperimentControl.py) and [DAQ.py](../../NoSeMazeControl/daqface/DAQ.py).
 
 ### Creating A Schedule
 
@@ -708,13 +682,13 @@ Set the number of odours to 1.
     > :memo: **Tip:**
     In the current version, the animal must only licked one nozzle
 
-### UI Descriptions {#ui-nss}
+### Schedule Generator Window Descriptions {#ui-nss}
 
 #### Main Window {#nss-main-window}
 
 ![indexed main window of NoSeMazeSchedue](../_images/nssMainWindowIndexed.PNG)
 
-_**Fig. 9:** Main window of schedule generator UI._
+_**Fig. 9:** Main window of schedule generator._
 
 ##### File {#nss}
 
