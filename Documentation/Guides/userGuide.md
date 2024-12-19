@@ -117,7 +117,7 @@ To stop the experiment, click the **Stop** button in the **control panel** (numb
 
 #### Main Window {#nsc-main-window}
 
-![main window](../_images/Main Window_Autonomouse_new.PNG)
+![main window](../_images/Main_Window_NoSeMaze_new.PNG)
 
 _**Fig. 1:** Main Window of NoSeMazeControl UI._
 
@@ -169,7 +169,7 @@ The plots shows analog data of lick sensors and signals that is used to control 
 
 #### Hardware Preference Window {#nsc-hardware-preference-window}
 
-![hardware preference window](../_images/Hardware Preferences_Autonomouse_new.PNG)
+![hardware preference window](../_images/Hardware_Preferences_Window_NoSeMaze_new.PNG)
 
 _**Fig. 2:** Hardware Preference Window of NoSeMazeControl UI._
 
